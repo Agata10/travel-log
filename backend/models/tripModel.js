@@ -5,6 +5,7 @@ const tripSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+      required: true,
     },
     name: {
       type: String,
@@ -47,6 +48,6 @@ const tripSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-tripSchema.index({ userId: 1 }, { unique: true });
+// tripSchema.index({ userId: 1, _id: 1 }, { unique: true });
 
 module.exports = mongoose.model('Trip', tripSchema);
