@@ -11,6 +11,8 @@ const PORT = process.env.PORT || 8080;
 const configDB = require('./conn');
 configDB();
 
+const userRoutes = require('./routes/userRoutes');
+
 //allow cors
 app.use(cors());
 //logger
@@ -19,8 +21,10 @@ app.use(morgan('dev'));
 app.use(epxress.json());
 
 app.get('/', (req, res, next) => {
-  res.json({ msg: 'YAY' }).status(200);
+  res.json({ msg: 'Connected to the API' }).status(200);
 });
+
+app.use('/api/users', userRoutes);
 
 //error handling
 app.use((err, req, res, next) => {
