@@ -7,6 +7,10 @@ const morgan = require('morgan');
 const app = epxress();
 const PORT = process.env.PORT || 8080;
 
+//connect to database
+const configDB = require('./conn');
+configDB();
+
 //allow cors
 app.use(cors());
 //logger
