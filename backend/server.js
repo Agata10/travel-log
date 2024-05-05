@@ -7,9 +7,10 @@ const morgan = require('morgan');
 const app = epxress();
 const PORT = process.env.PORT || 8080;
 
+//allow cors
+app.use(cors());
 //logger
 app.use(morgan('dev'));
-
 //allow access to body sent in the request
 app.use(epxress.json());
 
