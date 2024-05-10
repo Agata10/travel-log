@@ -9,7 +9,7 @@ const tripSchema = new mongoose.Schema(
     },
     name: {
       type: String,
-      required: true,
+      required: [true, 'Name is required'],
     },
     startDate: Date,
     endDate: Date,
