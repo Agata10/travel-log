@@ -9,10 +9,16 @@ const tripSchema = new mongoose.Schema(
     },
     name: {
       type: String,
-      required: [true, 'Name is required'],
+      required: true,
     },
-    startDate: Date,
-    endDate: Date,
+    startDate: {
+      type: Date,
+      required: true,
+    },
+    endDate: {
+      type: Date,
+      required: true,
+    },
     img: String,
     description: {
       type: String,
