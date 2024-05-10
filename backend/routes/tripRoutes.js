@@ -1,50 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const Trip = require('../models/tripModel');
+const tripController = require('../controllers/tripController');
 
 //get all user trips
-router.get('/:userId', async (req, res, next) => {
-  try {
-    const userId = req.params.userId;
-    const trips = await Trip.find({ userId: userId }).sort({ startDate: 1 });
-    res.json(trips);
-  } catch (err) {
-    next(err);
-  }
-});
+router.get('/:userId', tripController.getTrips);
 
 //create a trip
-router.post('/', async (req, res, next) => {
-  try {
-    const trip = await Trip.create(req.body);
-    res.json(trip);
-  } catch (err) {
-    next(err);
-  }
-});
+router.post('/', tripController.createTrip);
 
 // update single trip
-router.put('/:id', async (req, res, next) => {
-  try {
-    const trip = await Trip.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    res.json(trip);
-  } catch {
-    next(err);
-  }
-});
+router.put('/:id', tripController.updateTrip);
 
 // delete a single trip
-router.delete('/:id', async (req, res, next) => {
-  try {
-    const trip = await Trip.findByIdAndDelete(req.params.id, {
-      new: true,
-    });
-    res.json(trip);
-  } catch {
-    next(err);
-  }
-});
+router.delete('/:id', tripController.deleteTrip);
 
 module.exports = router;
