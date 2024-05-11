@@ -5,15 +5,15 @@ const expenseSchema = new mongoose.Schema(
     tripId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Trip',
-      require: true,
+      required: true,
     },
     amount: {
       type: Number,
-      require: true,
+      required: true,
     },
-    name: {
+    description: {
       type: String,
-      require: true,
+      required: true,
     },
     category: {
       type: String,
@@ -31,3 +31,5 @@ const expenseSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+module.exports = mongoose.model('Expense', expenseSchema);

@@ -13,6 +13,7 @@ configDB();
 
 const userRoutes = require('./routes/userRoutes');
 const tripRoutes = require('./routes/tripRoutes');
+const expenseRoutes = require('./routes/expenseRoutes');
 
 //allow cors
 app.use(cors());
@@ -27,6 +28,7 @@ app.get('/', (req, res, next) => {
 
 app.use('/api/users', userRoutes);
 app.use('/api/trips', tripRoutes);
+app.use('/api/expense', expenseRoutes);
 
 //error handling
 app.use((err, req, res, next) => {
