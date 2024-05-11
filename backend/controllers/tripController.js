@@ -44,3 +44,14 @@ module.exports.deleteTrip = async (req, res, next) => {
     next(err);
   }
 };
+
+//get all trip expenses
+module.exports.getExpenses = async (req, res, next) => {
+  try {
+    const trip = await Trip.findById(req.params.id).populate('expenses');
+    const expenses = trip.expenses;
+    res.json(expenses);
+  } catch (err) {
+    next(err);
+  }
+};
