@@ -55,3 +55,14 @@ module.exports.getExpenses = async (req, res, next) => {
     next(err);
   }
 };
+
+//get all trip places
+module.exports.getPlaces = async (req, res, next) => {
+  try {
+    const trip = await Trip.findById(req.params.id).populate('places');
+    const places = trip.places;
+    res.json(places);
+  } catch (err) {
+    next(err);
+  }
+};

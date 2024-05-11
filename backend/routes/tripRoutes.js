@@ -17,4 +17,7 @@ router.delete('/:id', tripController.deleteTrip);
 //get all expanses
 router.get('/:id/expenses', tripController.getExpenses);
 
+//get all places
+router.get('/:id/places', tripController.getPlaces);
+
 module.exports = router;
