@@ -38,12 +38,6 @@ const tripSchema = new mongoose.Schema(
         ref: 'Place',
       },
     ],
-    favPlaces: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Place',
-      },
-    ],
     expenses: [
       {
         type: mongoose.Schema.Types.ObjectId,
