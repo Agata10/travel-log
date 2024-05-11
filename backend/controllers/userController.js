@@ -9,15 +9,6 @@ module.exports.getAllUsers = async (req, res, next) => {
   }
 };
 
-module.exports.createUser = async (req, res, next) => {
-  try {
-    const result = await User.create(req.body);
-    res.json(result);
-  } catch (err) {
-    next(err);
-  }
-};
-
 module.exports.getUser = async (req, res, next) => {
   try {
     const result = await User.findById(req.params.id);
