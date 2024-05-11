@@ -12,6 +12,7 @@ const configDB = require('./conn');
 configDB();
 
 const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 const tripRoutes = require('./routes/tripRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
 const placeRoutes = require('./routes/placeRoutes');
@@ -31,7 +32,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/trips', tripRoutes);
 app.use('/api/expense', expenseRoutes);
 app.use('/api/places', placeRoutes);
-
+app.use(authRoutes);
 //error handling
 app.use((err, req, res, next) => {
   const status = err.status || 500;
