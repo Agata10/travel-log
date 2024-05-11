@@ -11,6 +11,7 @@ const placeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    address: String,
     date: Date,
     img: String,
     description: String,
