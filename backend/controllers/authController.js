@@ -1,4 +1,9 @@
 const User = require('../models/userModel');
+const jwt = require('jsonwebtoken');
+
+const genereteToken = (_id) => {
+  return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: '3d' });
+};
 
 module.exports.signup = async (req, res, next) => {
   try {
@@ -6,8 +11,10 @@ module.exports.signup = async (req, res, next) => {
     if (userExists) {
       return res.status(400).json({ error: 'User already exists' });
     }
-    const result = await User.create({ ...req.body });
-    res.json(result);
+    const user = await User.create(req.body);
+    //create token
+    const token = genereteToken(user._id);
+    res.json({ token });
   } catch (err) {
     next(err);
   }

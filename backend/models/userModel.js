@@ -29,8 +29,13 @@ const userSchema = new mongoose.Schema(
 
 //method used before document is saved to db
 userSchema.pre('save', async function (next) {
-  const salt = await bcrypt.genSalt();
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
+  try {
+    const saltRounds = Number(process.env.SALT_ROUNDS);
+    const salt = await bcrypt.genSalt(saltRounds);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 module.exports = mongoose.model('User', userSchema);
