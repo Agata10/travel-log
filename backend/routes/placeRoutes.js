@@ -12,8 +12,8 @@ router.put('/:id', placeController.updatePlace);
 router.delete('/:id', placeController.deletePlace);
 
 //add/delete -toggle favourite places
-router.put('/:id/favourite', placeController.toggleFavPlace);
+router.put('/:id/favorites', placeController.toggleFavPlace);
 
 //get favourites
-router.get('/favourites', placeController.getFavPlaces);
+router.get('/favorites', placeController.getFavPlaces);
 module.exports = router;
