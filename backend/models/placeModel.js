@@ -12,10 +12,13 @@ const placeSchema = new mongoose.Schema(
       required: true,
     },
     address: String,
-    date: Date,
+    date: {
+      type: Date,
+      index: true,
+    },
     img: String,
     description: String,
-    favourite: {
+    favorite: {
       type: Boolean,
       default: false,
     },
