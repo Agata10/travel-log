@@ -45,7 +45,7 @@ module.exports.deletePlace = async (req, res, next) => {
 module.exports.toggleFavPlace = async (req, res, next) => {
   try {
     const place = await Place.findById(req.params.id);
-    place.favourite = !place.favourite;
+    place.favorite = !place.favorite;
     await place.save();
     res.json(place);
   } catch (err) {
@@ -56,7 +56,16 @@ module.exports.toggleFavPlace = async (req, res, next) => {
 //get favourites places
 module.exports.getFavPlaces = async (req, res, next) => {
   try {
-    const places = await Place.find({ favourite: true });
+    const places = await Place.find({ favorite: true });
+    res.json(places);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getPlacesByDate = async (req, res, next) => {
+  try {
+    const places = await Place.find({ date: req.params.date });
     res.json(places);
   } catch (err) {
     next(err);
