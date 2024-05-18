@@ -30,7 +30,7 @@ app.get('/', (req, res, next) => {
 
 app.use('/api/users', userRoutes);
 app.use('/api/trips', tripRoutes);
-app.use('/api/expense', expenseRoutes);
+app.use('/api/expenses', expenseRoutes);
 app.use('/api/places', placeRoutes);
 app.use(authRoutes);
 //error handling
