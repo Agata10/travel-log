@@ -4,23 +4,14 @@ Application for tracking your trips in one place, add trips, places, your favour
 
 ## Table of Contents
 
-  - [Backend documentation](#backend-documentation)
-  - [About](#about)
-  - [Technologies](#technologies)
-  - [Database](#database)
-  - [Run Locally](#run-locally)
-  - [API routes](#API-routes)
-  - [Challanges/What I learned](#challenges/what-I-learner)
-
-  - [Frontend documentation](#frontend-documentation)
-  - [About](#about)
-  - [Technologies](#technologies)
-  - [Database](#database)
-  - [Run Locally](#run-locally)
-  - [API routes](#API-routes)
-  - [API examples](#API-examples)
-  - [Template views](#template-views)
-  - [Screenshots](#screenshots)
+  | Backend documentation |   Frontend documentation |
+  |:-----| :-----|
+  |  [About](#about) |    [About](#about) |
+  |  [Technologies](#technologies) |    [Technologies](#technologies) |
+  |  [Database](#database) |  [Run Locally](#run-locally) |
+  | [Run Locally](#run-locally) |   [Challenges](#challenges) |
+  | [API routes](#api-routes) |    [Future app possibilities](#possibilities) |
+  | [What I learned](#what-i-learned) |    [Screenshots](#screenshots) |
 
 ## About
 
