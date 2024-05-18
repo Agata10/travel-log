@@ -28,7 +28,7 @@ Application for tracking your trips in one place, add trips, places, your favour
 ## Database
 
    <br>
-      <img src="/backend/public/images/database.png" width="800" height="600">
+      <img src="/backend/public/images/database.png" width="800" height="700">
 
 ## Run Locally
 
