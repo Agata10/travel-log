@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useMap, useMapEvents } from 'react-leaflet/hooks';
 import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
+import { RotatingLines } from 'react-loader-spinner';
 
 const Map = () => {
   const [position, setPosition] = useState([51.505, -0.09]); //lat, lng
@@ -9,29 +10,36 @@ const Map = () => {
 
   //get user location
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setPosition([position.coords.latitude, position.coords.longitude]);
-        setIsLoading(false);
-      },
-      () => {
-        setIsLoading(false);
-        console.log('Error, no position avaiable');
-      }
-    );
-  }, []);
-  {
-    console.log(position);
-  }
+    const timeout = setTimeout(() => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setPosition([position.coords.latitude, position.coords.longitude]);
+          setIsLoading(false);
+        },
+        () => {
+          setIsLoading(false);
+          console.log('Error, no position avaiable');
+        }
+      );
+    }, 1000);
 
-  if (isLoading) {
-    return <p>Loading...</p>; // Render a loading indicator
-  }
+    () => clearTimeout(timeout);
+  }, []);
 
   return (
     <div className="w-full h-screen">
       {isLoading ? (
-        <p>Loading...</p>
+        <RotatingLines
+          visible={true}
+          height="96"
+          width="96"
+          color="grey"
+          strokeWidth="5"
+          animationDuration="0.75"
+          ariaLabel="rotating-lines-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
       ) : (
         <MapContainer
           center={position}
