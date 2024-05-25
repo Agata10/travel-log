@@ -4,15 +4,17 @@ import { Grid } from '@mui/material';
 import Map from '../components/explore/Map';
 const Explore = () => {
   return (
-    <Grid container>
-      <Grid item md={6}>
-        <SearchBar />
-        <ListPlaces />
+    <div className="w-full h-screen">
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={4}>
+          <SearchBar />
+          <ListPlaces />
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <Map />
+        </Grid>
       </Grid>
-      <Grid item md={6}>
-        <Map />
-      </Grid>
-    </Grid>
+    </div>
   );
 };
 
