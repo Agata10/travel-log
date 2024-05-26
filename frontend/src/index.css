@@ -10,3 +10,14 @@ body,
     padding: 0;
 
 }
+
+/*GEOPAIFY AUTOCOMPLETE INPUT */
+.geoapify-close-button {
+    position: absolute;
+    left: 82%;
+    top: 0;
+}
+
+.geoapify-autocomplete-items {
+    width: 90%;
+}
