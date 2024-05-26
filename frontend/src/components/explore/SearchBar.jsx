@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { InputAdornment } from '@mui/material';
 
-const SearchBar = ({ position, setPosition, setIsLoading }) => {
+const SearchBar = ({ setPosition }) => {
   const [options, setOptions] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -20,9 +20,7 @@ const SearchBar = ({ position, setPosition, setIsLoading }) => {
 
   const handleInputChange = async (event, newValue) => {
     setInputValue(newValue);
-
     if (newValue.length > 3) {
-      // Call Geoapify API to get autocomplete suggestions
       const response = await fetch(
         `https://api.geoapify.com/v1/geocode/autocomplete?text=${newValue}&apiKey=${
           import.meta.env.VITE_API_KEY
@@ -35,22 +33,21 @@ const SearchBar = ({ position, setPosition, setIsLoading }) => {
 
   const handleSelectedOption = (event, value) => {
     setSelectedPlace(value);
-
-    console.log(value);
   };
+
   return (
     <div className="w-10/12">
       <Autocomplete
+        options={options}
         value={selectedPlace}
+        getOptionLabel={(option) => option.properties.formatted}
         onChange={handleSelectedOption}
         inputValue={inputValue}
         onInputChange={handleInputChange}
         isOptionEqualToValue={(option, value) =>
-          option.properties.formatted === value.properties?.formatted
+          option.properties.city === value.properties.city
         }
-        options={options}
         sx={{ width: 300 }}
-        getOptionLabel={(option) => option.properties.formatted}
         renderInput={(params) => (
           <TextField
             {...params}

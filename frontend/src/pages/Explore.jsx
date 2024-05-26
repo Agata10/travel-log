@@ -34,7 +34,7 @@ const Explore = () => {
     <div className="w-full h-screen">
       <Grid container spacing={3}>
         <Grid item xs={12} md={4} className="overflow-scroll">
-          <SearchBar setPosition={setPosition} setIsLoading={setIsLoading} />
+          <SearchBar setPosition={setPosition} />
           <ListPlaces />
         </Grid>
         <Grid item xs={12} md={8}>
@@ -47,11 +47,13 @@ const Explore = () => {
               strokeWidth="5"
               animationDuration="0.75"
               ariaLabel="rotating-lines-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
             />
           ) : (
-            <Map position={position} setPosition={setPosition} />
+            <Map
+              position={position}
+              setPosition={setPosition}
+              setIsLoading={setIsLoading}
+            />
           )}
         </Grid>
       </Grid>
