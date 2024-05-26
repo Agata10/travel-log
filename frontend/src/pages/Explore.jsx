@@ -49,11 +49,7 @@ const Explore = () => {
               ariaLabel="rotating-lines-loading"
             />
           ) : (
-            <Map
-              position={position}
-              setPosition={setPosition}
-              setIsLoading={setIsLoading}
-            />
+            <Map position={position} setPosition={setPosition} />
           )}
         </Grid>
       </Grid>

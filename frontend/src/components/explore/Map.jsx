@@ -4,14 +4,12 @@ import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 const VITE_API_KEY = import.meta.env.VITE_API_KEY;
 
-function LocationMarker({ position, setIsLoading }) {
+function LocationMarker({ position }) {
   const map = useMap();
 
   useEffect(() => {
     if (position) {
-      setIsLoading(true);
       map.flyTo([position.lat, position.lng], map.getZoom());
-      setTimeout(setIsLoading(false), 1000);
     }
   }, [position, map]);
 
@@ -22,7 +20,7 @@ function LocationMarker({ position, setIsLoading }) {
   );
 }
 
-const Map = ({ position, setIsLoading }) => {
+const Map = ({ position }) => {
   const [url, setUrl] = useState(
     `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=${VITE_API_KEY}`
   );
