@@ -5,15 +5,13 @@ import {
   Tooltip,
   Popup,
   useMap,
-  useMapEvent,
 } from 'react-leaflet';
 import { Browser } from 'leaflet';
 import { useEffect, useState, useContext } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { ExploreContext } from '../../utilis/ExploreContext';
-import data from './places.js';
-import { Typography } from '@mui/material';
-import { Paper } from '@mui/material';
+import icon from '../../assets/loc.png';
+import L from 'leaflet';
 
 const VITE_API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -47,12 +45,12 @@ const LocationMarker = ({ position, setBounds }) => {
 };
 
 const PlaceMarker = ({ places }) => {
-  {
-    console.log(places);
-  }
-  const handleTooltipClick = (e, place) => {
-    e.target.className.add('active');
-  };
+  const customIcon = L.icon({
+    iconUrl: icon,
+    iconSize: [38, 38], // size of the icon
+    iconAnchor: [19, 38], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -38], // point from which the popup should open relative to the iconAnchor
+  });
 
   return places === null
     ? null
@@ -61,34 +59,34 @@ const PlaceMarker = ({ places }) => {
           (place) => place.latitude !== null && place.latitude !== undefined
         )
         .map((place) => (
-          <Marker
-            key={crypto.randomUUID()}
-            position={{
-              lat: Number(place?.latitude),
-              lng: Number(place?.longitude),
-            }}
-            className="z-0"
-          >
-            <Tooltip
-              direction="top"
-              className="z-0 hover:z-10"
-              permanent
-              eventHandlers={{
-                mouseover: (e) => handleTooltipClick(e, place),
+          <div key={crypto.randomUUID()}>
+            <Marker
+              position={{
+                lat: Number(place?.latitude),
+                lng: Number(place?.longitude),
               }}
+              zIndex={10}
+              icon={customIcon}
             >
-              <img
-                src={place.photo.images?.original.url}
-                alt={place.name}
-                style={{
-                  width: '90px',
-                  height: '60px',
-                  objectFit: 'cover',
-                }}
-              />
-              <p className="">{place.name}</p>
-            </Tooltip>
-          </Marker>
+              <Tooltip
+                offset={[0, -30]}
+                direction="top"
+                permanent={true}
+                className="hover:z-auto"
+                sticky={true}
+              >
+                <img
+                  src={place.photo.images?.original.url}
+                  alt={place.name}
+                  style={{
+                    width: '110px',
+                    objectFit: 'cover',
+                  }}
+                />
+                <p>{place.name}</p>
+              </Tooltip>
+            </Marker>
+          </div>
         ));
 };
 

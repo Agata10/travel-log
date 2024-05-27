@@ -22,24 +22,18 @@ body,
     width: 90%;
 }
 
-.leaflet-tooltip-content:hover {
-    z-index: 999;
+/* .active {
+    z-index: 1 !important;
 }
 
-/*MAP TOOLPIT*/
-.leaflet-tooltip {
-    width: 100px;
-    z-index: 10;
-}
-
-.leaflet-marker-pane>.leaflet-marker-icon {
-    z-index: 10 !important;
-}
-
-.leaflet-marker-pane>img:hover {
-    z-index: 999;
-}
-
-/* .leaflet-tooltip-pane:hover .leaflet-tooltip:hover {
-    z-index: 999;
+.active:hover {
+    z-index: 999 !important;
 } */
+
+.leaflet-tooltip {
+    max-width: 120px;
+    display: flex;
+    flex-wrap: wrap !important;
+    width: max-content;
+    white-space: normal;
+}
