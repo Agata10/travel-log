@@ -18,17 +18,24 @@ const SearchBar = ({ setPosition }) => {
     }
   }, [selectedPlace]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (inputValue.length > 3) {
+        const response = await fetch(
+          `https://api.geoapify.com/v1/geocode/autocomplete?text=${inputValue}&apiKey=${
+            import.meta.env.VITE_API_KEY
+          }`
+        );
+        const data = await response.json();
+        setOptions(data.features);
+      }
+    };
+
+    fetchData();
+  }, [inputValue]);
+
   const handleInputChange = async (event, newValue) => {
     setInputValue(newValue);
-    if (newValue.length > 3) {
-      const response = await fetch(
-        `https://api.geoapify.com/v1/geocode/autocomplete?text=${newValue}&apiKey=${
-          import.meta.env.VITE_API_KEY
-        }`
-      );
-      const data = await response.json();
-      setOptions(data.features);
-    }
   };
 
   const handleSelectedOption = (event, value) => {
