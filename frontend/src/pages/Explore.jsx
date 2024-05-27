@@ -40,7 +40,7 @@ const Explore = () => {
 
   useEffect(() => {
     if (bounds) {
-      console.log(places);
+      // console.log(places);
       // getRestaurants(bounds, setPlaces);
       setPlaces(data);
     }

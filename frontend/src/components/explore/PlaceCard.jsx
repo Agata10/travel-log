@@ -12,6 +12,13 @@ import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 const PlaceCard = ({ place }) => {
+  const handleAddPlace = () => {
+    console.log(place.name, place.addres, place.photo.images.original.url);
+  };
+  const handleAddToFav = () => {
+    console.log(place.name, place.addres, place.photo.images.original.url);
+    //favorite set to true
+  };
   return (
     <Card sx={{ maxWidth: 500 }} className="px-4 pt-4">
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
@@ -55,13 +62,23 @@ const PlaceCard = ({ place }) => {
       </Box>
       <CardActions>
         <Stack direction="row" xs={{ margin: 0, padding: 0 }}>
-          <IconButton aria-label="add to favorites" size="small">
+          <IconButton
+            aria-label="add to favorites"
+            size="small"
+            onClick={handleAddToFav}
+          >
             <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="add to favorites" href={place.web_url}>
+          <IconButton
+            aria-label="add to favorites"
+            href={place.web_url}
+            target="_blank"
+          >
             <LanguageOutlinedIcon size="small" />
           </IconButton>
-          <Button size="small">Save</Button>
+          <Button size="small" onClick={handleAddPlace}>
+            Save
+          </Button>
         </Stack>
       </CardActions>
     </Card>

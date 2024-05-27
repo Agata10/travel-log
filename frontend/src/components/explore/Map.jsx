@@ -105,9 +105,6 @@ const Map = () => {
       );
     }
   }, [position]);
-  {
-    console.log(bounds);
-  }
   return (
     <div className="w-full h-screen">
       {position && (
