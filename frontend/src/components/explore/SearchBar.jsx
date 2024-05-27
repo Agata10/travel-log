@@ -3,12 +3,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { useEffect, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { InputAdornment } from '@mui/material';
+import { fetchAutocompletePlaces } from '../../services/MapAPI';
 
 const SearchBar = ({ setPosition }) => {
   const [options, setOptions] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [selectedPlace, setSelectedPlace] = useState(null);
 
+  //if user selected place, set a new position
   useEffect(() => {
     if (selectedPlace) {
       setPosition({
@@ -18,20 +20,9 @@ const SearchBar = ({ setPosition }) => {
     }
   }, [selectedPlace]);
 
+  //if input has new value, fetch autocomplete API
   useEffect(() => {
-    const fetchData = async () => {
-      if (inputValue.length > 3) {
-        const response = await fetch(
-          `https://api.geoapify.com/v1/geocode/autocomplete?text=${inputValue}&apiKey=${
-            import.meta.env.VITE_API_KEY
-          }`
-        );
-        const data = await response.json();
-        setOptions(data.features);
-      }
-    };
-
-    fetchData();
+    fetchAutocompletePlaces(inputValue, setOptions);
   }, [inputValue]);
 
   const handleInputChange = async (event, newValue) => {

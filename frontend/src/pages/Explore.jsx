@@ -7,9 +7,9 @@ import { RotatingLines } from 'react-loader-spinner';
 
 const Explore = () => {
   const [position, setPosition] = useState({ lat: 51.505, lng: -0.09 }); //lat, lng
-
   const [isLoading, setIsLoading] = useState(true);
-  //get user location
+
+  //get user location, browser supported method
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigator.geolocation.getCurrentPosition(

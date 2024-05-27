@@ -2,15 +2,15 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Browser } from 'leaflet';
 import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
+
 const VITE_API_KEY = import.meta.env.VITE_API_KEY;
 
-function LocationMarker({ position }) {
+// change zoom into a new postion and set a marker there
+const LocationMarker = ({ position }) => {
   const map = useMap();
 
   useEffect(() => {
-    if (position) {
-      map.flyTo([position.lat, position.lng], map.getZoom());
-    }
+    map.flyTo([position.lat, position.lng], map.getZoom());
   }, [position, map]);
 
   return position === null ? null : (
@@ -18,13 +18,14 @@ function LocationMarker({ position }) {
       <Popup>You are here</Popup>
     </Marker>
   );
-}
+};
 
 const Map = ({ position }) => {
   const [url, setUrl] = useState(
     `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=${VITE_API_KEY}`
   );
 
+  // use better resolution map if browser is retina
   useEffect(() => {
     const isRetina = Browser.retina;
     if (isRetina) {
@@ -32,7 +33,6 @@ const Map = ({ position }) => {
         `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}@2x.png?apiKey=${VITE_API_KEY}`
       );
     }
-    // map.setView(position);
   }, [position]);
   // //find places around
   // useEffect(() => {
