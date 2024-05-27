@@ -24,17 +24,17 @@ const LocationMarker = ({ position }) => {
 const Map = () => {
   const exploreContext = useContext(ExploreContext);
   const { position } = exploreContext;
-  // const [url, setUrl] = useState(
-  //   `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=${VITE_API_KEY}`
-  // );
+  const [url, setUrl] = useState(
+    `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=${VITE_API_KEY}`
+  );
 
   // use better resolution map if browser is retina
   useEffect(() => {
     const isRetina = Browser.retina;
     if (isRetina) {
-      // setUrl(
-      //   `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}@2x.png?apiKey=${VITE_API_KEY}`
-      // );
+      setUrl(
+        `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}@2x.png?apiKey=${VITE_API_KEY}`
+      );
     }
   }, [position]);
   // //find places around

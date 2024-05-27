@@ -7,7 +7,7 @@ import PlaceCard from './PlaceCard';
 const ListPlaces = () => {
   const [places, setPlaces] = useState(data);
   return (
-    <List>
+    <List className="overflow-scroll space-y-2">
       {places.map((place) => (
         <ListItem key={place.name}>
           <PlaceCard place={place} />

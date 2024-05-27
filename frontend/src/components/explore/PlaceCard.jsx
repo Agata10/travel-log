@@ -4,21 +4,27 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Box } from '@mui/material';
+import { Box, Icon, Stack } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import Rating from '@mui/material/Rating';
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 const PlaceCard = ({ place }) => {
   return (
-    <Card sx={{ maxWidth: 450 }}>
-      <Box sx={{ display: 'flex', flexDirection: 'row', margin: 2, gap: 2 }}>
+    <Card sx={{ maxWidth: 500 }} className="px-4 pt-4">
+      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ padding: 0, position: 'relative' }}>
             <Typography gutterBottom variant="h6">
               {place.name}
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+            <Typography gutterBottom variant="body2">
+              <LocationOnOutlinedIcon />
+              {place?.addres}xxxxx someting st Colorado
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
               <Typography variant="body2" color="text.secondary">
                 {place.raw_rating}
               </Typography>
@@ -34,18 +40,6 @@ const PlaceCard = ({ place }) => {
                 ({place.num_reviews})
               </Typography>
             </Box>
-            <CardActions
-              style={{
-                padding: 0,
-                position: 'absolute',
-                bottom: '-40px',
-                left: '-10px',
-              }}
-            >
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-            </CardActions>
           </CardContent>
         </Box>
 
@@ -59,6 +53,17 @@ const PlaceCard = ({ place }) => {
           component="img"
         />
       </Box>
+      <CardActions>
+        <Stack direction="row" xs={{ margin: 0, padding: 0 }}>
+          <IconButton aria-label="add to favorites" size="small">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="add to favorites" href="#contained-buttons">
+            <LanguageOutlinedIcon size="small" />
+          </IconButton>
+          <Button size="small">Save</Button>
+        </Stack>
+      </CardActions>
     </Card>
   );
 };

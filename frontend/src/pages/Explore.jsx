@@ -31,8 +31,8 @@ const Explore = () => {
 
   return (
     <div className="w-full h-screen">
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
+      <Grid container spacing={1}>
+        <Grid item xs={12} md={4} sx={{ height: { xs: 300 } }}>
           <ExplorePlaces />
         </Grid>
         <Grid item xs={12} md={8}>
@@ -49,8 +49,7 @@ const Explore = () => {
               />
             </div>
           ) : (
-            ''
-            // <Map />
+            <Map />
           )}
         </Grid>
       </Grid>
