@@ -6,7 +6,6 @@ export const fetchAutocompletePlaces = async (inputValue, setOptions) => {
         import.meta.env.VITE_API_KEY
       }`
     );
-    const data = await response.json();
-    setOptions(data.features);
+    setOptions(response.data.features);
   }
 };

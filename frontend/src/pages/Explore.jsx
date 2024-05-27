@@ -49,7 +49,8 @@ const Explore = () => {
               />
             </div>
           ) : (
-            <Map />
+            ''
+            // <Map />
           )}
         </Grid>
       </Grid>

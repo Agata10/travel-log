@@ -22,7 +22,9 @@ const SearchBar = ({ setPosition }) => {
 
   //if input has new value, fetch autocomplete API
   useEffect(() => {
-    fetchAutocompletePlaces(inputValue, setOptions);
+    if (inputValue.length > 3) {
+      fetchAutocompletePlaces(inputValue, setOptions);
+    }
   }, [inputValue]);
 
   const handleInputChange = async (event, newValue) => {
