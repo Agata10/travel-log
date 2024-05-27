@@ -1,13 +1,22 @@
 import { Grid } from '@mui/material';
 import Map from '../components/explore/Map';
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import ExplorePlaces from '../components/explore/ExplorePlaces';
 import { ExploreContext } from '../utilis/ExploreContext';
-
+import { getRestaurants } from '../services/travelAPI';
+import data from '../components/explore/places';
 const Explore = () => {
   const exploreContext = useContext(ExploreContext);
-  const { setPosition, isLoading, setIsLoading } = exploreContext;
+  const {
+    position,
+    setPosition,
+    isLoading,
+    setIsLoading,
+    bounds,
+    places,
+    setPlaces,
+  } = exploreContext;
   //get user location, browser supported method
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -29,10 +38,23 @@ const Explore = () => {
     () => clearTimeout(timeout);
   }, []);
 
+  useEffect(() => {
+    if (bounds) {
+      console.log(places);
+      // getRestaurants(bounds, setPlaces);
+      setPlaces(data);
+    }
+  }, [bounds]);
+
   return (
     <div className="w-full h-screen">
       <Grid container spacing={1}>
-        <Grid item xs={12} md={4} sx={{ height: { xs: 300 } }}>
+        <Grid
+          item
+          xs={12}
+          md={4}
+          sx={{ height: { xs: places.length > 0 ? 300 : 150 } }}
+        >
           <ExplorePlaces />
         </Grid>
         <Grid item xs={12} md={8}>

@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Box, Icon, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import Rating from '@mui/material/Rating';
@@ -22,7 +22,7 @@ const PlaceCard = ({ place }) => {
             </Typography>
             <Typography gutterBottom variant="body2">
               <LocationOnOutlinedIcon />
-              {place?.addres}xxxxx someting st Colorado
+              {place?.addres}
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
               <Typography variant="body2" color="text.secondary">
@@ -31,7 +31,7 @@ const PlaceCard = ({ place }) => {
               <Rating
                 name="read-only"
                 defaultValue={2}
-                value={place.raw_rating}
+                value={place.rating}
                 readOnly
                 precision={0.1}
                 size="small"
@@ -48,8 +48,8 @@ const PlaceCard = ({ place }) => {
             height: 80,
             width: 100,
           }}
-          image={place.image}
-          title={place.image}
+          image={place.name}
+          title={place.photo.images.original.url}
           component="img"
         />
       </Box>
@@ -58,7 +58,7 @@ const PlaceCard = ({ place }) => {
           <IconButton aria-label="add to favorites" size="small">
             <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="add to favorites" href="#contained-buttons">
+          <IconButton aria-label="add to favorites" href={place.web_url}>
             <LanguageOutlinedIcon size="small" />
           </IconButton>
           <Button size="small">Save</Button>

@@ -1,29 +1,100 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Tooltip,
+  Popup,
+  useMap,
+  useMapEvent,
+} from 'react-leaflet';
 import { Browser } from 'leaflet';
 import { useEffect, useState, useContext } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { ExploreContext } from '../../utilis/ExploreContext';
+import data from './places.js';
+import { Typography } from '@mui/material';
+import { Paper } from '@mui/material';
 
 const VITE_API_KEY = import.meta.env.VITE_API_KEY;
 
+//getBoundaries - corners
+const getBounds = (map, setBounds) => {
+  const bounds = map.getBounds();
+  const sw = bounds.getSouthWest();
+  const ne = bounds.getNorthEast();
+  setBounds({
+    bl_latitude: sw.lat,
+    tr_latitude: ne.lat,
+    bl_longitude: sw.lng,
+    tr_longitude: ne.lng,
+  });
+};
 // change zoom into a new postion and set a marker there
-const LocationMarker = ({ position }) => {
+const LocationMarker = ({ position, setBounds }) => {
   const map = useMap();
 
   useEffect(() => {
     map.flyTo([position.lat, position.lng], map.getZoom());
+    getBounds(map, setBounds);
   }, [position, map]);
 
   return position === null ? null : (
     <Marker position={position}>
+      <Tooltip>You are here</Tooltip>
       <Popup>You are here</Popup>
     </Marker>
   );
 };
 
+const PlaceMarker = ({ places }) => {
+  {
+    console.log(places);
+  }
+  const handleTooltipClick = (e, place) => {
+    e.target.className.add('active');
+  };
+
+  return places === null
+    ? null
+    : places
+        .filter(
+          (place) => place.latitude !== null && place.latitude !== undefined
+        )
+        .map((place) => (
+          <Marker
+            key={crypto.randomUUID()}
+            position={{
+              lat: Number(place?.latitude),
+              lng: Number(place?.longitude),
+            }}
+            className="z-0"
+          >
+            <Tooltip
+              direction="top"
+              className="z-0 hover:z-10"
+              permanent
+              eventHandlers={{
+                mouseover: (e) => handleTooltipClick(e, place),
+              }}
+            >
+              <img
+                src={place.photo.images?.original.url}
+                alt={place.name}
+                style={{
+                  width: '90px',
+                  height: '60px',
+                  objectFit: 'cover',
+                }}
+              />
+              <p className="">{place.name}</p>
+            </Tooltip>
+          </Marker>
+        ));
+};
+
 const Map = () => {
   const exploreContext = useContext(ExploreContext);
-  const { position } = exploreContext;
+  const { position, setBounds, places, bounds } = exploreContext;
   const [url, setUrl] = useState(
     `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=${VITE_API_KEY}`
   );
@@ -37,22 +108,9 @@ const Map = () => {
       );
     }
   }, [position]);
-  // //find places around
-  // useEffect(() => {
-  //   const findPlacesAround = async () => {
-  //     try {
-  //       const places = await axios.get(
-  //         `https://api.geoapify.com/v2/places?categories=accommodation.hotel&filter=circle:${position.lng},${position.lat},5000&limit=20&apiKey=${VITE_API_KEY}`
-  //       );
-  //       console.log(places);
-  //       return places;
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   findPlacesAround();
-  // }, [position]);
-
+  {
+    console.log(bounds);
+  }
   return (
     <div className="w-full h-screen">
       {position && (
@@ -67,7 +125,8 @@ const Map = () => {
             url={url}
             id="osm-bright"
           />
-          <LocationMarker position={position} />
+          <LocationMarker position={position} setBounds={setBounds} />
+          {bounds && <PlaceMarker places={places} />}
         </MapContainer>
       )}
     </div>
