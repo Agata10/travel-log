@@ -44,6 +44,7 @@ const LocationMarker = ({ position, setBounds }) => {
   );
 };
 
+//marker for places
 const PlaceMarker = ({ places }) => {
   const customIcon = L.icon({
     iconUrl: icon,
@@ -65,14 +66,12 @@ const PlaceMarker = ({ places }) => {
                 lat: Number(place?.latitude),
                 lng: Number(place?.longitude),
               }}
-              zIndex={10}
               icon={customIcon}
             >
               <Tooltip
                 offset={[0, -30]}
                 direction="top"
                 permanent={true}
-                className="hover:z-auto"
                 sticky={true}
               >
                 <img
