@@ -36,7 +36,7 @@ const SearchBar = ({ setPosition }) => {
   };
 
   return (
-    <div className="w-10/12">
+    <div className="w-10/12 flex justify-center">
       <Autocomplete
         options={options}
         value={selectedPlace}

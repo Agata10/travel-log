@@ -64,7 +64,7 @@ const Map = ({ position }) => {
             url={url}
             id="osm-bright"
           />
-          <LocationMarker position={position} setIsLoading={setIsLoading} />
+          <LocationMarker position={position} />
         </MapContainer>
       )}
     </div>
