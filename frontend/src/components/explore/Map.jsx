@@ -1,7 +1,8 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Browser } from 'leaflet';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import 'leaflet/dist/leaflet.css';
+import { ExploreContext } from '../../utilis/ExploreContext';
 
 const VITE_API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -20,7 +21,9 @@ const LocationMarker = ({ position }) => {
   );
 };
 
-const Map = ({ position }) => {
+const Map = () => {
+  const exploreContext = useContext(ExploreContext);
+  const { position } = exploreContext;
   const [url, setUrl] = useState(
     `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=${VITE_API_KEY}`
   );

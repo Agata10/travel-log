@@ -1,14 +1,13 @@
-import ListPlaces from '../components/explore/ListPlaces';
-import SearchBar from '../components/explore/SearchBar';
 import { Grid } from '@mui/material';
 import Map from '../components/explore/Map';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
+import ExplorePlaces from '../components/explore/ExplorePlaces';
+import { ExploreContext } from '../utilis/ExploreContext';
 
 const Explore = () => {
-  const [position, setPosition] = useState({ lat: 51.505, lng: -0.09 }); //lat, lng
-  const [isLoading, setIsLoading] = useState(true);
-
+  const exploreContext = useContext(ExploreContext);
+  const { setPosition, isLoading, setIsLoading } = exploreContext;
   //get user location, browser supported method
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -34,10 +33,7 @@ const Explore = () => {
     <div className="w-full h-screen">
       <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
-          <div className="overflow-scroll flex flex-col items-center h-screen pt-4">
-            <SearchBar setPosition={setPosition} />
-            <ListPlaces />
-          </div>
+          <ExplorePlaces />
         </Grid>
         <Grid item xs={12} md={8}>
           {isLoading ? (
@@ -53,7 +49,7 @@ const Explore = () => {
               />
             </div>
           ) : (
-            <Map setPosition={setPosition} position={position} />
+            <Map />
           )}
         </Grid>
       </Grid>

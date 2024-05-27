@@ -1,9 +1,12 @@
 import Explore from './pages/Explore';
+import { ExploreContextProvider } from './utilis/ExploreContext';
 
 function App() {
   return (
     <>
-      <Explore />
+      <ExploreContextProvider>
+        <Explore />
+      </ExploreContextProvider>
     </>
   );
 }
