@@ -10,13 +10,18 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { useState } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import { styled, useTheme } from '@mui/material/styles';
-
+import { Button, Box } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import { Link } from 'react-router-dom';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
+import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import LogoutIcon from '@mui/icons-material/Logout';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -87,7 +92,7 @@ const Navbar = ({ DrawerHeader }) => {
   };
   return (
     <>
-      <AppBar position="fixed" open={open} elevation={1}>
+      <AppBar position="fixed" component="nav" open={open} elevation={1}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -102,8 +107,22 @@ const Navbar = ({ DrawerHeader }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            TravelLog
           </Typography>
+          <Box
+            sx={{
+              display: {
+                // xs: 'none',
+                // sm: 'block',
+                position: 'absolute',
+                right: '2rem',
+              },
+            }}
+          >
+            <Button color="inherit">Log In</Button>
+            <Button color="inherit">Sign Up</Button>
+            {false && <Button color="inherit">Logout</Button>}
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -118,8 +137,101 @@ const Navbar = ({ DrawerHeader }) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            component={Link}
+            to="/"
+          >
+            <ListItemButton sx={{ px: 2.5 }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 2 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <HomeIcon fontSize="medium" />
+              </ListItemIcon>
+              <ListItemText primary={'Home'} sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            component={Link}
+            to="/explore"
+          >
+            <ListItemButton sx={{ px: 2.5 }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 2 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <TravelExploreIcon fontSize="medium" />
+              </ListItemIcon>
+              <ListItemText
+                primary={'Explore'}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            component={Link}
+            to="/trips"
+          >
+            <ListItemButton sx={{ px: 2.5 }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 2 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <ConnectingAirportsIcon fontSize="medium" />
+              </ListItemIcon>
+              <ListItemText
+                primary={'Your trips'}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            component={Link}
+            to="/favorites"
+          >
+            <ListItemButton sx={{ px: 2.5 }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 2 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <FavoriteIcon fontSize="medium" />
+              </ListItemIcon>
+              <ListItemText
+                primary={'Your favorites'}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
+        </List>
+        {false && <Divider />}
+        {false && (
+          <List>
+            <ListItem
+              disablePadding
+              sx={{ display: 'block' }}
+              component={Link}
+              to="/profile"
+            >
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -130,22 +242,27 @@ const Navbar = ({ DrawerHeader }) => {
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
+                    mr: open ? 2 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <ManageAccountsIcon fontSize="medium" />
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  primary={'Account'}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
               </ListItemButton>
             </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+            <ListItem
+              disablePadding
+              sx={{ display: 'block' }}
+              component={Link}
+              to="/"
+            >
               <ListItemButton
+                component={Link}
+                to="/"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -155,17 +272,20 @@ const Navbar = ({ DrawerHeader }) => {
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
+                    mr: open ? 2 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <LogoutIcon fontSize="medium" />
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  primary={'Log out'}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
               </ListItemButton>
             </ListItem>
-          ))}
-        </List>
+          </List>
+        )}
       </Drawer>
     </>
   );

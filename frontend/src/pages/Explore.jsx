@@ -7,6 +7,7 @@ import { ExploreContext } from '../utilis/ExploreContext';
 import { getRestaurants } from '../services/travelAPI';
 import data from '../assets/places';
 import CssBaseline from '@mui/material/CssBaseline';
+
 const Explore = () => {
   const exploreContext = useContext(ExploreContext);
   const {

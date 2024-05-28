@@ -17,6 +17,8 @@ const Layout = ({ children }) => {
     <Box xs={{ display: 'flex' }}>
       <CssBaseline />
       <Navbar DrawerHeader={DrawerHeader} />
+
+      <DrawerHeader />
       <Box
         component="main"
         sx={{
@@ -24,7 +26,6 @@ const Layout = ({ children }) => {
           p: 0,
         }}
       >
-        <DrawerHeader />
         {children}
       </Box>
     </Box>
