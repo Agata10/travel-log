@@ -51,7 +51,7 @@ const Explore = () => {
   return (
     <>
       <CssBaseline />
-      <Grid container spacing={1} pl={1}>
+      <Grid container spacing={1}>
         <Grid
           item
           xs={12}

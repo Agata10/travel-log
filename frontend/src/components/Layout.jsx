@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 0,
+          pl: 2,
         }}
       >
         <DrawerHeader />
