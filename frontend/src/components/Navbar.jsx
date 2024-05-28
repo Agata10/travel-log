@@ -1,4 +1,4 @@
-import { MuiDrawer } from '@mui/material';
+import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';

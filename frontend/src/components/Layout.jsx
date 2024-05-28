@@ -14,11 +14,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const Layout = ({ children }) => {
   return (
-    <Box xs={{ display: 'flex' }}>
+    <Box display={'flex'}>
       <CssBaseline />
       <Navbar DrawerHeader={DrawerHeader} />
-
-      <DrawerHeader />
       <Box
         component="main"
         sx={{
@@ -26,6 +24,7 @@ const Layout = ({ children }) => {
           p: 0,
         }}
       >
+        <DrawerHeader />
         {children}
       </Box>
     </Box>
