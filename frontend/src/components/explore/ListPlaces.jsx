@@ -10,13 +10,15 @@ const ListPlaces = () => {
 
   return (
     <List
-      className="overflow-scroll space-y-2"
-      style={{ maxHeight: '75vh', overflow: 'auto' }}
+      className="overflow-scroll space-y-2 w-full"
       sx={{ height: { xs: '220px', md: '75vh' } }}
     >
       {places &&
         places.map((place) => (
-          <ListItem key={crypto.randomUUID()}>
+          <ListItem
+            key={crypto.randomUUID()}
+            sx={{ display: 'flex', justifyContent: 'center' }}
+          >
             <PlaceCard place={place} />
           </ListItem>
         ))}

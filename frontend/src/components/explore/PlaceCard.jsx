@@ -27,6 +27,7 @@ const PlaceCard = ({ place }) => {
           sm: 350,
           lg: 400,
         },
+        borderRadius: 3,
       }}
       elevation={2}
       className="px-4 pt-4"
