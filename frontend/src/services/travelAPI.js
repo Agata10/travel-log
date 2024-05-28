@@ -60,8 +60,8 @@ export const getHotels = async (bounds, setPlaces) => {
     headers: optionsBasic.headers,
   };
   try {
-    const response = await axios.request(options);
-    setPlaces(response.data);
+    // const response = await axios.request(options);
+    // setPlaces(response.data);
   } catch (error) {
     console.error(error);
   }
@@ -84,8 +84,8 @@ export const getAttractions = async (bounds, setPlaces) => {
     headers: optionsBasic.headers,
   };
   try {
-    const response = await axios.request(options);
-    setPlaces(response.data);
+    // const response = await axios.request(options);
+    // setPlaces(response.data);
   } catch (error) {
     console.error(error);
   }

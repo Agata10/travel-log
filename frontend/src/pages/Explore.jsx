@@ -6,6 +6,7 @@ import ExplorePlaces from '../components/explore/ExplorePlaces';
 import { ExploreContext } from '../utilis/ExploreContext';
 import { getRestaurants } from '../services/travelAPI';
 import data from '../components/explore/places';
+import CssBaseline from '@mui/material/CssBaseline';
 const Explore = () => {
   const exploreContext = useContext(ExploreContext);
   const {
@@ -47,17 +48,31 @@ const Explore = () => {
   }, [bounds]);
 
   return (
-    <div className="w-full h-screen">
-      <Grid container spacing={1}>
+    <>
+      <CssBaseline />
+      <Grid container spacing={1} pl={9}>
         <Grid
           item
           xs={12}
-          md={4}
-          sx={{ height: { xs: places.length > 0 ? 300 : 150 } }}
+          md={5}
+          mt={2}
+          sx={{
+            height: { xs: places.length > 0 ? 300 : 150 },
+            mb: 4,
+          }}
         >
           <ExplorePlaces />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid
+          item
+          xs={12}
+          md={7}
+          mt={1}
+          sx={{
+            height: { xs: '50vh', md: '90vh' },
+            paddingRight: { xs: '1rem', md: 0 },
+          }}
+        >
           {isLoading ? (
             <div className="flex justify-center items-center h-screen">
               <RotatingLines
@@ -75,7 +90,7 @@ const Explore = () => {
           )}
         </Grid>
       </Grid>
-    </div>
+    </>
   );
 };
 

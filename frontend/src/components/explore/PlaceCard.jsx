@@ -20,7 +20,15 @@ const PlaceCard = ({ place }) => {
     //favorite set to true
   };
   return (
-    <Card sx={{ maxWidth: 500 }} className="px-4 pt-4">
+    <Card
+      sx={{
+        width: {
+          xs: 300,
+          md: 400,
+        },
+      }}
+      className="px-4 pt-4"
+    >
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ padding: 0, position: 'relative' }}>

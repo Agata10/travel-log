@@ -9,7 +9,11 @@ const ListPlaces = () => {
   const { places } = expoloreContext;
 
   return (
-    <List className="overflow-scroll space-y-2">
+    <List
+      className="overflow-scroll space-y-2"
+      style={{ maxHeight: '75vh', overflow: 'auto' }}
+      sx={{ height: { xs: '220px', md: '75vh' } }}
+    >
       {places &&
         places.map((place) => (
           <ListItem key={crypto.randomUUID()}>

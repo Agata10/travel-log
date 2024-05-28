@@ -106,7 +106,7 @@ const Map = () => {
     }
   }, [position]);
   return (
-    <div className="w-full h-screen">
+    <>
       {position && (
         <MapContainer
           center={position}
@@ -123,7 +123,7 @@ const Map = () => {
           {bounds && <PlaceMarker places={places} />}
         </MapContainer>
       )}
-    </div>
+    </>
   );
 };
 
