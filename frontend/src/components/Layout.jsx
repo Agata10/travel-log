@@ -22,6 +22,7 @@ const Layout = ({ children }) => {
         sx={{
           flexGrow: 1,
           pl: 2,
+          width: '100%',
         }}
       >
         <DrawerHeader />

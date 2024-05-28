@@ -119,9 +119,17 @@ const Navbar = ({ DrawerHeader }) => {
               },
             }}
           >
-            <Button color="inherit">Log In</Button>
-            <Button color="inherit">Sign Up</Button>
-            {false && <Button color="inherit">Logout</Button>}
+            <Button color="inherit" component={Link} to="/login">
+              Log In
+            </Button>
+            <Button color="inherit" component={Link} to="/signup">
+              Sign Up
+            </Button>
+            {false && (
+              <Button color="inherit" component={Link} to="/logout">
+                Logout
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </AppBar>
@@ -258,11 +266,9 @@ const Navbar = ({ DrawerHeader }) => {
               disablePadding
               sx={{ display: 'block' }}
               component={Link}
-              to="/"
+              to="/logout"
             >
               <ListItemButton
-                component={Link}
-                to="/"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
