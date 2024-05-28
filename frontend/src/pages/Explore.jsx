@@ -71,7 +71,7 @@ const Explore = () => {
           mt={1}
           sx={{
             height: { xs: '50vh', md: '90vh' },
-            paddingRight: { xs: '1rem', md: 0 },
+            paddingRight: { xs: '1rem', md: '0.5rem' },
           }}
         >
           {isLoading ? (
