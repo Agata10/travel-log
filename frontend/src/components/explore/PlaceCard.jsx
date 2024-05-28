@@ -24,7 +24,8 @@ const PlaceCard = ({ place }) => {
       sx={{
         width: {
           xs: 300,
-          md: 400,
+          sm: 350,
+          lg: 400,
         },
       }}
       className="px-4 pt-4"

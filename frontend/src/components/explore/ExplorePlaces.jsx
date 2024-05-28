@@ -12,17 +12,7 @@ const ExplorePlaces = () => {
   const { setPosition } = exploreContext;
 
   return (
-    <Box
-      className="flex flex-col items-center"
-      sx={
-        {
-          // marginRight: {
-          //   xs: ' 3.5rem',
-          //   md: 0,
-          // },
-        }
-      }
-    >
+    <Box className="flex flex-col items-center">
       <SearchBar setPosition={setPosition} />
       <FilterMapHeader />
       <ListPlaces />

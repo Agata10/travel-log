@@ -99,7 +99,7 @@ const Layout = ({ children }) => {
   return (
     <Box xs={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} elevation={1}>
         <Toolbar>
           <IconButton
             color="inherit"
