@@ -28,21 +28,24 @@ const PlaceCard = ({ place }) => {
           lg: 400,
         },
       }}
+      elevation={2}
       className="px-4 pt-4"
     >
-      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ padding: 0, position: 'relative' }}>
             <Typography gutterBottom variant="h6">
               {place.name}
             </Typography>
-            <Typography gutterBottom variant="body2">
-              <LocationOnOutlinedIcon />
-              {place?.addres}
-            </Typography>
+            <Box display="flex">
+              <LocationOnOutlinedIcon fontSize="small" />
+              <Typography gutterBottom variant="body2">
+                {place.address}
+              </Typography>
+            </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
               <Typography variant="body2" color="text.secondary">
-                {place.raw_rating}
+                {place.rating}
               </Typography>
               <Rating
                 name="read-only"
@@ -62,15 +65,16 @@ const PlaceCard = ({ place }) => {
         <CardMedia
           sx={{
             height: 80,
-            width: 100,
+            width: 120,
+            marginTop: 2,
           }}
           image={place.name}
           title={place.photo.images.original.url}
           component="img"
         />
       </Box>
-      <CardActions>
-        <Stack direction="row" xs={{ margin: 0, padding: 0 }}>
+      <CardActions disableSpacing>
+        <Stack direction="row">
           <IconButton
             aria-label="add to favorites"
             size="small"
