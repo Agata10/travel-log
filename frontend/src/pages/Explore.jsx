@@ -75,7 +75,7 @@ const Explore = () => {
           }}
         >
           {isLoading ? (
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex justify-center items-center h-5/6">
               <RotatingLines
                 visible={true}
                 height="80"
