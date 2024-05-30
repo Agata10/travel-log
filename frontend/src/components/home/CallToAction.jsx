@@ -22,6 +22,7 @@ const CallToAction = () => {
         </Typography>
         <Button
           variant="contained"
+          size="small"
           sx={{
             background: theme.palette.green.main,
             marginBottom: '1rem',
