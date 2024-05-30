@@ -42,6 +42,17 @@ let theme = createTheme({
       fontSize: '0.875rem',
     },
   },
+  palette: {
+    blue: {
+      main: '#79c7c5',
+      light: '#ade1e5',
+    },
+    green: {
+      main: '#73ab84',
+      light: '#99d19c',
+    },
+    dark: '#000501',
+  },
 });
 
 theme = responsiveFontSizes(theme);

@@ -22,7 +22,7 @@ import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
-import icon from '../assets/globe.png';
+import icon from '../assets/images/globe.png';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({

@@ -5,7 +5,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import ExplorePlaces from '../components/explore/ExplorePlaces';
 import { ExploreContext } from '../utilis/ExploreContext';
 import { getRestaurants } from '../services/travelAPI';
-import data from '../assets/places';
+import data from '../assets/fakeData_testing/places';
 import CssBaseline from '@mui/material/CssBaseline';
 
 const Explore = () => {

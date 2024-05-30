@@ -26,7 +26,6 @@ const Favorites = () => {
 
   const handleDelete = (place) => {
     setPlaces(places.filter((p) => p.name != place.name));
-    console.log(place);
   };
   return (
     <Grid container mt={6}>
@@ -35,6 +34,7 @@ const Favorites = () => {
         xs={12}
         sx={{ typography: { ...theme.typography.h4 } }}
         textAlign={'center'}
+        mr={4}
         mb={5}
       >
         Your favorites
@@ -51,7 +51,6 @@ const Favorites = () => {
             padding: 0,
           }}
         >
-          {console.log(places)}
           {places.map((place, index) => {
             return (
               <ListItem

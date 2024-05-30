@@ -10,7 +10,7 @@ import { Browser } from 'leaflet';
 import { useEffect, useState, useContext } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { ExploreContext } from '../../utilis/ExploreContext';
-import icon from '../../assets/loc.png';
+import icon from '../../assets/images/loc.png';
 import L from 'leaflet';
 
 const VITE_API_KEY = import.meta.env.VITE_API_KEY;
