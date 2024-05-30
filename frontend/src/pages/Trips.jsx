@@ -3,7 +3,7 @@ import TripHeader from '../components/trips/TripHeader';
 import TripsWrapper from '../components/trips/TripsWrapper';
 const Trips = () => {
   return (
-    <Box className="w-full flex flex-col items-center gap-10" pt={4}>
+    <Box className="w-full flex flex-col items-center gap-10 h-full" pt={4}>
       <TripHeader />
       <TripsWrapper />
     </Box>

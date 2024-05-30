@@ -5,9 +5,20 @@ import {
   Typography,
   CardActions,
   Button,
+  useTheme,
 } from '@mui/material';
 
 const TripCard = () => {
+  const theme = useTheme();
+  const btnStyle = {
+    borderColor: theme.palette.green.main,
+    color: theme.palette.green.main,
+    '&:hover': {
+      borderColor: theme.palette.green.main,
+      backgroundColor: theme.palette.green.light,
+      color: '#ffffff',
+    },
+  };
   return (
     <Card sx={{ minWidth: 200, maxWidth: 250, borderRadius: '12px' }}>
       <CardMedia
@@ -26,8 +37,13 @@ const TripCard = () => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">View trip</Button>
-        <Button size="small">Delete</Button>
+        <Button variant="outlined" size="small" sx={btnStyle}>
+          {/* change it when auth user */}
+          View trip
+        </Button>
+        <Button size="small" sx={btnStyle} variant="outlined">
+          Delete
+        </Button>
       </CardActions>
     </Card>
   );

@@ -9,20 +9,18 @@ const TripHeader = () => {
     >
       {/* change it to user name */}
       <Typography variant="h5">Hello, name!</Typography>
-      <Button>
-        <Button
-          variant="contained"
-          size="small"
-          sx={{
-            background: theme.palette.green.main,
-            '&:hover': {
-              backgroundColor: theme.palette.green.light,
-            },
-          }}
-        >
-          {/* change it when auth user */}
-          Add new trip
-        </Button>
+      <Button
+        variant="contained"
+        size="small"
+        sx={{
+          background: theme.palette.green.main,
+          '&:hover': {
+            backgroundColor: theme.palette.green.light,
+          },
+        }}
+      >
+        {/* change it when auth user */}
+        Add new trip
       </Button>
     </Paper>
   );
