@@ -14,7 +14,7 @@ import { useState } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import { styled, useTheme } from '@mui/material/styles';
-import { Button, Box } from '@mui/material';
+import { Button, Box, Icon } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
@@ -22,6 +22,7 @@ import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
+import icon from '../assets/globe.png';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -106,6 +107,9 @@ const Navbar = ({ DrawerHeader }) => {
           >
             <MenuIcon />
           </IconButton>
+          <Icon sx={{ fontSize: 48 }}>
+            <img src={icon} alt="Logo" />
+          </Icon>
           <Typography variant="h6" noWrap component="div">
             TravelLog
           </Typography>
