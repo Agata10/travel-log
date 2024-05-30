@@ -8,7 +8,16 @@ import {
   useTheme,
 } from '@mui/material';
 
-const TripCard = () => {
+const changeDate = (string) => {
+  const date = new Date(string);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = date.toLocaleString('default', { month: 'long' });
+  const year = date.getFullYear();
+
+  return `${day} ${month} ${year}`;
+};
+
+const TripCard = ({ trip }) => {
   const theme = useTheme();
   const btnStyle = {
     borderColor: theme.palette.green.main,
@@ -20,7 +29,14 @@ const TripCard = () => {
     },
   };
   return (
-    <Card sx={{ minWidth: 200, maxWidth: 250, borderRadius: '12px' }}>
+    <Card
+      sx={{
+        width: { xs: 200, md: 250 },
+        minHeight: 270,
+        maxHeight: 290,
+        borderRadius: '12px',
+      }}
+    >
       <CardMedia
         component="img"
         // height="300px"
@@ -28,15 +44,16 @@ const TripCard = () => {
         alt="Paella dish"
         className="w-full h-36"
       />
-      <CardContent>
+      <CardContent sx={{ padding: 2, paddingBottom: 0 }}>
         <Typography variant="h6" color="">
-          name
+          {trip.name}
         </Typography>
-        <Typography variant="body1" color="">
-          start date - end date
+        <Typography variant="body1" color="" gutterBottom={false}>
+          {!trip.startDate ? '' : changeDate(trip.startDate)}
+          {!trip.endDate ? '' : ` - ${changeDate(trip.endDate)}`}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ paddingBottom: 2 }}>
         <Button variant="outlined" size="small" sx={btnStyle}>
           {/* change it when auth user */}
           View trip
