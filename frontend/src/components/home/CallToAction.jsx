@@ -5,15 +5,17 @@ import { Link } from 'react-router-dom';
 const CallToAction = () => {
   const theme = useTheme();
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-10 w-full overflow-x-hidden">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-4 sm:gap-0 md:gap-10 sm:w-10/12 md:w-full overflow-x-hidden pl-10 sm:pl-20 lg:pl-0">
       <Box sx={{ width: { md: '40%', xs: '80%' } }}>
         <Typography variant="h3" gutterBottom>
           Discover Your Next Adventure!
         </Typography>
         <Typography
-          variant="h6"
           gutterBottom
-          sx={{ width: { md: '70%', xs: '100%' } }}
+          sx={{
+            width: { md: '70%', xs: '100%' },
+            fontSize: { xs: 'h5', sm: 'h4', md: 'h6' },
+          }}
         >
           Explore new destinations and create unforgettable memories with our
           travel planning app.
@@ -22,6 +24,7 @@ const CallToAction = () => {
           variant="contained"
           sx={{
             background: theme.palette.green.main,
+            marginBottom: '1rem',
             '&:hover': {
               backgroundColor: theme.palette.green.light,
             },
