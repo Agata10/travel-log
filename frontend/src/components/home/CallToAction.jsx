@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const CallToAction = () => {
   const theme = useTheme();
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-10 w-full">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-10 w-full overflow-x-hidden">
       <Box sx={{ width: { md: '40%', xs: '80%' } }}>
         <Typography variant="h3" gutterBottom>
           Discover Your Next Adventure!
@@ -31,7 +31,7 @@ const CallToAction = () => {
           <Link to="/login">Start planning</Link>
         </Button>
       </Box>
-      <Box sx={{ width: { md: '40%', xs: '100%' } }}>
+      <Box sx={{ width: { md: '40%', xs: '80%' } }}>
         <img src={banner} alt="banner" />
       </Box>
     </div>

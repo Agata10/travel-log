@@ -25,9 +25,9 @@ const Features = () => {
         flexDirection: 'column',
         gap: 4,
         textAlign: 'center',
+        width: { xs: '95%', sm: '80%' },
       }}
       margin={'0 auto'}
-      width={'80%'}
     >
       <Typography variant="h5">
         Features to make planning trips easier
@@ -35,8 +35,8 @@ const Features = () => {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          justifyContent: { xs: 'center', md: 'space-around' },
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: { xs: 'center', sm: 'space-around' },
           alignItems: 'center',
           gap: { xs: 3, md: 0 },
           width: '100%',
