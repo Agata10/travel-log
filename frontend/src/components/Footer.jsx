@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div className="flex justify-center items-center py-4 mt-auto">
-      Agata Deter &copy; copyrights 2024
+      Agata Deter &copy; Copyright 2024
     </div>
   );
 };
