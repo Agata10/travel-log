@@ -28,7 +28,7 @@ const Favorites = () => {
     setPlaces(places.filter((p) => p.name != place.name));
   };
   return (
-    <Grid container mt={6}>
+    <Grid container mt={6} mb={6}>
       <Grid
         item
         xs={12}
@@ -43,7 +43,7 @@ const Favorites = () => {
         <List
           className="overflow-auto space-y-4"
           sx={{
-            height: '80vh',
+            height: '85vh',
             width: '100%',
             display: 'flex',
             flexDirection: 'column',

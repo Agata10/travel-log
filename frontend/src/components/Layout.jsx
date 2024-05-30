@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -14,7 +15,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const Layout = ({ children }) => {
   return (
-    <Box display={'flex'}>
+    <Box display={'flex'} flexDirection={'column'}>
       <CssBaseline />
       <Navbar DrawerHeader={DrawerHeader} />
       <Box
@@ -28,6 +29,7 @@ const Layout = ({ children }) => {
         <DrawerHeader />
         {children}
       </Box>
+      <Footer />
     </Box>
   );
 };
