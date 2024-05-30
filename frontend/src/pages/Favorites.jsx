@@ -22,7 +22,12 @@ const Favorites = () => {
   const [hoverCard, setHoverCard] = useState(null);
   const theme = useTheme();
   const context = useContext(ExploreContext);
-  const { places } = context;
+  const { places, setPlaces } = context;
+
+  const handleDelete = (place) => {
+    setPlaces(places.filter((p) => p.name != place.name));
+    console.log(place);
+  };
   return (
     <Grid container mt={6}>
       <Grid
@@ -32,7 +37,7 @@ const Favorites = () => {
         textAlign={'center'}
         mb={5}
       >
-        Your favourites
+        Your favorites
       </Grid>
       <Grid item xs={12}>
         <List
@@ -117,7 +122,10 @@ const Favorites = () => {
                   <img src={place.src} alt={place.name}></img>
                 </Paper>
                 {hoverCard === index && (
-                  <IconButton aria-label="delete">
+                  <IconButton
+                    aria-label="delete"
+                    onClick={() => handleDelete(place)}
+                  >
                     <DeleteOutlineOutlinedIcon />
                   </IconButton>
                 )}
