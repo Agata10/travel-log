@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const CallToAction = () => {
   const theme = useTheme();
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-4 sm:gap-0 md:gap-10 sm:w-10/12 md:w-full overflow-x-hidden pl-10 sm:pl-20 lg:pl-0">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-4 sm:gap-0 md:gap-10 sm:w-10/12 md:w-full">
       <Box sx={{ width: { md: '40%', xs: '80%' } }}>
         <Typography variant="h3" gutterBottom>
           Discover Your Next Adventure!
