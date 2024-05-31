@@ -5,8 +5,8 @@ import { getSingleTrip } from '../api/tripsAPI';
 import { useParams } from 'react-router-dom';
 import { TripContext } from '../utilis/TripContext';
 import { ExploreContext } from '../utilis/ExploreContext';
-import dayjs from 'dayjs';
 import { RotatingLines } from 'react-loader-spinner';
+import NotesAndBudget from '../components/singleTrip/NotesAndBudget';
 
 const SingleTrip = () => {
   const tripContext = useContext(TripContext);
@@ -56,6 +56,9 @@ const SingleTrip = () => {
       pt={4}
     >
       {trip && <SingleTripHeader setRefresh={setRefresh} />}
+      <Box className="w-10/12 md:w-8/12 flex flex-col">
+        <NotesAndBudget />
+      </Box>
     </Box>
   );
 };
