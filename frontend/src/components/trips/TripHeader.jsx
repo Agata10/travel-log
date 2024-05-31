@@ -19,9 +19,9 @@ const TripHeader = ({ setOpen }) => {
         variant="contained"
         size="small"
         sx={{
-          background: theme.palette.green.main,
+          background: theme.palette.primary.main,
           '&:hover': {
-            backgroundColor: theme.palette.green.light,
+            backgroundColor: theme.palette.primary.light,
           },
         }}
       >

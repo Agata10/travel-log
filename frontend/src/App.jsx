@@ -43,11 +43,11 @@ let theme = createTheme({
     },
   },
   palette: {
-    blue: {
+    secondary: {
       main: '#79c7c5',
       light: '#ade1e5',
     },
-    green: {
+    primary: {
       main: '#73ab84',
       light: '#99d19c',
       dark: '#588157',

@@ -21,11 +21,11 @@ const changeDate = (string) => {
 const TripCard = ({ trip, setTripAdded }) => {
   const theme = useTheme();
   const btnStyle = {
-    borderColor: theme.palette.green.main,
-    color: theme.palette.green.main,
+    borderColor: theme.palette.primary.main,
+    color: theme.palette.primary.main,
     '&:hover': {
-      borderColor: theme.palette.green.main,
-      backgroundColor: theme.palette.green.light,
+      borderColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.light,
       color: '#ffffff',
     },
   };

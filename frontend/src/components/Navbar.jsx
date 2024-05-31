@@ -93,15 +93,22 @@ const Navbar = ({ DrawerHeader }) => {
   };
   return (
     <>
-      <AppBar position="fixed" component="nav" open={open} elevation={1}>
+      <AppBar
+        position="fixed"
+        component="nav"
+        open={open}
+        elevation={1}
+        sx={{ backgroundColor: theme.palette.primary.main }}
+      >
         <Toolbar>
           <IconButton
-            color="inherit"
+            color={theme.palette.primary.dark}
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
               marginRight: 5,
+              color: theme.palette.primary.dark,
               ...(open && { display: 'none' }),
             }}
           >
@@ -123,14 +130,44 @@ const Navbar = ({ DrawerHeader }) => {
               },
             }}
           >
-            <Button color="inherit" component={Link} to="/login">
+            <Button
+              sx={{
+                color: theme.palette.dark,
+                '&:hover': {
+                  backgroundColor: theme.palette.primary.light,
+                  color: 'white',
+                },
+              }}
+              component={Link}
+              to="/login"
+            >
               Log In
             </Button>
-            <Button color="inherit" component={Link} to="/signup">
+            <Button
+              sx={{
+                color: theme.palette.dark,
+                '&:hover': {
+                  backgroundColor: theme.palette.primary.light,
+                  color: 'white',
+                },
+              }}
+              component={Link}
+              to="/signup"
+            >
               Sign Up
             </Button>
             {false && (
-              <Button color="inherit" component={Link} to="/logout">
+              <Button
+                sx={{
+                  color: theme.palette.dark,
+                  '&:hover': {
+                    backgroundColor: theme.palette.primary.light,
+                    color: 'white',
+                  },
+                }}
+                component={Link}
+                to="/logout"
+              >
                 Logout
               </Button>
             )}
@@ -139,7 +176,10 @@ const Navbar = ({ DrawerHeader }) => {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton
+            onClick={handleDrawerClose}
+            sx={{ color: theme.palette.primary.dark }}
+          >
             {theme.direction === 'rtl' ? (
               <ChevronRightIcon />
             ) : (
@@ -161,11 +201,17 @@ const Navbar = ({ DrawerHeader }) => {
                   minWidth: 0,
                   mr: open ? 2 : 'auto',
                   justifyContent: 'center',
+                  color: theme.palette.primary.dark,
                 }}
               >
                 <HomeIcon fontSize="medium" />
               </ListItemIcon>
-              <ListItemText primary={'Home'} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText
+                primary={'Home'}
+                sx={{
+                  opacity: open ? 1 : 0,
+                }}
+              />
             </ListItemButton>
           </ListItem>
           <ListItem
@@ -180,6 +226,7 @@ const Navbar = ({ DrawerHeader }) => {
                   minWidth: 0,
                   mr: open ? 2 : 'auto',
                   justifyContent: 'center',
+                  color: theme.palette.primary.dark,
                 }}
               >
                 <TravelExploreIcon fontSize="medium" />
@@ -202,6 +249,7 @@ const Navbar = ({ DrawerHeader }) => {
                   minWidth: 0,
                   mr: open ? 2 : 'auto',
                   justifyContent: 'center',
+                  color: theme.palette.primary.dark,
                 }}
               >
                 <ConnectingAirportsIcon fontSize="medium" />
@@ -224,6 +272,7 @@ const Navbar = ({ DrawerHeader }) => {
                   minWidth: 0,
                   mr: open ? 2 : 'auto',
                   justifyContent: 'center',
+                  color: theme.palette.primary.dark,
                 }}
               >
                 <FavoriteIcon fontSize="medium" />
@@ -256,6 +305,7 @@ const Navbar = ({ DrawerHeader }) => {
                     minWidth: 0,
                     mr: open ? 2 : 'auto',
                     justifyContent: 'center',
+                    color: theme.palette.primary.dark,
                   }}
                 >
                   <ManageAccountsIcon fontSize="medium" />
@@ -284,6 +334,7 @@ const Navbar = ({ DrawerHeader }) => {
                     minWidth: 0,
                     mr: open ? 2 : 'auto',
                     justifyContent: 'center',
+                    color: theme.palette.primary.dark,
                   }}
                 >
                   <LogoutIcon fontSize="medium" />

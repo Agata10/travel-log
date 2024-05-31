@@ -45,7 +45,7 @@ const Features = () => {
       >
         <MyPaper>
           <EditNoteIcon
-            sx={{ fontSize: '3.8rem', color: theme.palette.green.dark }}
+            sx={{ fontSize: '3.8rem', color: theme.palette.primary.dark }}
           />
           <Typography variant="body1">
             Manage your trips in one place
@@ -53,7 +53,7 @@ const Features = () => {
         </MyPaper>
         <MyPaper>
           <TravelExploreIcon
-            sx={{ fontSize: '3.2rem', color: theme.palette.green.dark }}
+            sx={{ fontSize: '3.2rem', color: theme.palette.primary.dark }}
           />
           <Typography variant="body1">
             Explore hotels,attractions and restaurants
@@ -61,13 +61,13 @@ const Features = () => {
         </MyPaper>
         <MyPaper>
           <FavoriteBorderIcon
-            sx={{ fontSize: '3.2rem', color: theme.palette.green.dark }}
+            sx={{ fontSize: '3.2rem', color: theme.palette.primary.dark }}
           />
           <Typography variant="body1">Save your favorite places</Typography>
         </MyPaper>
         <MyPaper>
           <SavingsIcon
-            sx={{ fontSize: '3.2rem', color: theme.palette.green.dark }}
+            sx={{ fontSize: '3.2rem', color: theme.palette.primary.dark }}
           />
           <Typography variant="body1">Track your trip expenses</Typography>
         </MyPaper>

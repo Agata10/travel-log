@@ -24,10 +24,11 @@ const CallToAction = () => {
           variant="contained"
           size="small"
           sx={{
-            background: theme.palette.green.main,
+            background: theme.palette.primary.main,
             marginBottom: '1rem',
+            color: 'white',
             '&:hover': {
-              backgroundColor: theme.palette.green.light,
+              backgroundColor: theme.palette.primary.light,
             },
           }}
         >
