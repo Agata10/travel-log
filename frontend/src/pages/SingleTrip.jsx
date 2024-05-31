@@ -12,7 +12,7 @@ const SingleTrip = () => {
   const tripContext = useContext(TripContext);
   const exploreContext = useContext(ExploreContext);
   const [refresh, setRefresh] = useState(false);
-  const { trip, setTrip, setStartDate, setEndDate } = tripContext;
+  const { trip, setTrip } = tripContext;
   const { setIsLoading, isLoading } = exploreContext;
   const { tripId } = useParams();
 
@@ -21,8 +21,6 @@ const SingleTrip = () => {
     const tripResponse = await getSingleTrip(tripId);
     if (tripResponse) {
       setTrip(tripResponse);
-      setStartDate(dayjs(tripResponse.startDate));
-      setEndDate(dayjs(tripResponse.endDate));
     }
   };
 

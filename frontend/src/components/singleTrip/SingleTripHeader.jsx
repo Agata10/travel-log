@@ -12,46 +12,50 @@ import { updateTrip } from '../../api/tripsAPI';
 
 const SingleTripHeader = ({ setRefresh }) => {
   const theme = useTheme();
-  const inputRef = useRef();
   const tripContext = useContext(TripContext);
-  const { trip, setTrip, startDate, endDate, setStartDate, setEndDate } =
-    tripContext;
+  const { trip, setTrip } = tripContext;
   const { tripId } = useParams();
+  const inputRef = useRef();
+  const startRef = useRef(trip.startDate);
+  const endRef = useRef(trip.endDate);
 
-  useEffect(() => {
-    const updateTripData = async (body) => {
-      const response = await updateTrip(tripId, body);
-      console.log(response);
-      if (response) {
-        setTrip(response);
-      }
-    };
-
-    updateTripData({ startDate: startDate, endDate: endDate });
-  }, [startDate, endDate]);
+  const updateTripData = async (body) => {
+    const response = await updateTrip(tripId, body);
+    console.log(response);
+    if (response) {
+      setTrip(response);
+    }
+  };
 
   const handleEndDateChange = (day) => {
-    if (dayjs(day).isBefore(startDate)) {
+    if (dayjs(day).isBefore(dayjs(startRef.current.value))) {
       alert('You can not end trip before the start date');
       setRefresh((prev) => !prev);
       return;
     } else {
-      setEndDate(dayjs(day));
+      updateTripData({ endDate: day });
     }
   };
 
   const handleStartDateChange = (day) => {
-    if (dayjs(day).isAfter(endDate)) {
+    if (dayjs(day).isAfter(dayjs(endRef.current.value))) {
       alert('You can not start trip after the end date');
       setRefresh((prev) => !prev);
       return;
     } else {
-      setStartDate(dayjs(day));
+      updateTripData({ startDate: day });
     }
   };
 
   const handleFocus = () => {
     inputRef.current.focus();
+  };
+
+  const handleInputBlur = () => {
+    console.log(inputRef.current.value);
+    if (inputRef.current.value !== trip.name) {
+      updateTripData({ name: inputRef.current.value });
+    }
   };
 
   return (
@@ -60,45 +64,40 @@ const SingleTripHeader = ({ setRefresh }) => {
       className="w-10/12 md:w-8/12 h-20 flex justify-around items-center"
     >
       {/* change it to user name */}
-      <TextField
-        inputRef={inputRef}
-        value={trip.name}
-        variant="standard"
-        InputProps={{
-          disableUnderline: true,
-          sx: {
-            fontSize: '1.5rem',
-            fontWeight: 'semi-bold',
-            width: '50%',
-            '& .MuiInputBase-input': {
-              paddingRight: '0px',
+      <div className="w-3/12">
+        <TextField
+          inputRef={inputRef}
+          defaultValue={trip.name}
+          variant="standard"
+          onBlur={handleInputBlur}
+          InputProps={{
+            disableUnderline: true,
+            sx: {
+              fontSize: '1.5rem',
+              fontWeight: 'semi-bold',
+              width: 'fit-content',
+              '&:hover': {
+                backgroundColor: 'whitesmoke',
+                borderRadius: '12px',
+                paddingLeft: '2px',
+              },
             },
-            '&:hover ': {
-              borderBottom: `1px solid ${theme.palette.primary.dark}`,
-            },
-          },
-
-          endAdornment: (
-            <InputAdornment position="end">
-              <EditIcon
-                sx={{ color: theme.palette.primary.dark }}
-                onClick={handleFocus}
-              />
-            </InputAdornment>
-          ),
-        }}
-      />
+          }}
+        />
+      </div>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
+          inputRef={startRef}
           label="Start Date"
           minDate={dayjs(trip?.startDate)}
-          value={startDate}
+          defaultValue={dayjs(trip.startDate)}
           onChange={(date) => handleStartDateChange(date)}
         />
         <DesktopDatePicker
+          inputRef={endRef}
           label="End Date"
           minDate={dayjs(trip?.startDate)}
-          value={endDate}
+          defaultValue={dayjs(trip.endDate)}
           onChange={(date) => handleEndDateChange(date)}
         />
       </LocalizationProvider>
