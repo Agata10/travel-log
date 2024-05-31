@@ -1,4 +1,12 @@
-import { Box, Paper, Typography, IconButton, TextField } from '@mui/material';
+import {
+  Box,
+  Paper,
+  Typography,
+  IconButton,
+  TextField,
+  Button,
+  useTheme,
+} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useRef, useState, useContext } from 'react';
@@ -10,6 +18,17 @@ const NotesAndBudget = () => {
   const notesRef = useRef();
   const tripContext = useContext(TripContext);
   const { trip, setTrip } = tripContext;
+  const theme = useTheme();
+  const btnStyle = {
+    borderRadius: '8px',
+    backgroundColor: theme.palette.primary.light,
+    color: '#ffffff',
+
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.dark,
+    },
+  };
 
   const handleNotesBlur = async () => {
     if (trip.notes !== notesRef.current.value) {
@@ -30,9 +49,19 @@ const NotesAndBudget = () => {
           </IconButton>
           Notes
         </Typography>
-        <Typography variant="h5" sx={{ width: '48%' }}>
-          Budget
-        </Typography>
+        <Box className="flex justify-between pb-2" sx={{ width: '50%' }}>
+          <Typography variant="h5" sx={{ paddingLeft: 2 }}>
+            Budget
+          </Typography>
+          <Button
+            size="small"
+            sx={btnStyle}
+            variant="standard"
+            // onClick={() => handleDeleteTrip(trip._id)}
+          >
+            Show details
+          </Button>
+        </Box>
       </Box>
       {open && (
         <Box
@@ -80,8 +109,19 @@ const NotesAndBudget = () => {
               borderRadius: '12px',
               width: '50%',
               height: '100px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
-          ></Paper>
+          >
+            <p className="pb-1">0.00$</p>
+            <div className="w-8/12 h-4 bg-green-300 rounded-md">
+              <div className="w-8/12 h-4 bg-green-700 rounded-md relative">
+                <p className="absolute -right-4 -top-1">%</p>
+              </div>
+            </div>
+          </Paper>
         </Box>
       )}
     </Box>
