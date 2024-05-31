@@ -1,10 +1,26 @@
 import { Box, Paper, Typography, IconButton, TextField } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useState } from 'react';
+import { useRef, useState, useContext } from 'react';
+import { TripContext } from '../../utilis/TripContext';
+import { updateTrip } from '../../api/tripsAPI';
 
 const NotesAndBudget = () => {
   const [open, setOpen] = useState(false);
+  const notesRef = useRef();
+  const tripContext = useContext(TripContext);
+  const { trip, setTrip } = tripContext;
+
+  const handleNotesBlur = async () => {
+    if (trip.notes !== notesRef.current.value) {
+      const response = await updateTrip(trip._id, {
+        notes: notesRef.current.value,
+      });
+      if (response) {
+        setTrip(response);
+      }
+    }
+  };
   return (
     <Box className="flex flex-col ">
       <Box className="flex justify-between">
@@ -35,14 +51,14 @@ const NotesAndBudget = () => {
             }}
           >
             <TextField
-              // inputRef={inputRef}
-              // defaultValue={trip.name}
+              inputRef={notesRef}
+              defaultValue={trip.notes}
               sx={{ width: '100%' }}
               placeholder="Any thoughts? Better take notes to not forget.."
               variant="standard"
               multiline
               rows={3}
-              // onBlur={handleInputBlur}
+              onBlur={handleNotesBlur}
               InputProps={{
                 disableUnderline: true,
                 sx: {
