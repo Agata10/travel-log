@@ -11,7 +11,7 @@ const ListPlaces = () => {
   return (
     <List
       className="overflow-scroll space-y-2 w-full"
-      sx={{ height: { xs: '220px', md: '80vh' } }}
+      sx={{ height: { xs: '220px', md: '77vh' } }}
     >
       {places &&
         places.map((place) => (
