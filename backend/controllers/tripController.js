@@ -15,8 +15,8 @@ module.exports.getTrips = async (req, res, next) => {
 module.exports.getTrips = async (req, res, next) => {
   try {
     const tripId = req.params.tripId;
-    const trips = await Trip.findById(tripId).sort({ startDate: 1 });
-    res.json(trips);
+    const trip = await Trip.findById(tripId);
+    res.json(trip);
   } catch (err) {
     next(err);
   }
