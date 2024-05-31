@@ -28,7 +28,7 @@ module.exports.updateTrip = async (req, res, next) => {
       new: true,
     });
     res.json(trip);
-  } catch {
+  } catch (err) {
     next(err);
   }
 };
@@ -40,7 +40,7 @@ module.exports.deleteTrip = async (req, res, next) => {
       new: true,
     });
     res.json(trip);
-  } catch {
+  } catch (err) {
     next(err);
   }
 };

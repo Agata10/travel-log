@@ -1,10 +1,10 @@
 require('dotenv').config();
 
 //setup the express app
-const epxress = require('express');
+const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const app = epxress();
+const app = express();
 const PORT = process.env.PORT || 8080;
 
 //connect to database
@@ -22,7 +22,7 @@ app.use(cors());
 //logger
 app.use(morgan('dev'));
 //allow access to body sent in the request
-app.use(epxress.json());
+app.use(express.json());
 
 app.get('/', (req, res, next) => {
   res.json({ msg: 'Connected to the API' }).status(200);
