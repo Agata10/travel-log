@@ -1,17 +1,14 @@
-import { Paper, TextField, useTheme } from '@mui/material';
+import { Paper, TextField } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { TripContext } from '../../utilis/TripContext';
-import { InputAdornment } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 import { useParams } from 'react-router-dom';
 import { updateTrip } from '../../api/tripsAPI';
 
 const SingleTripHeader = ({ setRefresh }) => {
-  const theme = useTheme();
   const tripContext = useContext(TripContext);
   const { trip, setTrip } = tripContext;
   const { tripId } = useParams();
@@ -21,7 +18,6 @@ const SingleTripHeader = ({ setRefresh }) => {
 
   const updateTripData = async (body) => {
     const response = await updateTrip(tripId, body);
-    console.log(response);
     if (response) {
       setTrip(response);
     }
