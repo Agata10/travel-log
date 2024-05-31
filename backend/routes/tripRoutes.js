@@ -6,7 +6,7 @@ const tripController = require('../controllers/tripController');
 router.get('/:userId', tripController.getTrips);
 
 //get single trip
-router.get('/:tripId', tripController.getSingleTrip);
+router.get('/trip/:tripId', tripController.getSingleTrip);
 
 //create a trip
 router.post('/', tripController.createTrip);
