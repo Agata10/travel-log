@@ -12,7 +12,7 @@ module.exports.getTrips = async (req, res, next) => {
 };
 
 //get single trip
-module.exports.getTrips = async (req, res, next) => {
+module.exports.getSingleTrip = async (req, res, next) => {
   try {
     const tripId = req.params.tripId;
     const trip = await Trip.findById(tripId);
