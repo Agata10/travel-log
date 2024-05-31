@@ -11,6 +11,17 @@ module.exports.getTrips = async (req, res, next) => {
   }
 };
 
+//get single trip
+module.exports.getTrips = async (req, res, next) => {
+  try {
+    const tripId = req.params.tripId;
+    const trips = await Trip.findById(tripId).sort({ startDate: 1 });
+    res.json(trips);
+  } catch (err) {
+    next(err);
+  }
+};
+
 //create a trip
 module.exports.createTrip = async (req, res, next) => {
   try {
