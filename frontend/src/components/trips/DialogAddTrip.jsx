@@ -12,8 +12,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 import axios from 'axios';
-
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { createTrip } from '../../api/tripsAPI';
 
 const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
   const nameRef = useRef();
@@ -49,18 +48,7 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
             startDate: startDateRef.current.value,
             endDate: endDateRef.current.value,
           };
-          try {
-            console.log(`${BASE_URL}/trips`);
-            const response = await axios.post(`${BASE_URL}/trips`, body);
-            setTripAdded((prev) => !prev);
-
-            console.log('🚀 ~ handleSubmit ~ response:', response);
-          } catch (error) {
-            console.error(
-              '🚀 ~ handleSubmit ~ error:',
-              error.response.data.error
-            );
-          }
+          createTrip(setTripAdded, body);
           handleClose();
         },
       }}

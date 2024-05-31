@@ -7,6 +7,7 @@ import {
   Button,
   useTheme,
 } from '@mui/material';
+import { deleteTrip } from '../../api/tripsAPI';
 
 const changeDate = (string) => {
   const date = new Date(string);
@@ -17,7 +18,7 @@ const changeDate = (string) => {
   return `${day} ${month} ${year}`;
 };
 
-const TripCard = ({ trip }) => {
+const TripCard = ({ trip, setTripAdded }) => {
   const theme = useTheme();
   const btnStyle = {
     borderColor: theme.palette.green.main,
@@ -28,8 +29,13 @@ const TripCard = ({ trip }) => {
       color: '#ffffff',
     },
   };
+  const handleDeleteTrip = async () => {
+    deleteTrip(setTripAdded, trip._id);
+  };
+
   return (
     <Card
+      id={trip._id}
       sx={{
         width: { xs: 200, md: 250 },
         minHeight: 270,
@@ -58,7 +64,12 @@ const TripCard = ({ trip }) => {
           {/* change it when auth user */}
           View trip
         </Button>
-        <Button size="small" sx={btnStyle} variant="outlined">
+        <Button
+          size="small"
+          sx={btnStyle}
+          variant="outlined"
+          onClick={() => handleDeleteTrip(trip._id)}
+        >
           Delete
         </Button>
       </CardActions>

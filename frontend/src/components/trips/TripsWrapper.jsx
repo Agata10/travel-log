@@ -1,23 +1,14 @@
 import TripCard from './TripCard';
 import { Grid } from '@mui/material';
 import { Typography } from '@mui/material';
-import axios from 'axios';
+import { getTrips } from '../../api/tripsAPI';
 import { useEffect, useState } from 'react';
 
-const TripsWrapper = ({ tripAdded }) => {
+const TripsWrapper = ({ tripAdded, setTripAdded }) => {
   const [trips, setTrips] = useState(null);
+
   useEffect(() => {
-    const getTrips = async () => {
-      try {
-        const response = await axios(
-          `${import.meta.env.VITE_BASE_URL}/trips/6637f3825bfc1879d0f2273d`
-        );
-        setTrips(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getTrips();
+    getTrips(setTrips);
   }, [tripAdded]);
   return (
     <div className="w-full md:w-10/12 flex flex-col items-center gap-1 md:gap-4 min-h-4/6">
@@ -27,7 +18,11 @@ const TripsWrapper = ({ tripAdded }) => {
           trips.map((trip) => {
             return (
               <Grid item key={trip._id}>
-                <TripCard trip={trip} />
+                <TripCard
+                  trip={trip}
+                  id={trip._id}
+                  setTripAdded={setTripAdded}
+                />
               </Grid>
             );
           })}
