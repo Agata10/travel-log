@@ -35,7 +35,7 @@ const Explore = () => {
           console.log('Error, no position avaiable');
         }
       );
-    }, 1000);
+    }, 800);
 
     () => clearTimeout(timeout);
   }, []);
