@@ -1,7 +1,12 @@
 import { Button, Paper, Typography, useTheme } from '@mui/material';
 
-const TripHeader = () => {
+const TripHeader = ({ setOpen }) => {
   const theme = useTheme();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <Paper
       sx={{ boxShadow: '0 2px 5px #99d19c' }}
@@ -10,6 +15,7 @@ const TripHeader = () => {
       {/* change it to user name */}
       <Typography variant="h5">Hello, name!</Typography>
       <Button
+        onClick={handleClickOpen}
         variant="contained"
         size="small"
         sx={{
