@@ -35,7 +35,6 @@ export const getSingleTrip = async (tripId) => {
 export const updateTrip = async (tripId, body) => {
   try {
     const response = await axios.put(`${BASE_URL}/trips/${tripId}`, body);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error.message);

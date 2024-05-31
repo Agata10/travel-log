@@ -51,6 +51,7 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
             endDate: endDateRef.current.value,
           };
           addTrip(body);
+
           handleClose();
         },
       }}

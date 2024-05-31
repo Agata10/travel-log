@@ -32,16 +32,16 @@ const TripCard = ({ trip, setTripAdded }) => {
     },
   };
 
-  const deleteTripData = async () => {
-    await deleteTrip(trip._id);
+  const deleteTripData = async (id) => {
+    await deleteTrip(id);
     setTripAdded((prev) => !prev);
   };
 
-  const handleDeleteTrip = async () => {
-    deleteTripData();
+  const handleDeleteTrip = async (id) => {
+    deleteTripData(id);
   };
-  const handleViewTrip = () => {
-    navigate(`/trips/trip/${trip._id}`);
+  const handleViewTrip = (id) => {
+    navigate(`/trips/trip/${id}`);
   };
 
   return (

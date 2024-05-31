@@ -21,6 +21,7 @@ const Explore = () => {
   } = exploreContext;
   //get user location, browser supported method
   useEffect(() => {
+    setIsLoading(true);
     const timeout = setTimeout(() => {
       navigator.geolocation.getCurrentPosition(
         (position) => {

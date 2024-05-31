@@ -1,15 +1,13 @@
-import { Paper, Typography, useTheme, TextField } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { TripContext } from '../../utilis/TripContext';
 const SingleTripHeader = () => {
   const tripContext = useContext(TripContext);
-  const { trip } = tripContext;
-  const [startDate, setStartDate] = useState(dayjs(trip?.startDate));
-  const [endDate, setEndDate] = useState(dayjs(trip?.endDate));
+  const { trip, startDate, endDate, setStartDate, setEndDate } = tripContext;
 
   const handleEndDateChange = (day) => {
     if (dayjs(day).isBefore(startDate)) {
