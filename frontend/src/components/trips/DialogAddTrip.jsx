@@ -11,8 +11,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
+import axios from 'axios';
 
-const DialogAddTrip = ({ open, setOpen }) => {
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
   const nameRef = useRef();
   const startDateRef = useRef();
   const endDateRef = useRef();
@@ -27,17 +30,36 @@ const DialogAddTrip = ({ open, setOpen }) => {
       onClose={handleClose}
       PaperProps={{
         component: 'form',
-        onSubmit: (event) => {
+        onSubmit: async (event) => {
           event.preventDefault();
           //   const formData = new FormData(event.currentTarget);
           //   const formJson = Object.fromEntries(formData.entries());
           //   const email = formJson.email;
-
+          console.log(new Date(startDateRef.current.value));
           if (endDateRef.current.value < startDateRef.current.value) {
             setError('End date has to be greater or equal start date');
             return;
           } else {
             setError('');
+          }
+
+          const body = {
+            userId: '6637f3825bfc1879d0f2273d',
+            name: nameRef.current.value,
+            startDate: startDateRef.current.value,
+            endDate: endDateRef.current.value,
+          };
+          try {
+            console.log(`${BASE_URL}/trips`);
+            const response = await axios.post(`${BASE_URL}/trips`, body);
+            setTripAdded((prev) => !prev);
+
+            console.log('🚀 ~ handleSubmit ~ response:', response);
+          } catch (error) {
+            console.error(
+              '🚀 ~ handleSubmit ~ error:',
+              error.response.data.error
+            );
           }
           handleClose();
         },
@@ -67,6 +89,11 @@ const DialogAddTrip = ({ open, setOpen }) => {
               label="Start Date"
               minDate={dayjs()}
               inputRef={startDateRef}
+              slotProps={{
+                textField: {
+                  required: true,
+                },
+              }}
             />
             <DesktopDatePicker
               label="End Date"
@@ -82,6 +109,7 @@ const DialogAddTrip = ({ open, setOpen }) => {
                 textField: {
                   helperText: error,
                   sx: { '& .MuiFormHelperText-root': { color: 'red' } },
+                  required: true,
                 },
               }}
             />

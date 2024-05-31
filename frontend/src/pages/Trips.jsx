@@ -6,11 +6,16 @@ import { useState } from 'react';
 import DialogAddTrip from '../components/trips/DialogAddTrip';
 const Trips = () => {
   const [open, setOpen] = useState(false);
+  const [tripAdded, setTripAdded] = useState(false);
   return (
     <Box className="w-full flex flex-col items-center gap-10 h-screen" pt={4}>
-      <DialogAddTrip open={open} setOpen={setOpen} />
+      <DialogAddTrip
+        open={open}
+        setOpen={setOpen}
+        setTripAdded={setTripAdded}
+      />
       <TripHeader setOpen={setOpen} />
-      <TripsWrapper />
+      <TripsWrapper tripAdded={tripAdded} />
       <Footer />
     </Box>
   );

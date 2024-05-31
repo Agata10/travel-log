@@ -4,13 +4,13 @@ import { Typography } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const TripsWrapper = () => {
+const TripsWrapper = ({ tripAdded }) => {
   const [trips, setTrips] = useState(null);
   useEffect(() => {
     const getTrips = async () => {
       try {
         const response = await axios(
-          'http://127.0.0.1:3000/api/trips/6637f3825bfc1879d0f2273d'
+          `${import.meta.env.VITE_BASE_URL}/trips/6637f3825bfc1879d0f2273d`
         );
         setTrips(response.data);
       } catch (error) {
@@ -18,7 +18,7 @@ const TripsWrapper = () => {
       }
     };
     getTrips();
-  }, []);
+  }, [tripAdded]);
   return (
     <div className="w-full md:w-10/12 flex flex-col items-center gap-1 md:gap-4 min-h-4/6">
       <Typography variant="h3">Your trips</Typography>
