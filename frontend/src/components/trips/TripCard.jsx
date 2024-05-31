@@ -8,6 +8,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { deleteTrip } from '../../api/tripsAPI';
+import { useNavigate } from 'react-router-dom';
 
 const changeDate = (string) => {
   const date = new Date(string);
@@ -20,6 +21,7 @@ const changeDate = (string) => {
 
 const TripCard = ({ trip, setTripAdded }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const btnStyle = {
     borderColor: theme.palette.primary.main,
     color: theme.palette.primary.main,
@@ -31,6 +33,9 @@ const TripCard = ({ trip, setTripAdded }) => {
   };
   const handleDeleteTrip = async () => {
     deleteTrip(setTripAdded, trip._id);
+  };
+  const handleViewTrip = () => {
+    navigate(`/trips/trip/${trip._id}`);
   };
 
   return (
@@ -60,7 +65,12 @@ const TripCard = ({ trip, setTripAdded }) => {
         </Typography>
       </CardContent>
       <CardActions sx={{ paddingBottom: 2 }}>
-        <Button variant="outlined" size="small" sx={btnStyle}>
+        <Button
+          variant="outlined"
+          size="small"
+          sx={btnStyle}
+          onClick={() => handleViewTrip(trip._id)}
+        >
           {/* change it when auth user */}
           View trip
         </Button>

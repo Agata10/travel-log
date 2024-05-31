@@ -67,7 +67,7 @@ function App() {
               <Route path="/" element={<Homepage />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/trips" element={<Trips />} />
-              <Route path="/trips/trip" element={<SingleTrip />} />
+              <Route path="/trips/trip/:tripId" element={<SingleTrip />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/profile" element={<Account />} />
               <Route path="/logout" element={<Navigate to="/" />} />

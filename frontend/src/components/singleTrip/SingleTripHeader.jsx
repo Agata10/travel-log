@@ -2,6 +2,7 @@ import { Paper, Typography, useTheme, TextField } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 const SingleTripHeader = () => {
   const theme = useTheme();
   return (
@@ -14,26 +15,26 @@ const SingleTripHeader = () => {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
           label="Start Date"
-          // minDate={dayjs()}
+          defaultValue={dayjs()}
+          minDate={dayjs()}
           // inputRef={startDateRef}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: 'red',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: 'green',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: 'purple',
-                  },
-                },
-              }}
-            />
-          )}
+        />
+        <DatePicker
+          label="End Date"
+          minDate={dayjs().add(1, 'day')}
+          // // inputRef={endDateRef}
+          // // onError={(newErr) =>
+          // //   setError(
+          // //     newErr || 'End date has to be greater or equal than start date'
+          // //   )
+          // }
+          // slotProps={{
+          //   textField: {
+          //     helperText: error,
+          //     sx: { '& .MuiFormHelperText-root': { color: 'red' } },
+          //     required: true,
+          //   },
+          // }}
         />
       </LocalizationProvider>
     </Paper>
