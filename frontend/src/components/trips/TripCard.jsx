@@ -31,8 +31,14 @@ const TripCard = ({ trip, setTripAdded }) => {
       color: '#ffffff',
     },
   };
+
+  const deleteTripData = async () => {
+    await deleteTrip(trip._id);
+    setTripAdded((prev) => !prev);
+  };
+
   const handleDeleteTrip = async () => {
-    deleteTrip(setTripAdded, trip._id);
+    deleteTripData();
   };
   const handleViewTrip = () => {
     navigate(`/trips/trip/${trip._id}`);

@@ -22,6 +22,13 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const addTrip = async (body) => {
+    const tripResponse = await createTrip(body);
+    if (tripResponse) {
+      setTripAdded((prev) => !prev);
+    }
+  };
   return (
     <Dialog
       open={open}
@@ -30,10 +37,6 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
         component: 'form',
         onSubmit: async (event) => {
           event.preventDefault();
-          //   const formData = new FormData(event.currentTarget);
-          //   const formJson = Object.fromEntries(formData.entries());
-          //   const email = formJson.email;
-          console.log(new Date(startDateRef.current.value));
           if (endDateRef.current.value < startDateRef.current.value) {
             setError('End date has to be greater or equal start date');
             return;
@@ -47,7 +50,7 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
             startDate: startDateRef.current.value,
             endDate: endDateRef.current.value,
           };
-          createTrip(setTripAdded, body);
+          addTrip(body);
           handleClose();
         },
       }}

@@ -1,6 +1,7 @@
 import Layout from './components/Layout';
 import Explore from './pages/Explore';
 import { ExploreContextProvider } from './utilis/ExploreContext';
+import { TripContextProvider } from './utilis/TripContext';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Favorites from './pages/Favorites';
@@ -62,19 +63,21 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <Layout>
-          <ExploreContextProvider>
-            <Routes>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/explore" element={<Explore />} />
-              <Route path="/trips" element={<Trips />} />
-              <Route path="/trips/trip/:tripId" element={<SingleTrip />} />
-              <Route path="/favorites" element={<Favorites />} />
-              <Route path="/profile" element={<Account />} />
-              <Route path="/logout" element={<Navigate to="/" />} />
-              <Route path="/login" element={<LogIn />} />
-              <Route path="/signup" element={<SignUp />} />
-            </Routes>
-          </ExploreContextProvider>
+          <TripContextProvider>
+            <ExploreContextProvider>
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/explore" element={<Explore />} />
+                <Route path="/trips" element={<Trips />} />
+                <Route path="/trips/trip/:tripId" element={<SingleTrip />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/profile" element={<Account />} />
+                <Route path="/logout" element={<Navigate to="/" />} />
+                <Route path="/login" element={<LogIn />} />
+                <Route path="/signup" element={<SignUp />} />
+              </Routes>
+            </ExploreContextProvider>
+          </TripContextProvider>
         </Layout>
       </ThemeProvider>
     </>

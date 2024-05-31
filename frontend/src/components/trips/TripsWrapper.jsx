@@ -7,8 +7,14 @@ import { useEffect, useState } from 'react';
 const TripsWrapper = ({ tripAdded, setTripAdded }) => {
   const [trips, setTrips] = useState(null);
 
+  const fetchData = async () => {
+    const tripsResponse = await getTrips();
+    if (tripsResponse) {
+      setTrips(tripsResponse);
+    }
+  };
   useEffect(() => {
-    getTrips(setTrips);
+    fetchData();
   }, [tripAdded]);
   return (
     <div className="w-full md:w-10/12 flex flex-col items-center gap-1 md:gap-4 min-h-4/6">
