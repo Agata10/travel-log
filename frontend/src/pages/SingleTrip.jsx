@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import SingleTripHeader from '../components/singleTrip/SingleTripHeader';
 import { Box } from '@mui/material';
 import { getSingleTrip } from '../api/tripsAPI';
@@ -11,6 +11,7 @@ import { RotatingLines } from 'react-loader-spinner';
 const SingleTrip = () => {
   const tripContext = useContext(TripContext);
   const exploreContext = useContext(ExploreContext);
+  const [refresh, setRefresh] = useState(false);
   const { trip, setTrip, setStartDate, setEndDate } = tripContext;
   const { setIsLoading, isLoading } = exploreContext;
   const { tripId } = useParams();
@@ -29,12 +30,12 @@ const SingleTrip = () => {
     fetchData();
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 800);
+    }, 200);
 
     () => {
       clearTimeout(timeout);
     };
-  }, [tripId]);
+  }, [tripId, refresh]);
 
   if (isLoading) {
     return (
@@ -56,7 +57,7 @@ const SingleTrip = () => {
       className="w-full flex flex-col items-center gap-10 min-h-screen"
       pt={4}
     >
-      {trip && <SingleTripHeader />}
+      {trip && <SingleTripHeader setRefresh={setRefresh} />}
     </Box>
   );
 };
