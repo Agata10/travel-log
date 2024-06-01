@@ -9,16 +9,43 @@ import {
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useRef, useState, useContext } from 'react';
+import { useRef, useState, useContext, useEffect } from 'react';
 import { TripContext } from '../../utilis/TripContext';
-import { updateTrip } from '../../api/tripsAPI';
-
+import { getTripExpenses, updateTrip } from '../../api/tripsAPI';
+import EditIcon from '@mui/icons-material/Edit';
+import { useParams } from 'react-router-dom';
 const NotesAndBudget = () => {
-  const [open, setOpen] = useState(false);
-  const notesRef = useRef();
+  const [open, setOpen] = useState(true);
   const tripContext = useContext(TripContext);
   const { trip, setTrip } = tripContext;
   const theme = useTheme();
+  const notesRef = useRef();
+  const budgetRef = useRef();
+  const { tripId } = useParams();
+  const [sumOfExpenses, setSumOfExpeneses] = useState(0);
+  const [percent, setPercent] = useState(0);
+
+  const calcExpensesSum = async () => {
+    try {
+      const expenses = await getTripExpenses(tripId);
+      const sum = expenses.reduce((accumulator, expense) => {
+        return accumulator + expense.amount;
+      }, 0);
+      if (sum) {
+        const percentageOfBudget = ((sum / trip.budget) * 100).toFixed(2);
+        setSumOfExpeneses(sum);
+        setPercent(percentageOfBudget);
+      }
+    } catch (error) {
+      console.error(error);
+      return 0;
+    }
+  };
+
+  useEffect(() => {
+    calcExpensesSum();
+  }, []);
+
   const btnStyle = {
     borderRadius: '8px',
     backgroundColor: theme.palette.primary.light,
@@ -116,29 +143,38 @@ const NotesAndBudget = () => {
             }}
           >
             <Box display="flex" sx={{ alignItems: 'flex-end' }}>
-              {/* <LocationOnOutlinedIcon
-                fontSize="medium"
-                sx={{ color: theme.palette.primary.main, marginBottom: 0.5 }}
-              />
-              <TextField
+              {/* <TextField
                 inputRef={budgetRef}
-                onBlur={handleAddressBlur}
+                // onBlur={handleAddressBlur}
                 placeholder="Add address"
                 variant="standard"
-                defaultValue={place.address}
+                type="number"
+                defaultValue={trip.budget}
                 InputProps={{ disableUnderline: true }}
                 sx={{
+                  width: '20%',
                   '& input': {
                     fontSize: theme.typography.body2,
                   },
                 }}
+              />
+              <EditIcon
+                fontSize="medium"
+                sx={{ color: theme.palette.primary.main, marginBottom: 0.5 }}
               /> */}
+              {sumOfExpenses}$
             </Box>
             <div className="w-8/12 h-4 bg-green-300 rounded-md">
-              <div className="w-8/12 h-4 bg-green-700 rounded-md relative">
-                <p className="absolute -right-4 -top-1">%</p>
+              <div
+                className="h-4 bg-green-700 rounded-md relative"
+                style={{ width: `${percent}%` }}
+              >
+                {percent > 0 && (
+                  <p className="absolute -right-4 -top-1">{percent}%</p>
+                )}
               </div>
             </div>
+            <p>Budget: {trip.budget}$</p>
           </Paper>
         </Box>
       )}

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 export const TripContextProvider = ({ children }) => {
   const [trip, setTrip] = useState(null);
+  const [places, setPlaces] = useState(null);
   const { tripId } = useParams();
 
   return (
@@ -12,6 +13,8 @@ export const TripContextProvider = ({ children }) => {
         trip,
         setTrip,
         tripId,
+        places,
+        setPlaces,
       }}
     >
       {children}

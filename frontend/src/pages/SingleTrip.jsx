@@ -9,6 +9,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import NotesAndBudget from '../components/singleTrip/NotesAndBudget';
 import PlacesToVisit from '../components/singleTrip/PlacesToVisit';
 import Footer from '../components/Footer';
+import BudgetDetails from '../components/singleTrip/BudgetDetails';
 
 const SingleTrip = () => {
   const tripContext = useContext(TripContext);
@@ -61,6 +62,7 @@ const SingleTrip = () => {
       <Box className="w-10/12 md:w-8/12 flex flex-col">
         <NotesAndBudget />
         <PlacesToVisit />
+        <BudgetDetails />
       </Box>
       <Footer />
     </Box>

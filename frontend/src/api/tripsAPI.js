@@ -60,3 +60,13 @@ export const getPlacesToVisit = async (tripId) => {
     console.error(error.message);
   }
 };
+
+//get trip expenses
+export const getTripExpenses = async (tripId) => {
+  try {
+    const response = await axios(`${BASE_URL}/trips/${tripId}/expenses`);
+    return response.data;
+  } catch (error) {
+    console.error(error.message);
+  }
+};

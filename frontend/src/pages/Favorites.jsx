@@ -2,11 +2,11 @@ import { useTheme, Grid } from '@mui/material';
 import Footer from '../components/Footer';
 import ListOfPlaces from '../components/places_visit_fav/ListOfPlaces';
 import { useContext } from 'react';
-import { ExploreContext } from '../utilis/ExploreContext';
+import { TripContext } from '../utilis/TripContext';
 
 const Favorites = () => {
   const theme = useTheme();
-  const context = useContext(ExploreContext);
+  const context = useContext(TripContext);
   const { places, setPlaces } = context;
 
   //set places to favorites from db when first loaded
@@ -30,7 +30,7 @@ const Favorites = () => {
           md={8}
           sx={{ overflow: 'auto', margin: '0 auto', position: 'relative' }}
         >
-          <ListOfPlaces places={places} setPlaces={setPlaces} />
+          {places && <ListOfPlaces places={places} setPlaces={setPlaces} />}
         </Grid>
         <Grid
           item
@@ -38,7 +38,7 @@ const Favorites = () => {
             width: '100%',
           }}
         >
-          {places.length > 0 && <Footer />}
+          {places && <Footer />}
         </Grid>
       </Grid>
     </>

@@ -9,7 +9,6 @@ import {
 } from '@mui/material';
 import ListOfPlaces from '../places_visit_fav/ListOfPlaces';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { ExploreContext } from '../../utilis/ExploreContext';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
@@ -17,18 +16,15 @@ import { getPlacesToVisit } from '../../api/tripsAPI';
 import { useParams } from 'react-router-dom';
 import { createPlace } from '../../api/placesAPI';
 import axios from 'axios';
+import { TripContext } from '../../utilis/TripContext';
 
 const PlacesToVisit = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const context = useContext(ExploreContext);
+  const context = useContext(TripContext);
   const { places, setPlaces } = context;
   const placeRef = useRef();
   const { tripId } = useParams();
-
-  useEffect(() => {
-    fetchPlacesToVisit();
-  }, []);
 
   const fetchPlacesToVisit = async () => {
     const placesResponse = await getPlacesToVisit(tripId);
@@ -36,6 +32,10 @@ const PlacesToVisit = () => {
       setPlaces(placesResponse);
     }
   };
+
+  useEffect(() => {
+    fetchPlacesToVisit();
+  }, []);
 
   const fetchImages = async () => {
     try {
@@ -60,7 +60,7 @@ const PlacesToVisit = () => {
   };
 
   return (
-    <Grid container pt={6} pb={6} sx={{ width: '100%' }}>
+    <Grid container pt={4} sx={{ width: '100%' }}>
       <Grid
         item
         sx={{
@@ -93,7 +93,8 @@ const PlacesToVisit = () => {
               margin: '0 auto',
               display: 'flex',
               justifyContent: 'center',
-              padding: '10px 0',
+              padding: '10px ',
+              paddingRight: '30px',
             }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
@@ -118,7 +119,7 @@ const PlacesToVisit = () => {
             />
           </Box>
           <Box>
-            <ListOfPlaces places={places} setPlaces={setPlaces} />
+            {places && <ListOfPlaces places={places} setPlaces={setPlaces} />}
           </Box>
         </Grid>
       )}
