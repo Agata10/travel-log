@@ -21,12 +21,11 @@ const PlacesToVisit = () => {
   const [open, setOpen] = useState(false);
   const context = useContext(ExploreContext);
   const { places, setPlaces } = context;
-  const [placeToVisit, setPlaceToVisit] = useState(null);
+  const placeRef = useRef();
   const { tripId } = useParams();
 
   const fetchPlacesToVisit = async () => {
     const placesResponse = await getPlacesToVisit(tripId);
-    console.log(placesResponse);
     if (placesResponse) {
       setPlaces(placesResponse);
     }
@@ -51,7 +50,8 @@ const PlacesToVisit = () => {
   };
 
   const handleAddPlace = async () => {
-    await createPlace(tripId, { name: placeToVisit });
+    await createPlace(tripId, { name: placeRef.current.value });
+    placeRef.current.value = '';
     fetchPlacesToVisit();
   };
 
@@ -98,7 +98,7 @@ const PlacesToVisit = () => {
             }}
           >
             <TextField
-              onChange={(e) => setPlaceToVisit(e.target.value)}
+              inputRef={placeRef}
               label="Add a new place"
               variant="standard"
               sx={{ width: '50%' }}

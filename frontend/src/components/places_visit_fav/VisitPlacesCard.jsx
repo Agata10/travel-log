@@ -1,6 +1,6 @@
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import {
   Card,
   Box,
@@ -12,15 +12,32 @@ import {
   TextField,
   useTheme,
 } from '@mui/material';
-import axios from 'axios';
+import { deletePlace, updatePlace } from '../../api/placesAPI';
+import { useParams } from 'react-router-dom';
+import { getPlacesToVisit } from '../../api/tripsAPI';
+
 const ariaLabel = { 'aria-label': 'description' };
 
-const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
+const VisitPlacesCard = ({ index, place, setPlaces }) => {
   const [hoverCard, setHoverCard] = useState(null);
   const theme = useTheme();
+  const { tripId } = useParams();
+  const notesRef = useRef();
 
-  const handleDelete = (place) => {
-    setPlaces(places.filter((p) => p.name != place.name));
+  const handleDelete = async (place) => {
+    await deletePlace(tripId, place._id);
+    setPlaces(await getPlacesToVisit(tripId));
+  };
+
+  const handleNotesBlur = async () => {
+    if (place.description !== notesRef.current.value) {
+      const response = await updatePlace(place._id, {
+        description: notesRef.current.value,
+      });
+      if (response) {
+        console.log(response);
+      }
+    }
   };
 
   return (
@@ -61,7 +78,10 @@ const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
             </Box>
             <TextField
               placeholder="Add notes, links etc here..."
+              onBlur={handleNotesBlur}
+              defaultValue={place?.description}
               inputProps={ariaLabel}
+              inputRef={notesRef}
               className="overflow-y-hidden hover:overflow-y-visible"
               sx={{
                 display: { xs: 'none', md: 'flex' },
