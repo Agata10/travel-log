@@ -4,7 +4,7 @@ export const ExploreContext = createContext();
 
 export const ExploreContextProvider = ({ children }) => {
   const [position, setPosition] = useState({ lat: 51.505, lng: -0.09 }); //lat, lng
-  const [places, setPlaces] = useState([]);
+  const [searchPlaces, setSearchPlaces] = useState([]);
   const [bounds, setBounds] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,8 +15,8 @@ export const ExploreContextProvider = ({ children }) => {
         setPosition,
         isLoading,
         setIsLoading,
-        places,
-        setPlaces,
+        searchPlaces,
+        setSearchPlaces,
         bounds,
         setBounds,
       }}

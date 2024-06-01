@@ -45,7 +45,7 @@ const LocationMarker = ({ position, setBounds }) => {
 };
 
 //marker for places
-const PlaceMarker = ({ places }) => {
+const PlaceMarker = ({ place }) => {
   const customIcon = L.icon({
     iconUrl: icon,
     iconSize: [38, 38], // size of the icon
@@ -53,9 +53,9 @@ const PlaceMarker = ({ places }) => {
     popupAnchor: [0, -38], // point from which the popup should open relative to the iconAnchor
   });
 
-  return places === null
+  return place === null
     ? null
-    : places
+    : place
         .filter(
           (place) => place.latitude !== null && place.latitude !== undefined
         )
@@ -91,7 +91,7 @@ const PlaceMarker = ({ places }) => {
 
 const Map = () => {
   const exploreContext = useContext(ExploreContext);
-  const { position, setBounds, places, bounds } = exploreContext;
+  const { position, setBounds, searchPlaces, bounds } = exploreContext;
   const [url, setUrl] = useState(
     `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=${VITE_API_KEY}`
   );
@@ -120,7 +120,7 @@ const Map = () => {
             id="osm-bright"
           />
           <LocationMarker position={position} setBounds={setBounds} />
-          {bounds && <PlaceMarker places={places} />}
+          {bounds && <PlaceMarker place={searchPlaces} />}
         </MapContainer>
       )}
     </>

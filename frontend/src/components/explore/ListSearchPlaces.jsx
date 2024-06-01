@@ -6,15 +6,15 @@ import { ExploreContext } from '../../utilis/ExploreContext';
 
 const ListSearchPlaces = () => {
   const expoloreContext = useContext(ExploreContext);
-  const { places } = expoloreContext;
+  const { searchPlaces } = expoloreContext;
 
   return (
     <List
       className="overflow-scroll space-y-2 w-full"
       sx={{ height: { xs: '220px', md: '77vh' } }}
     >
-      {places &&
-        places.map((place) => (
+      {searchPlaces &&
+        searchPlaces.map((place) => (
           <ListItem
             key={crypto.randomUUID()}
             sx={{ display: 'flex', justifyContent: 'center' }}

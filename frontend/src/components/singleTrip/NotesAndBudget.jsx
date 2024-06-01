@@ -115,7 +115,25 @@ const NotesAndBudget = () => {
               justifyContent: 'center',
             }}
           >
-            <p className="pb-1">0.00$</p>
+            <Box display="flex" sx={{ alignItems: 'flex-end' }}>
+              {/* <LocationOnOutlinedIcon
+                fontSize="medium"
+                sx={{ color: theme.palette.primary.main, marginBottom: 0.5 }}
+              />
+              <TextField
+                inputRef={budgetRef}
+                onBlur={handleAddressBlur}
+                placeholder="Add address"
+                variant="standard"
+                defaultValue={place.address}
+                InputProps={{ disableUnderline: true }}
+                sx={{
+                  '& input': {
+                    fontSize: theme.typography.body2,
+                  },
+                }}
+              /> */}
+            </Box>
             <div className="w-8/12 h-4 bg-green-300 rounded-md">
               <div className="w-8/12 h-4 bg-green-700 rounded-md relative">
                 <p className="absolute -right-4 -top-1">%</p>

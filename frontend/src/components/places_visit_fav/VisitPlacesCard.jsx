@@ -7,7 +7,6 @@ import {
   CardContent,
   ListItem,
   Paper,
-  Typography,
   IconButton,
   TextField,
   useTheme,
@@ -90,7 +89,6 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
                 '& input:focus': {
                   backgroundColor: 'whitesmoke',
                   borderRadius: '12px',
-                  width: 'fit-content',
                   paddingLeft: '5px',
                 },
               }}
@@ -108,9 +106,6 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
                 defaultValue={place.address}
                 InputProps={{ disableUnderline: true }}
                 sx={{
-                  '& input': {
-                    fontSize: theme.typography.body2,
-                  },
                   '& input': {
                     fontSize: theme.typography.body2,
                   },

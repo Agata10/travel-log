@@ -43,10 +43,6 @@ const SingleTripHeader = ({ setRefresh }) => {
     }
   };
 
-  const handleFocus = () => {
-    inputRef.current.focus();
-  };
-
   const handleInputBlur = () => {
     console.log(inputRef.current.value);
     if (inputRef.current.value !== trip.name) {
