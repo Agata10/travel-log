@@ -16,6 +16,8 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { getPlacesToVisit } from '../../api/tripsAPI';
 import { useParams } from 'react-router-dom';
 import { createPlace } from '../../api/placesAPI';
+import axios from 'axios';
+
 const PlacesToVisit = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -24,35 +26,37 @@ const PlacesToVisit = () => {
   const placeRef = useRef();
   const { tripId } = useParams();
 
+  useEffect(() => {
+    fetchPlacesToVisit();
+  }, []);
+
   const fetchPlacesToVisit = async () => {
     const placesResponse = await getPlacesToVisit(tripId);
     if (placesResponse) {
       setPlaces(placesResponse);
     }
   };
-  ///set places from api to places to visit
-  useEffect(() => {
-    fetchPlacesToVisit();
-  }, []);
 
   const fetchImages = async () => {
     try {
-      // const response = await axios.get(
-      //   `https://api.unsplash.com/search/photos?query=${place.name}&client_id=${
-      //     import.meta.env.VITE_PHOTOS_API_KEY
-      //   }`
-      // );
-      // setImage(response.data.results[0].urls.small);
-      // return response.data.results[0].urls.small;
+      const response = await axios.get(
+        `https://api.unsplash.com/search/photos?query=${
+          placeRef.current.value
+        }&client_id=${import.meta.env.VITE_PHOTOS_API_KEY}`
+      );
+      return response.data.results[2].urls.regular;
     } catch (err) {
       console.log(err);
     }
   };
 
   const handleAddPlace = async () => {
-    await createPlace(tripId, { name: placeRef.current.value });
+    const image = await fetchImages();
+    const body = { name: placeRef.current.value, img: image };
+    await createPlace(tripId, body);
     placeRef.current.value = '';
     fetchPlacesToVisit();
+    console.log(places);
   };
 
   return (

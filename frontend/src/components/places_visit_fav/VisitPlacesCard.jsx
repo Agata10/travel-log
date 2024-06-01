@@ -23,6 +23,8 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
   const theme = useTheme();
   const { tripId } = useParams();
   const notesRef = useRef();
+  const addressRef = useRef();
+  const nameRef = useRef();
 
   const handleDelete = async (place) => {
     await deletePlace(tripId, place._id);
@@ -31,12 +33,23 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
 
   const handleNotesBlur = async () => {
     if (place.description !== notesRef.current.value) {
-      const response = await updatePlace(place._id, {
+      await updatePlace(place._id, {
         description: notesRef.current.value,
       });
-      if (response) {
-        console.log(response);
-      }
+    }
+  };
+  const handleAddressBlur = async () => {
+    if (place.address !== addressRef.current.value) {
+      await updatePlace(place._id, {
+        address: addressRef.current.value,
+      });
+    }
+  };
+  const handleNameBlur = async () => {
+    if (place.name !== nameRef.current.value) {
+      await updatePlace(place._id, {
+        name: nameRef.current.value,
+      });
     }
   };
 
@@ -64,17 +77,45 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
       >
         <Box display="flex">
           <CardContent sx={{ pt: 0, width: '100%', '&:last-child': { pb: 0 } }}>
-            <Typography sx={{ typography: { ...theme.typography.h6 } }}>
-              {place.name}
-            </Typography>
-            <Box display="flex" marginTop={1}>
-              <LocationOnOutlinedIcon fontSize="medium" />
-              <Typography
-                gutterBottom
-                sx={{ fontSize: theme.typography.body2 }}
-              >
-                {place.address}
-              </Typography>
+            <TextField
+              inputRef={nameRef}
+              onBlur={handleNameBlur}
+              variant="standard"
+              defaultValue={place.name}
+              InputProps={{ disableUnderline: true }}
+              sx={{
+                '& input': {
+                  fontSize: theme.typography.h6,
+                },
+                '& input:focus': {
+                  backgroundColor: 'whitesmoke',
+                  borderRadius: '12px',
+                  width: 'fit-content',
+                  paddingLeft: '5px',
+                },
+              }}
+            />
+            <Box display="flex" sx={{ alignItems: 'flex-end' }}>
+              <LocationOnOutlinedIcon
+                fontSize="medium"
+                sx={{ color: theme.palette.primary.main, marginBottom: 0.5 }}
+              />
+              <TextField
+                inputRef={addressRef}
+                onBlur={handleAddressBlur}
+                placeholder="Add address"
+                variant="standard"
+                defaultValue={place.address}
+                InputProps={{ disableUnderline: true }}
+                sx={{
+                  '& input': {
+                    fontSize: theme.typography.body2,
+                  },
+                  '& input': {
+                    fontSize: theme.typography.body2,
+                  },
+                }}
+              />
             </Box>
             <TextField
               placeholder="Add notes, links etc here..."
