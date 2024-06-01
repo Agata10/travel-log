@@ -8,6 +8,7 @@ import { ExploreContext } from '../utilis/ExploreContext';
 import { RotatingLines } from 'react-loader-spinner';
 import NotesAndBudget from '../components/singleTrip/NotesAndBudget';
 import PlacesToVisit from '../components/singleTrip/PlacesToVisit';
+import Footer from '../components/Footer';
 
 const SingleTrip = () => {
   const tripContext = useContext(TripContext);
@@ -61,6 +62,7 @@ const SingleTrip = () => {
         <NotesAndBudget />
         <PlacesToVisit />
       </Box>
+      <Footer />
     </Box>
   );
 };

@@ -1,6 +1,6 @@
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Card,
   Box,
@@ -12,15 +12,34 @@ import {
   TextField,
   useTheme,
 } from '@mui/material';
+import axios from 'axios';
 const ariaLabel = { 'aria-label': 'description' };
 
 const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
   const [hoverCard, setHoverCard] = useState(null);
+  const [image, setImage] = useState(null);
   const theme = useTheme();
 
   const handleDelete = (place) => {
     setPlaces(places.filter((p) => p.name != place.name));
   };
+
+  const fetchImages = async () => {
+    try {
+      // const response = await axios.get(
+      //   `https://api.unsplash.com/search/photos?query=${place.name}&client_id=${
+      //     import.meta.env.VITE_PHOTOS_API_KEY
+      //   }`
+      // );
+      // setImage(response.data.results[0].urls.small);
+      // return response.data.results[0].urls.small;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchImages();
+  }, [place]);
 
   return (
     <ListItem
@@ -89,12 +108,22 @@ const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
       </Card>
       <Paper
         sx={{
-          borderRadius: 3,
+          borderRadius: 8,
           height: '120px',
           width: '25%',
         }}
       >
-        <img src={place.src} alt={place.name}></img>
+        {image && (
+          <img
+            src={image}
+            alt={place.name}
+            style={{
+              borderRadius: 8,
+              height: '120px',
+              width: '100%',
+            }}
+          />
+        )}
       </Paper>
       {hoverCard === index && (
         <IconButton aria-label="delete" onClick={() => handleDelete(place)}>
