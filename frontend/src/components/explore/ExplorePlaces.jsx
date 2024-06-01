@@ -1,4 +1,4 @@
-import ListPlaces from './ListPlaces';
+import ListSearchPlaces from './ListSearchPlaces';
 import SearchBar from './SearchBar';
 import FilterMapHeader from './FilterMapHeader';
 import { useContext } from 'react';
@@ -15,7 +15,7 @@ const ExplorePlaces = () => {
     <Box className="flex flex-col items-center">
       <SearchBar setPosition={setPosition} />
       <FilterMapHeader />
-      <ListPlaces />
+      <ListSearchPlaces />
     </Box>
   );
 };

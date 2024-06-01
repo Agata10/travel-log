@@ -4,7 +4,7 @@ import ListItem from '@mui/material/ListItem';
 import PlaceCard from './PlaceCard';
 import { ExploreContext } from '../../utilis/ExploreContext';
 
-const ListPlaces = () => {
+const ListSearchPlaces = () => {
   const expoloreContext = useContext(ExploreContext);
   const { places } = expoloreContext;
 
@@ -26,4 +26,4 @@ const ListPlaces = () => {
   );
 };
 
-export default ListPlaces;
+export default ListSearchPlaces;
