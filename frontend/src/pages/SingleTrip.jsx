@@ -7,6 +7,7 @@ import { TripContext } from '../utilis/TripContext';
 import { ExploreContext } from '../utilis/ExploreContext';
 import { RotatingLines } from 'react-loader-spinner';
 import NotesAndBudget from '../components/singleTrip/NotesAndBudget';
+import PlacesToVisit from '../components/singleTrip/PlacesToVisit';
 
 const SingleTrip = () => {
   const tripContext = useContext(TripContext);
@@ -58,6 +59,7 @@ const SingleTrip = () => {
       {trip && <SingleTripHeader setRefresh={setRefresh} />}
       <Box className="w-10/12 md:w-8/12 flex flex-col">
         <NotesAndBudget />
+        <PlacesToVisit />
       </Box>
     </Box>
   );

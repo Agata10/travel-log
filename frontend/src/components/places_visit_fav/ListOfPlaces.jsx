@@ -1,22 +1,17 @@
-import { useContext } from 'react';
-import { ExploreContext } from '../../utilis/ExploreContext';
 import VisitPlacesCard from './VisitPlacesCard';
 import { List } from '@mui/material';
 
-const ListOfPlaces = () => {
-  const context = useContext(ExploreContext);
-  const { places, setPlaces } = context;
-
+const ListOfPlaces = ({ places, setPlaces }) => {
   return (
     <List
-      className="overflow-auto space-y-4"
+      className="space-y-4"
       sx={{
-        height: '85vh',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: 0,
+        paddingTop: '2px',
+        paddingBottom: '10px',
       }}
     >
       {places.map((place, index) => {

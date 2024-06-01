@@ -10,11 +10,13 @@ import {
   Typography,
   IconButton,
   TextField,
+  useTheme,
 } from '@mui/material';
 const ariaLabel = { 'aria-label': 'description' };
 
 const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
   const [hoverCard, setHoverCard] = useState(null);
+  const theme = useTheme();
 
   const handleDelete = (place) => {
     setPlaces(places.filter((p) => p.name != place.name));
@@ -27,8 +29,8 @@ const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
       sx={{
         display: 'flex',
         padding: 0,
-        maxHeight: '130px',
-        width: { xs: '100%', sm: '90%', md: '70%', lg: '50%' },
+        height: { xs: '130px', md: '120px' },
+        width: { xs: '100%', sm: '90%', md: '100%', lg: '80%' },
       }}
     >
       <Card
@@ -44,10 +46,15 @@ const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
       >
         <Box display="flex">
           <CardContent sx={{ pt: 0, '&:last-child': { pb: 0 } }}>
-            <Typography variant="h6">{place.name}</Typography>
+            <Typography sx={{ typography: { ...theme.typography.h6 } }}>
+              {place.name}
+            </Typography>
             <Box display="flex" marginTop={1}>
               <LocationOnOutlinedIcon fontSize="medium" />
-              <Typography gutterBottom variant="body1">
+              <Typography
+                gutterBottom
+                sx={{ fontSize: theme.typography.body2 }}
+              >
                 {place.address}
               </Typography>
             </Box>
@@ -56,7 +63,9 @@ const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
               inputProps={ariaLabel}
               className="overflow-y-hidden hover:overflow-y-visible"
               sx={{
+                display: { xs: 'none', md: 'flex' },
                 width: '70%',
+                paddingTop: '10px',
                 pl: 1,
                 '& .MuiInputBase-input': {
                   fontSize: '0.8rem',
@@ -81,7 +90,7 @@ const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
       <Paper
         sx={{
           borderRadius: 3,
-          height: { xs: '130px', sm: '130px' },
+          height: '120px',
           width: '25%',
         }}
       >
