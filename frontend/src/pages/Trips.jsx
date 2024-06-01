@@ -8,6 +8,7 @@ import { getTrips } from '../api/tripsAPI';
 import { useEffect, useContext } from 'react';
 import { ExploreContext } from '../utilis/ExploreContext';
 import { RotatingLines } from 'react-loader-spinner';
+import { useParams } from 'react-router-dom';
 
 const Trips = () => {
   const [open, setOpen] = useState(false);
@@ -16,6 +17,7 @@ const Trips = () => {
   const exploreContext = useContext(ExploreContext);
   const { setIsLoading, isLoading } = exploreContext;
 
+  //add user id after auth
   const fetchData = async () => {
     setIsLoading(true);
     const tripsResponse = await getTrips();

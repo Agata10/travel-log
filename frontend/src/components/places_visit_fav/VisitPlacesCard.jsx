@@ -17,29 +17,11 @@ const ariaLabel = { 'aria-label': 'description' };
 
 const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
   const [hoverCard, setHoverCard] = useState(null);
-  const [image, setImage] = useState(null);
   const theme = useTheme();
 
   const handleDelete = (place) => {
     setPlaces(places.filter((p) => p.name != place.name));
   };
-
-  const fetchImages = async () => {
-    try {
-      // const response = await axios.get(
-      //   `https://api.unsplash.com/search/photos?query=${place.name}&client_id=${
-      //     import.meta.env.VITE_PHOTOS_API_KEY
-      //   }`
-      // );
-      // setImage(response.data.results[0].urls.small);
-      // return response.data.results[0].urls.small;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    fetchImages();
-  }, [place]);
 
   return (
     <ListItem
@@ -64,7 +46,7 @@ const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
         }}
       >
         <Box display="flex">
-          <CardContent sx={{ pt: 0, '&:last-child': { pb: 0 } }}>
+          <CardContent sx={{ pt: 0, width: '100%', '&:last-child': { pb: 0 } }}>
             <Typography sx={{ typography: { ...theme.typography.h6 } }}>
               {place.name}
             </Typography>
@@ -83,7 +65,6 @@ const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
               className="overflow-y-hidden hover:overflow-y-visible"
               sx={{
                 display: { xs: 'none', md: 'flex' },
-                width: '70%',
                 paddingTop: '10px',
                 pl: 1,
                 '& .MuiInputBase-input': {
@@ -113,17 +94,15 @@ const VisitPlacesCard = ({ index, place, places, setPlaces }) => {
           width: '25%',
         }}
       >
-        {image && (
-          <img
-            src={image}
-            alt={place.name}
-            style={{
-              borderRadius: 8,
-              height: '120px',
-              width: '100%',
-            }}
-          />
-        )}
+        <img
+          src={place.img}
+          alt={place.name}
+          style={{
+            borderRadius: 8,
+            height: '120px',
+            width: '100%',
+          }}
+        />
       </Paper>
       {hoverCard === index && (
         <IconButton aria-label="delete" onClick={() => handleDelete(place)}>

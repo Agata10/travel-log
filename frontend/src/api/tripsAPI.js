@@ -50,3 +50,13 @@ export const deleteTrip = async (id) => {
     console.error(error.message);
   }
 };
+
+//get trip places to visit
+export const getPlacesToVisit = async (tripId) => {
+  try {
+    const response = await axios(`${BASE_URL}/trips/${tripId}/places`);
+    return response.data;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
