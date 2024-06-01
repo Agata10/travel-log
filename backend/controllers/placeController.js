@@ -5,7 +5,6 @@ const Trip = require('../models/tripModel');
 module.exports.createPlace = async (req, res, next) => {
   try {
     const place = await Place.create(req.body);
-    //delete it later
     await Trip.findByIdAndUpdate(req.body.tripId, {
       $push: { places: place._id },
     });
@@ -31,7 +30,6 @@ module.exports.updatePlace = async (req, res, next) => {
 module.exports.deletePlace = async (req, res, next) => {
   try {
     const place = await Place.findByIdAndDelete(req.params.id);
-    //delete it later
     await Trip.findByIdAndUpdate(req.body.tripId, {
       $pull: { places: place._id },
     });
