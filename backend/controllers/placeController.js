@@ -5,9 +5,11 @@ const Trip = require('../models/tripModel');
 module.exports.createPlace = async (req, res, next) => {
   try {
     const place = await Place.create(req.body);
-    await Trip.findByIdAndUpdate(req.body.tripId, {
-      $push: { places: place._id },
-    });
+    if (req.body.tripId) {
+      await Trip.findByIdAndUpdate(req.body.tripId, {
+        $push: { places: place._id },
+      });
+    }
     res.json(place);
   } catch (err) {
     next(err);
@@ -30,7 +32,7 @@ module.exports.updatePlace = async (req, res, next) => {
 module.exports.deletePlace = async (req, res, next) => {
   try {
     const place = await Place.findByIdAndDelete(req.params.id);
-    await Trip.findByIdAndUpdate(req.body.tripId, {
+    await Trip.findByIdAndUpdate(place.tripId, {
       $pull: { places: place._id },
     });
     res.json(place);
@@ -53,8 +55,9 @@ module.exports.toggleFavPlace = async (req, res, next) => {
 
 //get favourites places
 module.exports.getFavPlaces = async (req, res, next) => {
+  const userId = req.params.userId;
   try {
-    const places = await Place.find({ favorite: true });
+    const places = await Place.find({ userId: userId, favorite: true });
     res.json(places);
   } catch (err) {
     next(err);

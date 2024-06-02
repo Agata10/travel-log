@@ -15,7 +15,7 @@ router.delete('/:id', placeController.deletePlace);
 router.put('/:id/favorites', placeController.toggleFavPlace);
 
 //get favourites
-router.get('/favorites', placeController.getFavPlaces);
+router.get('/favorites/:userId', placeController.getFavPlaces);
 module.exports = router;
 
 //get places for given day
