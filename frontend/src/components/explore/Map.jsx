@@ -12,6 +12,7 @@ import 'leaflet/dist/leaflet.css';
 import { ExploreContext } from '../../utilis/ExploreContext';
 import icon from '../../assets/images/loc.png';
 import L from 'leaflet';
+import { Rating } from '@mui/material';
 
 const VITE_API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -60,7 +61,7 @@ const PlaceMarker = ({ place }) => {
           (place) => place.latitude !== null && place.latitude !== undefined
         )
         .map((place) => (
-          <div key={crypto.randomUUID()}>
+          <div key={place.location_id}>
             <Marker
               position={{
                 lat: Number(place?.latitude),
@@ -68,21 +69,31 @@ const PlaceMarker = ({ place }) => {
               }}
               icon={customIcon}
             >
+              {/* if I want it permamently on map change it */}
               <Tooltip
-                offset={[0, -30]}
-                direction="top"
-                permanent={true}
-                sticky={true}
+              // offset={[0, -30]}
+              // direction="top"
+              // permanent={true}
+              // sticky={true}
               >
                 <img
                   src={place.photo.images?.original.url}
                   alt={place.name}
                   style={{
                     width: '110px',
+                    height: '80px',
                     objectFit: 'cover',
                   }}
                 />
                 <p>{place.name}</p>
+                <Rating
+                  name="read-only"
+                  defaultValue={2}
+                  value={Number(place.rating)}
+                  readOnly
+                  precision={0.1}
+                  size="small"
+                />
               </Tooltip>
             </Marker>
           </div>
@@ -120,7 +131,7 @@ const Map = () => {
             id="osm-bright"
           />
           <LocationMarker position={position} setBounds={setBounds} />
-          {bounds && <PlaceMarker place={searchPlaces} />}
+          {searchPlaces.length > 0 && <PlaceMarker place={searchPlaces} />}
         </MapContainer>
       )}
     </>

@@ -7,6 +7,7 @@ import { ExploreContext } from '../utilis/ExploreContext';
 import { getRestaurants } from '../services/travelAPI';
 import CssBaseline from '@mui/material/CssBaseline';
 import data from '../assets/fakeData_testing/places.js';
+
 const Explore = () => {
   const exploreContext = useContext(ExploreContext);
   const {
@@ -18,6 +19,15 @@ const Explore = () => {
     searchPlaces,
     setSearchPlaces,
   } = exploreContext;
+
+  const setPlacesList = async () => {
+    const placesData = await getRestaurants(bounds);
+    console.log(placesData);
+    if (placesData) {
+      setSearchPlaces(placesData);
+    }
+  };
+
   //get user location, browser supported method
   useEffect(() => {
     setIsLoading(true);
@@ -40,16 +50,14 @@ const Explore = () => {
     () => clearTimeout(timeout);
   }, []);
 
+  //when page first loaded, load the places list as restaurants
   useEffect(() => {
     if (bounds) {
-      // console.log(places);
-      // getRestaurants(bounds, setPlaces);
-      setSearchPlaces(data);
+      setPlacesList();
+      // setSearchPlaces(data);
     }
   }, [bounds]);
-  {
-    console.log(data);
-  }
+
   return (
     <>
       <CssBaseline />

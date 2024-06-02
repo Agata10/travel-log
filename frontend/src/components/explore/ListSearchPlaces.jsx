@@ -13,7 +13,7 @@ const ListSearchPlaces = () => {
       className="overflow-scroll space-y-2 w-full"
       sx={{ height: { xs: '220px', md: '77vh' } }}
     >
-      {searchPlaces &&
+      {searchPlaces.length > 0 &&
         searchPlaces.map((place) => (
           <ListItem
             key={crypto.randomUUID()}

@@ -10,13 +10,21 @@ import IconButton from '@mui/material/IconButton';
 import Rating from '@mui/material/Rating';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import { createPlace } from '../../api/placesAPI';
 
 const PlaceCard = ({ place }) => {
-  const handleAddPlace = () => {
-    console.log(place.name, place.addres, place.photo.images.original.url);
-  };
-  const handleAddToFav = () => {
-    console.log(place.name, place.addres, place.photo.images.original.url);
+  const handleAddPlace = async () => {};
+  const handleAddToFav = async () => {
+    const body = {
+      name: place.name,
+      address: place.address,
+      img: place.photo.images.original.url,
+      userId: '6637f3825bfc1879d0f2273d',
+      favorite: true,
+    };
+    const response = await createPlace(body);
+    if (response) console.log('success');
+
     //favorite set to true
   };
   return (
@@ -51,7 +59,7 @@ const PlaceCard = ({ place }) => {
               <Rating
                 name="read-only"
                 defaultValue={2}
-                value={place.rating}
+                value={Number(place.rating)}
                 readOnly
                 precision={0.1}
                 size="small"
@@ -65,12 +73,13 @@ const PlaceCard = ({ place }) => {
 
         <CardMedia
           sx={{
-            height: 80,
+            maxHeight: 80,
             width: 120,
             marginTop: 2,
+            borderRadius: '8px',
           }}
-          image={place.name}
-          title={place.photo.images.original.url}
+          image={place.photo?.images.original.url}
+          title={place.name}
           component="img"
         />
       </Box>
@@ -90,7 +99,7 @@ const PlaceCard = ({ place }) => {
           >
             <LanguageOutlinedIcon size="small" />
           </IconButton>
-          <Button size="small" onClick={handleAddPlace}>
+          <Button size="small" onClick={() => handleAddPlace(place)}>
             Save
           </Button>
         </Stack>

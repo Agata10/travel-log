@@ -15,7 +15,7 @@ const hotel_url =
 const attraction_url =
   'https://travel-advisor.p.rapidapi.com/attractions/list-in-boundary';
 
-export const getRestaurants = async (bounds, setPlaces) => {
+export const getRestaurants = async (bounds) => {
   console.log(bounds);
   const options = {
     method: optionsBasic.method,
@@ -37,7 +37,7 @@ export const getRestaurants = async (bounds, setPlaces) => {
   };
   try {
     // const response = await axios.request(options);
-    // setPlaces(response.data.data);
+    // return response.data.data;
   } catch (error) {
     console.error(error);
   }

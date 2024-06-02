@@ -52,8 +52,13 @@ const PlacesToVisit = () => {
 
   const handleAddPlace = async () => {
     const image = await fetchImages();
-    const body = { name: placeRef.current.value, img: image };
-    await createPlace(tripId, body);
+    const body = {
+      name: placeRef.current.value,
+      img: image,
+      userId: '6637f3825bfc1879d0f2273d',
+      tripId: tripId,
+    };
+    await createPlace(body);
     placeRef.current.value = '';
     fetchPlacesToVisit();
     console.log(places);

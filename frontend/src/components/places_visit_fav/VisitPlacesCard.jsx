@@ -106,6 +106,7 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
                 defaultValue={place.address}
                 InputProps={{ disableUnderline: true }}
                 sx={{
+                  width: '100%',
                   '& input': {
                     fontSize: theme.typography.body2,
                   },

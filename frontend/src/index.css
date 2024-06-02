@@ -38,6 +38,9 @@ body,
     white-space: normal;
 }
 
+.tooltip-custom {
+    z-index: 1000;
+}
 
 /* #ade1e5 */
 /* #79c7c5
