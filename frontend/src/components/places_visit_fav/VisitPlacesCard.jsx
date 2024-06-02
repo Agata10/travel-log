@@ -11,7 +11,7 @@ import {
   TextField,
   useTheme,
 } from '@mui/material';
-import { deletePlace, updatePlace } from '../../api/placesAPI';
+import { deletePlace, getFavPlaces, updatePlace } from '../../api/placesAPI';
 import { useParams } from 'react-router-dom';
 import { getPlacesToVisit } from '../../api/tripsAPI';
 
@@ -26,8 +26,14 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
   const nameRef = useRef();
 
   const handleDelete = async (place) => {
-    await deletePlace(tripId, place._id);
-    setPlaces(await getPlacesToVisit(tripId));
+    await deletePlace(place._id);
+    if (tripId) {
+      setPlaces(await getPlacesToVisit(tripId));
+    } else {
+      //make sure that if fav place page there is not tripId
+      const userId = '6637f3825bfc1879d0f2273d';
+      setPlaces(await getFavPlaces(userId));
+    }
   };
 
   const handleNotesBlur = async () => {

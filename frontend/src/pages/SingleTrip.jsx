@@ -54,16 +54,20 @@ const SingleTrip = () => {
     );
   }
   return (
-    <Box
-      className="w-full flex flex-col items-center gap-10 min-h-screen"
-      pt={4}
-    >
-      {trip && <SingleTripHeader setRefresh={setRefresh} />}
-      <Box className="w-10/12 md:w-8/12 flex flex-col">
-        <NotesAndBudget />
-        <PlacesToVisit />
-        <BudgetDetails />
-      </Box>
+    <Box className="w-full">
+      {trip && (
+        <Box
+          className=" w-full flex flex-col items-center gap-10 min-h-screen"
+          pt={4}
+        >
+          <SingleTripHeader setRefresh={setRefresh} />
+          <Box className="w-10/12 md:w-8/12 flex flex-col">
+            <NotesAndBudget />
+            <PlacesToVisit />
+            <BudgetDetails />
+          </Box>
+        </Box>
+      )}
       <Footer />
     </Box>
   );

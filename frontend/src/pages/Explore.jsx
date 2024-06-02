@@ -53,8 +53,8 @@ const Explore = () => {
   //when page first loaded, load the places list as restaurants
   useEffect(() => {
     if (bounds) {
-      setPlacesList();
-      // setSearchPlaces(data);
+      // setPlacesList();
+      setSearchPlaces(data);
     }
   }, [bounds]);
 

@@ -131,7 +131,7 @@ const Map = () => {
             id="osm-bright"
           />
           <LocationMarker position={position} setBounds={setBounds} />
-          {searchPlaces.length > 0 && <PlaceMarker place={searchPlaces} />}
+          {bounds && <PlaceMarker place={searchPlaces} />}
         </MapContainer>
       )}
     </>
