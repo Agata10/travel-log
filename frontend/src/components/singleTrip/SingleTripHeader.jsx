@@ -23,6 +23,8 @@ const SingleTripHeader = ({ setRefresh }) => {
     }
   };
 
+  //When user pick end date before start date, there is need to reload the component,
+  //since date picker is leaving picked date by user
   const handleEndDateChange = (day) => {
     if (dayjs(day).isBefore(dayjs(startRef.current.value))) {
       alert('You can not end trip before the start date');

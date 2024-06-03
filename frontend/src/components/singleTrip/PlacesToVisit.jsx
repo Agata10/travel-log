@@ -50,6 +50,7 @@ const PlacesToVisit = () => {
     }
   };
 
+  //NOTE, hide userID
   const handleAddPlace = async () => {
     const image = await fetchImages();
     const body = {

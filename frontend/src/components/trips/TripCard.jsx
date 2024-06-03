@@ -10,6 +10,7 @@ import {
 import { deleteTrip } from '../../api/tripsAPI';
 import { useNavigate } from 'react-router-dom';
 
+//Change the format of displaying the date on trip card
 const changeDate = (string) => {
   const date = new Date(string);
   const day = String(date.getDate()).padStart(2, '0');
@@ -40,6 +41,7 @@ const TripCard = ({ trip, setTripAdded }) => {
   const handleDeleteTrip = async (id) => {
     deleteTripData(id);
   };
+
   const handleViewTrip = (id) => {
     navigate(`/trips/trip/${id}`);
   };
@@ -77,7 +79,6 @@ const TripCard = ({ trip, setTripAdded }) => {
           sx={btnStyle}
           onClick={() => handleViewTrip(trip._id)}
         >
-          {/* change it when auth user */}
           View trip
         </Button>
         <Button

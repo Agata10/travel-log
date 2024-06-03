@@ -42,6 +42,8 @@ const NotesAndBudget = () => {
     }
   };
 
+  //NOTE: calc it when added an expense
+  //i need might to move it up to single trip to manage it in the context
   useEffect(() => {
     calcExpensesSum();
   }, []);

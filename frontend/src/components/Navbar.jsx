@@ -84,6 +84,14 @@ const Drawer = styled(MuiDrawer, {
 const Navbar = ({ DrawerHeader }) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
+
+  const drawerIconStyle = {
+    minWidth: 0,
+    mr: open ? 2 : 'auto',
+    justifyContent: 'center',
+    color: theme.palette.primary.dark,
+  };
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -196,14 +204,7 @@ const Navbar = ({ DrawerHeader }) => {
             to="/"
           >
             <ListItemButton sx={{ px: 2.5 }}>
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 2 : 'auto',
-                  justifyContent: 'center',
-                  color: theme.palette.primary.dark,
-                }}
-              >
+              <ListItemIcon sx={{}}>
                 <HomeIcon fontSize="medium" />
               </ListItemIcon>
               <ListItemText
@@ -244,14 +245,7 @@ const Navbar = ({ DrawerHeader }) => {
             to="/trips"
           >
             <ListItemButton sx={{ px: 2.5 }}>
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 2 : 'auto',
-                  justifyContent: 'center',
-                  color: theme.palette.primary.dark,
-                }}
-              >
+              <ListItemIcon sx={{ drawerIconStyle }}>
                 <ConnectingAirportsIcon fontSize="medium" />
               </ListItemIcon>
               <ListItemText
@@ -267,14 +261,7 @@ const Navbar = ({ DrawerHeader }) => {
             to="/favorites"
           >
             <ListItemButton sx={{ px: 2.5 }}>
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 2 : 'auto',
-                  justifyContent: 'center',
-                  color: theme.palette.primary.dark,
-                }}
-              >
+              <ListItemIcon sx={{ drawerIconStyle }}>
                 <FavoriteIcon fontSize="medium" />
               </ListItemIcon>
               <ListItemText
@@ -300,14 +287,7 @@ const Navbar = ({ DrawerHeader }) => {
                   px: 2.5,
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 2 : 'auto',
-                    justifyContent: 'center',
-                    color: theme.palette.primary.dark,
-                  }}
-                >
+                <ListItemIcon sx={{ drawerIconStyle }}>
                   <ManageAccountsIcon fontSize="medium" />
                 </ListItemIcon>
                 <ListItemText
@@ -329,14 +309,7 @@ const Navbar = ({ DrawerHeader }) => {
                   px: 2.5,
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 2 : 'auto',
-                    justifyContent: 'center',
-                    color: theme.palette.primary.dark,
-                  }}
-                >
+                <ListItemIcon sx={{ drawerIconStyle }}>
                   <LogoutIcon fontSize="medium" />
                 </ListItemIcon>
                 <ListItemText

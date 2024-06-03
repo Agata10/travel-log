@@ -43,7 +43,7 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
           } else {
             setError('');
           }
-          //hide user id, when auth take its id
+          //NOTE:: hide user id, when auth take its id
           const body = {
             userId: '6637f3825bfc1879d0f2273d',
             name: nameRef.current.value,

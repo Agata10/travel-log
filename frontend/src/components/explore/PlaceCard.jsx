@@ -13,7 +13,12 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { createPlace } from '../../api/placesAPI';
 
 const PlaceCard = ({ place }) => {
+  // If user click  save place, show add to trip dialog
+  ///NOTE: delete user Id, make it accessible only for log in user
   const handleAddPlace = async () => {};
+
+  // If user click add to fav, add it to the favorites places
+  ///NOTE: delete user Id, make it accessible only for log in user
   const handleAddToFav = async () => {
     const body = {
       name: place.name,
@@ -24,8 +29,6 @@ const PlaceCard = ({ place }) => {
     };
     const response = await createPlace(body);
     if (response) console.log('success');
-
-    //favorite set to true
   };
   return (
     <Card

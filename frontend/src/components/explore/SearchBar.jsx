@@ -10,7 +10,7 @@ const SearchBar = ({ setPosition }) => {
   const [inputValue, setInputValue] = useState('');
   const [selectedPlace, setSelectedPlace] = useState(null);
 
-  //if user selected place, set a new position
+  //If user selected place from list, set a new position
   useEffect(() => {
     if (selectedPlace) {
       setPosition({
@@ -20,7 +20,7 @@ const SearchBar = ({ setPosition }) => {
     }
   }, [selectedPlace]);
 
-  //if input has new value, fetch autocomplete API
+  //If input has new value, fetch autocomplete API
   useEffect(() => {
     if (inputValue.length > 3) {
       fetchAutocompletePlaces(inputValue, setOptions);

@@ -28,7 +28,7 @@ const Explore = () => {
     }
   };
 
-  //get user location, browser supported method
+  //get user location to set starting position, browser supported method
   useEffect(() => {
     setIsLoading(true);
     const timeout = setTimeout(() => {
@@ -50,7 +50,7 @@ const Explore = () => {
     () => clearTimeout(timeout);
   }, []);
 
-  //when page first loaded, load the places list as restaurants
+  //when page first loaded, load the places list as restaurants from Travel API
   useEffect(() => {
     if (bounds) {
       // setPlacesList();

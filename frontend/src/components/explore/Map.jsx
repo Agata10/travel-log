@@ -16,7 +16,7 @@ import { Rating } from '@mui/material';
 
 const VITE_API_KEY = import.meta.env.VITE_API_KEY;
 
-//getBoundaries - corners
+//When new postion set, get boundaries - corners for autocomplete API
 const getBounds = (map, setBounds) => {
   const bounds = map.getBounds();
   const sw = bounds.getSouthWest();
@@ -28,7 +28,8 @@ const getBounds = (map, setBounds) => {
     tr_longitude: ne.lng,
   });
 };
-// change zoom into a new postion and set a marker there
+
+// When new position selected, change zoom into a new postion and set a marker there
 const LocationMarker = ({ position, setBounds }) => {
   const map = useMap();
 
@@ -116,6 +117,7 @@ const Map = () => {
       );
     }
   }, [position]);
+
   return (
     <>
       {position && (

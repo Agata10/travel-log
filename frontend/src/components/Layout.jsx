@@ -17,7 +17,6 @@ const Layout = ({ children }) => {
     <Box display={'flex'} position={'relative'}>
       <CssBaseline />
       <Navbar DrawerHeader={DrawerHeader} />
-
       <Box
         component="main"
         sx={{

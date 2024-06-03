@@ -17,7 +17,8 @@ const Trips = () => {
   const exploreContext = useContext(ExploreContext);
   const { setIsLoading, isLoading } = exploreContext;
 
-  //add user id after auth
+  //NOTE: make it accessible only for log in user, add user id after auth
+  //the id is passed as the url params api/tripsAPI.js
   const fetchData = async () => {
     setIsLoading(true);
     const tripsResponse = await getTrips();

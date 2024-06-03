@@ -10,9 +10,9 @@ const Favorites = () => {
   const context = useContext(TripContext);
   const { places, setPlaces } = context;
 
+  ///NOTE: delete userId, make it accessible  only for log in user
   const setUpFavPlaces = async () => {
     const userId = '6637f3825bfc1879d0f2273d';
-
     const data = await getFavPlaces(userId);
     if (data) {
       setPlaces(data);
