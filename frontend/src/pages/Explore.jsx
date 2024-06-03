@@ -7,6 +7,7 @@ import { ExploreContext } from '../utilis/ExploreContext';
 import { getRestaurants } from '../services/travelAPI';
 import CssBaseline from '@mui/material/CssBaseline';
 import data from '../assets/fakeData_testing/places.js';
+import DialogAddPlaceToTrip from '../components/explore/DialogAddPlaceToTrip.jsx';
 
 const Explore = () => {
   const exploreContext = useContext(ExploreContext);
@@ -72,6 +73,7 @@ const Explore = () => {
             mb: 4,
           }}
         >
+          <DialogAddPlaceToTrip />
           <ExplorePlaces />
         </Grid>
         <Grid

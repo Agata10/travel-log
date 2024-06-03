@@ -11,11 +11,10 @@ import { RotatingLines } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
 
 const Trips = () => {
-  const [open, setOpen] = useState(false);
   const [tripAdded, setTripAdded] = useState(false);
   const [trips, setTrips] = useState(null);
   const exploreContext = useContext(ExploreContext);
-  const { setIsLoading, isLoading } = exploreContext;
+  const { setIsLoading, isLoading, open, setOpen } = exploreContext;
 
   //NOTE: make it accessible only for log in user, add user id after auth
   //the id is passed as the url params api/tripsAPI.js

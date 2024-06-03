@@ -11,11 +11,18 @@ import Rating from '@mui/material/Rating';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { createPlace } from '../../api/placesAPI';
+import { useContext, useState } from 'react';
+import { ExploreContext } from '../../utilis/ExploreContext';
 
 const PlaceCard = ({ place }) => {
+  const context = useContext(ExploreContext);
+  const { setOpen, setSelectedPlace } = context;
   // If user click  save place, show add to trip dialog
   ///NOTE: delete user Id, make it accessible only for log in user
-  const handleAddPlace = async () => {};
+  const handleAddPlace = () => {
+    setOpen(true);
+    setSelectedPlace(place);
+  };
 
   // If user click add to fav, add it to the favorites places
   ///NOTE: delete user Id, make it accessible only for log in user
