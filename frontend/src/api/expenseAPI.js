@@ -11,3 +11,13 @@ export const createExpense = async (body) => {
     console.error(error.message);
   }
 };
+
+//delete expense
+export const deleteExpense = async (expenseId) => {
+  try {
+    const expense = await axios.delete(`${BASE_URL}/expenses/${expenseId}`);
+    return expense.data;
+  } catch (error) {
+    console.error(error.message);
+  }
+};

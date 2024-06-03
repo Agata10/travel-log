@@ -61,6 +61,12 @@ const DialogAddExpense = ({ setRefresh }) => {
         component: 'form',
         onSubmit: async (event) => {
           event.preventDefault();
+          if (trip.budget == 0) {
+            alert(
+              'Set up budget firstly to add expense, click on budget to do so'
+            );
+            return;
+          }
           if (Number(expenseRef.current.value) + sumOfExpenses > trip.budget) {
             alert('You cannot exceed the budget');
             return;

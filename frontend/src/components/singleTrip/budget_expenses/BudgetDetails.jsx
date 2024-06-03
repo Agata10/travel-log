@@ -5,16 +5,22 @@ import {
   Typography,
   IconButton,
   Button,
+  List,
+  ListItem,
 } from '@mui/material';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Paper } from '@mui/material';
 import { TripContext } from '../../../utilis/TripContext';
+import { getTripExpenses } from '../../../api/tripsAPI';
+import ExpenseCard from './ExpenseCard';
 
-const BudgetDetails = ({ percent }) => {
+const BudgetDetails = () => {
   const theme = useTheme();
   const [openDiv, setOpenDiv] = useState(true);
+  const [expenses, setExpenses] = useState(null);
+  const [load, setLoad] = useState(false);
   const context = useContext(TripContext);
   const { sumOfExpenses, trip, setAddBudgetDialog, setAddExpenseDialog } =
     context;
@@ -29,6 +35,18 @@ const BudgetDetails = ({ percent }) => {
     },
   };
 
+  //fetch expenses when page loaded
+  const fetchData = async () => {
+    const expensesData = await getTripExpenses(trip._id);
+    if (expensesData) {
+      setExpenses(expensesData);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [load]);
+
   return (
     <Grid container pt={3} pb={3} sx={{ width: '100%' }}>
       <Grid
@@ -39,21 +57,41 @@ const BudgetDetails = ({ percent }) => {
         }}
         textAlign={'center'}
       >
-        <Box className="flex justify-between pb-2">
+        <Box className="flex justify-between pb-2 w-full">
           <Typography variant="h5">
             <IconButton onClick={() => setOpenDiv((prev) => !prev)}>
               {openDiv ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             </IconButton>
             Budget And Expenses
           </Typography>
-          <Button
-            size="small"
-            sx={btnStyle}
-            variant="standard"
-            onClick={() => setAddExpenseDialog(true)}
+          <Box
+            display={'flex'}
+            sx={{
+              alignSelf: 'flex-end',
+              gap: '15px',
+            }}
           >
-            Add expense
-          </Button>
+            <Typography
+              onClick={() => setAddBudgetDialog(true)}
+              sx={{
+                fontSize: theme.typography.h6,
+                '&:hover': {
+                  transform: 'scale(1.2)',
+                  color: theme.palette.primary.main,
+                },
+              }}
+            >
+              Budget: {trip.budget}$
+            </Typography>
+            <Button
+              size="small"
+              sx={btnStyle}
+              variant="standard"
+              onClick={() => setAddBudgetDialog(true)}
+            >
+              Edit budget
+            </Button>
+          </Box>
         </Box>
       </Grid>
       {openDiv && (
@@ -62,54 +100,68 @@ const BudgetDetails = ({ percent }) => {
           xs={12}
           sx={{
             width: '100%',
+            border: '1px solid green',
+            margin: '0 auto',
           }}
         >
           <Paper
+            elevation={1}
             sx={{
-              backgroundColor: 'whitesmoke',
-              borderRadius: '12px',
-              width: '100%',
-              height: '100px',
+              borderRadius: '8px',
+              width: '60%',
+              height: '80px',
               display: 'flex',
-              alignItems: 'center',
+              margin: '0 auto',
+              justifyContent: ' space-around',
+              alignItems: 'space-around',
+              flexDirection: 'column',
             }}
           >
             <Box
               display={'flex'}
-              flexDirection={'column'}
-              sx={{ width: '80%', margin: '0 auto', alignItems: 'center' }}
+              sx={{
+                width: '80%',
+                margin: '0 auto',
+                justifyContent: 'space-around',
+              }}
             >
-              <Box
-                display="flex"
-                sx={{ alignItems: 'flex-end', cursor: 'default' }}
-              >
-                {sumOfExpenses}$
-              </Box>
-              <div className="w-8/12 h-4 bg-slate-300 rounded-md">
-                <div
-                  className="h-4 bg-green-700 rounded-md relative"
-                  style={{ width: `${percent}%` }}
-                >
-                  {percent > 0 && (
-                    <p className="absolute -right-12 -top-1">{percent}%</p>
-                  )}
-                </div>
-              </div>
               <Typography
                 onClick={() => setAddBudgetDialog(true)}
                 sx={{
                   fontSize: theme.typography.h6,
-                  '&:hover': {
-                    transform: 'scale(1.2)',
-                    color: theme.palette.primary.main,
-                  },
+                  cursor: 'default',
                 }}
               >
-                Budget: {trip.budget}$
+                Sum of expenses: {sumOfExpenses}$
               </Typography>
+              <Button
+                size="small"
+                sx={btnStyle}
+                variant="standard"
+                onClick={() => setAddExpenseDialog(true)}
+              >
+                Add expense
+              </Button>
             </Box>
           </Paper>
-          <Box>{/* list of expenses */}</Box>
+
+          <List
+            sx={{
+              borderRadius: '8px',
+              width: '70%',
+              margin: '20px auto',
+              display: 'flex',
+              gap: 2,
+              justifyContent: 'center',
+              flexDirection: 'column',
+              elevation: 0,
+            }}
+          >
+            {expenses &&
+              expenses.map((e) => (
+                <ExpenseCard key={e._id} expense={e} setLoad={setLoad} />
+              ))}
+          </List>
         </Grid>
       )}
     </Grid>

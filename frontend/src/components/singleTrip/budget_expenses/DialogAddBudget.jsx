@@ -48,7 +48,7 @@ const DialogAddBudget = ({ setRefresh }) => {
             variant="outlined"
             type="number"
             defaultValue={trip.budget}
-            InputProps={{ disableUnderline: true, startAdornment: '$' }}
+            InputProps={{ startAdornment: '$' }}
             inputProps={{ min: 0 }}
             sx={{
               width: '100%',

@@ -62,11 +62,9 @@ const SingleTrip = () => {
   //NOTE: calc it when added an expense
   //i need might to move it up to single trip to manage it in the context
   useEffect(() => {
-    console.log(trip);
     if (trip) {
       calcExpensesSum();
     }
-    console.log(percent);
   }, [trip, refresh]);
 
   if (isLoading) {
@@ -97,7 +95,7 @@ const SingleTrip = () => {
           <Box className="w-10/12 md:w-8/12 flex flex-col">
             <NotesAndBudget percent={percent} />
             <PlacesToVisit />
-            <BudgetDetails percent={percent} />
+            <BudgetDetails refresh={refresh} setRefresh={setRefresh} />
           </Box>
         </Box>
       )}
