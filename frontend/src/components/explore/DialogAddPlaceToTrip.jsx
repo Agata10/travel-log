@@ -1,16 +1,10 @@
-import { useEffect, useRef, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  OutlinedInput,
-} from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { getTrips } from '../../api/tripsAPI';
 import { ExploreContext } from '../../utilis/ExploreContext';
 import { createPlace } from '../../api/placesAPI';
@@ -19,13 +13,11 @@ const DialogAddPlaceToTrip = () => {
   const exploreContext = useContext(ExploreContext);
   const { open, setOpen, selectedPlace } = exploreContext;
   const [selectedTrip, setSelectedTrip] = useState('');
-  const [error, setError] = useState(null);
   const [options, setOptions] = useState(null);
 
   const getTripsData = async () => {
     const data = await getTrips();
     if (data) {
-      console.log(data);
       setOptions(data);
       setSelectedTrip(data[0]._id);
     }
@@ -64,7 +56,6 @@ const DialogAddPlaceToTrip = () => {
             tripId: selectedTrip,
             userId: '6637f3825bfc1879d0f2273d',
           };
-          console.log(body);
           addPlaceToTrip(body);
           handleClose();
         },

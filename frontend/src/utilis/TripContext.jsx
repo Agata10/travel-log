@@ -7,6 +7,10 @@ export const TripContextProvider = ({ children }) => {
   const [trip, setTrip] = useState(null);
   const [places, setPlaces] = useState(null);
   const { tripId } = useParams();
+  const [sumOfExpenses, setSumOfExpeneses] = useState(0);
+  const [expense, setExpense] = useState(null);
+  const [addBudgetDialog, setAddBudgetDialog] = useState(false);
+  const [addExpenseDialog, setAddExpenseDialog] = useState(false);
 
   return (
     <TripContext.Provider
@@ -16,6 +20,14 @@ export const TripContextProvider = ({ children }) => {
         tripId,
         places,
         setPlaces,
+        sumOfExpenses,
+        setSumOfExpeneses,
+        expense,
+        setExpense,
+        addBudgetDialog,
+        setAddBudgetDialog,
+        addExpenseDialog,
+        setAddExpenseDialog,
       }}
     >
       {children}

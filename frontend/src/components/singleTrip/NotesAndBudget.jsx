@@ -9,50 +9,21 @@ import {
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useRef, useState, useContext, useEffect } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { TripContext } from '../../utilis/TripContext';
-import { getTripExpenses, updateTrip } from '../../api/tripsAPI';
-import EditIcon from '@mui/icons-material/Edit';
-import { useParams } from 'react-router-dom';
-const NotesAndBudget = () => {
+import { updateTrip } from '../../api/tripsAPI';
+
+const NotesAndBudget = ({ percent }) => {
   const [open, setOpen] = useState(true);
   const tripContext = useContext(TripContext);
-  const { trip, setTrip } = tripContext;
+  const { trip, setTrip, sumOfExpenses } = tripContext;
   const theme = useTheme();
   const notesRef = useRef();
-  const budgetRef = useRef();
-  const { tripId } = useParams();
-  const [sumOfExpenses, setSumOfExpeneses] = useState(0);
-  const [percent, setPercent] = useState(0);
-
-  const calcExpensesSum = async () => {
-    try {
-      const expenses = await getTripExpenses(tripId);
-      const sum = expenses.reduce((accumulator, expense) => {
-        return accumulator + expense.amount;
-      }, 0);
-      if (sum) {
-        const percentageOfBudget = ((sum / trip.budget) * 100).toFixed(2);
-        setSumOfExpeneses(sum);
-        setPercent(percentageOfBudget);
-      }
-    } catch (error) {
-      console.error(error);
-      return 0;
-    }
-  };
-
-  //NOTE: calc it when added an expense
-  //i need might to move it up to single trip to manage it in the context
-  useEffect(() => {
-    calcExpensesSum();
-  }, []);
 
   const btnStyle = {
     borderRadius: '8px',
     backgroundColor: theme.palette.primary.light,
     color: '#ffffff',
-
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.dark,
@@ -144,7 +115,10 @@ const NotesAndBudget = () => {
               justifyContent: 'center',
             }}
           >
-            <Box display="flex" sx={{ alignItems: 'flex-end' }}>
+            <Box
+              display="flex"
+              sx={{ alignItems: 'flex-end', cursor: 'default' }}
+            >
               {/* <TextField
                 inputRef={budgetRef}
                 // onBlur={handleAddressBlur}
@@ -166,17 +140,17 @@ const NotesAndBudget = () => {
               /> */}
               {sumOfExpenses}$
             </Box>
-            <div className="w-8/12 h-4 bg-green-300 rounded-md">
+            <div className="w-8/12 h-4 bg-slate-300 rounded-md">
               <div
                 className="h-4 bg-green-700 rounded-md relative"
                 style={{ width: `${percent}%` }}
               >
                 {percent > 0 && (
-                  <p className="absolute -right-4 -top-1">{percent}%</p>
+                  <p className="absolute -right-12 -top-1">{percent}%</p>
                 )}
               </div>
             </div>
-            <p>Budget: {trip.budget}$</p>
+            <p style={{ cursor: 'default' }}>Budget: {trip.budget}$</p>
           </Paper>
         </Box>
       )}

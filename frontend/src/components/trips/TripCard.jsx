@@ -9,7 +9,10 @@ import {
 } from '@mui/material';
 import { deleteTrip } from '../../api/tripsAPI';
 import { useNavigate } from 'react-router-dom';
-
+import { getSingleTrip } from '../../api/tripsAPI';
+import { TripContext } from '../../utilis/TripContext';
+import { ExploreContext } from '../../utilis/ExploreContext';
+import { useContext } from 'react';
 //Change the format of displaying the date on trip card
 const changeDate = (string) => {
   const date = new Date(string);
@@ -21,8 +24,13 @@ const changeDate = (string) => {
 };
 
 const TripCard = ({ trip, setTripAdded }) => {
+  const tripContext = useContext(TripContext);
+  const exploreContext = useContext(ExploreContext);
+  const { setTrip } = tripContext;
+  const { setIsLoading } = exploreContext;
   const theme = useTheme();
   const navigate = useNavigate();
+
   const btnStyle = {
     borderColor: theme.palette.primary.main,
     color: theme.palette.primary.main,
@@ -31,6 +39,14 @@ const TripCard = ({ trip, setTripAdded }) => {
       backgroundColor: theme.palette.primary.light,
       color: '#ffffff',
     },
+  };
+
+  const fetchData = async (tripId) => {
+    setIsLoading(true);
+    const tripResponse = await getSingleTrip(tripId);
+    if (tripResponse) {
+      setTrip(tripResponse);
+    }
   };
 
   const deleteTripData = async (id) => {
@@ -42,7 +58,8 @@ const TripCard = ({ trip, setTripAdded }) => {
     deleteTripData(id);
   };
 
-  const handleViewTrip = (id) => {
+  const handleViewTrip = async (id) => {
+    await fetchData(id);
     navigate(`/trips/trip/${id}`);
   };
 

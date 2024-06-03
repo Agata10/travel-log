@@ -4,9 +4,8 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 //create/add new place
 export const createPlace = async (body) => {
   try {
-    const trip = await axios.post(`${BASE_URL}/places`, body);
-    console.log(trip);
-    return trip.data;
+    const place = await axios.post(`${BASE_URL}/places`, body);
+    return place.data;
   } catch (error) {
     console.error(error.message);
   }
@@ -15,8 +14,8 @@ export const createPlace = async (body) => {
 //update place
 export const updatePlace = async (placeId, body) => {
   try {
-    const trip = await axios.put(`${BASE_URL}/places/${placeId}`, body);
-    return trip.data;
+    const place = await axios.put(`${BASE_URL}/places/${placeId}`, body);
+    return place.data;
   } catch (error) {
     console.error(error.message);
   }
@@ -25,8 +24,8 @@ export const updatePlace = async (placeId, body) => {
 //delete place
 export const deletePlace = async (placeId) => {
   try {
-    const trip = await axios.delete(`${BASE_URL}/places/${placeId}`);
-    return trip.data;
+    const place = await axios.delete(`${BASE_URL}/places/${placeId}`);
+    return place.data;
   } catch (error) {
     console.error(error.message);
   }
@@ -35,8 +34,8 @@ export const deletePlace = async (placeId) => {
 //get favorites users places
 export const getFavPlaces = async (userId) => {
   try {
-    const trip = await axios.get(`${BASE_URL}/places/favorites/${userId}`);
-    return trip.data;
+    const place = await axios.get(`${BASE_URL}/places/favorites/${userId}`);
+    return place.data;
   } catch (error) {
     console.error(error.message);
   }

@@ -11,7 +11,7 @@ import Rating from '@mui/material/Rating';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { createPlace } from '../../api/placesAPI';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ExploreContext } from '../../utilis/ExploreContext';
 
 const PlaceCard = ({ place }) => {
