@@ -84,9 +84,10 @@ const PlaceMarker = ({ place }) => {
                     width: '110px',
                     height: '80px',
                     objectFit: 'cover',
+                    borderRadius: '4px',
                   }}
                 />
-                <p>{place.name}</p>
+                <p className="text-center font-medium">{place.name}</p>
                 <Rating
                   name="read-only"
                   defaultValue={2}
@@ -94,6 +95,7 @@ const PlaceMarker = ({ place }) => {
                   readOnly
                   precision={0.1}
                   size="small"
+                  sx={{ margin: '0 auto' }}
                 />
               </Tooltip>
             </Marker>
