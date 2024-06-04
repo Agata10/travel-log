@@ -23,4 +23,7 @@ router.get('/:id/expenses', tripController.getExpenses);
 //get all places
 router.get('/:id/places', tripController.getPlaces);
 
+//get places for given day
+router.get('/:id/places/:date', tripController.getPlacesByDate);
+
 module.exports = router;

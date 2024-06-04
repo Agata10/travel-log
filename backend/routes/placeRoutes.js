@@ -18,7 +18,4 @@ router.put('/:id/favorites', placeController.toggleFavPlace);
 router.get('/favorites/:userId', placeController.getFavPlaces);
 module.exports = router;
 
-//get places for given day
-router.get('/:date', placeController.getPlacesByDate);
-
 module.exports = router;

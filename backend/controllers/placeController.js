@@ -63,12 +63,3 @@ module.exports.getFavPlaces = async (req, res, next) => {
     next(err);
   }
 };
-
-module.exports.getPlacesByDate = async (req, res, next) => {
-  try {
-    const places = await Place.find({ date: req.params.date });
-    res.json(places);
-  } catch (err) {
-    next(err);
-  }
-};
