@@ -1,28 +1,53 @@
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { useState, useRef } from 'react';
 import {
   Card,
   Box,
   CardContent,
   ListItem,
-  Paper,
   IconButton,
-  TextField,
   useTheme,
   Typography,
-  Button,
 } from '@mui/material';
-import { useParams } from 'react-router-dom';
 import { deleteExpense } from '../../../api/expenseAPI';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import HotelIcon from '@mui/icons-material/Hotel';
+import CarRentalIcon from '@mui/icons-material/CarRental';
+import DirectionsTransitIcon from '@mui/icons-material/DirectionsTransit';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
+import LocalActivityOutlinedIcon from '@mui/icons-material/LocalActivityOutlined';
+import { useEffect, useState } from 'react';
 
-const ExpenseCard = ({ expense, setLoad }) => {
+const categories = [
+  { name: 'Flights', icon: <FlightTakeoffIcon /> },
+  { name: 'Lodging', icon: <HotelIcon /> },
+  { name: 'Car rental', icon: <CarRentalIcon /> },
+  { name: 'Transit', icon: <DirectionsTransitIcon /> },
+  { name: 'Food', icon: <RestaurantIcon /> },
+  { name: 'Sightseeing', icon: <AccountBalanceOutlinedIcon /> },
+  { name: 'Other', icon: <LocalActivityOutlinedIcon /> },
+];
+
+const ExpenseCard = ({ expense, setRefresh }) => {
   const theme = useTheme();
+  const [icon, setIcon] = useState(categories[6].icon);
+
+  useEffect(() => {
+    const setIconForExpense = () => {
+      const foundCategory = categories.find(
+        (category) => category.name === expense.category
+      );
+      if (foundCategory) {
+        setIcon(foundCategory.icon);
+      }
+    };
+    setIconForExpense();
+  }, [expense]);
 
   const handleDelete = async () => {
     console.log(expense._id);
     await deleteExpense(expense._id);
-    setLoad((prev) => !prev);
+    setRefresh((prev) => !prev);
   };
 
   return (
@@ -52,22 +77,43 @@ const ExpenseCard = ({ expense, setLoad }) => {
               width: '100%',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-around',
+              justifyContent: 'space-between',
               '&:last-child': { pb: 1 },
             }}
           >
-            <Box sx={{ width: '30%', boder: '1px solid black' }}>
-              <Typography sx={{ fontSize: theme.typography.body1 }}>
-                {expense.description}
-              </Typography>
-              <Typography sx={{ fontSize: theme.typography.body2 }}>
-                {expense.category}
-              </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: 1,
+                width: '25%',
+              }}
+            >
+              {icon}
+              <Box>
+                <Typography sx={{ fontSize: theme.typography.body1 }}>
+                  {expense.description}
+                </Typography>
+                <Typography sx={{ fontSize: theme.typography.body2 }}>
+                  {expense.category}
+                </Typography>
+              </Box>
             </Box>
             <Typography sx={{ fontSize: theme.typography.body1 }}>
               {expense.amount}$
             </Typography>
-            <Button onClick={handleDelete}>Delete</Button>
+            <IconButton
+              onClick={handleDelete}
+              sx={{
+                color: theme.palette.primary.main,
+                '&:hover': {
+                  transform: 'scale(1.2)',
+                },
+              }}
+            >
+              <DeleteOutlineOutlinedIcon />
+            </IconButton>
           </CardContent>
         </Box>
       </Card>

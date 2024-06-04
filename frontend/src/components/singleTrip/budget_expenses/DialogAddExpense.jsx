@@ -11,18 +11,26 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  IconButton,
 } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import { createExpense } from '../../../api/expenseAPI';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import HotelIcon from '@mui/icons-material/Hotel';
+import CarRentalIcon from '@mui/icons-material/CarRental';
+import DirectionsTransitIcon from '@mui/icons-material/DirectionsTransit';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
+import LocalActivityOutlinedIcon from '@mui/icons-material/LocalActivityOutlined';
 
-const category = [
-  'Flights',
-  'Lodging',
-  'Car rental',
-  'Transit',
-  'Food',
-  'Sightseeing',
-  'Other',
+const categories = [
+  { name: 'Flights', icon: <FlightTakeoffIcon /> },
+  { name: 'Lodging', icon: <HotelIcon /> },
+  { name: 'Car rental', icon: <CarRentalIcon /> },
+  { name: 'Transit', icon: <DirectionsTransitIcon /> },
+  { name: 'Food', icon: <RestaurantIcon /> },
+  { name: 'Sightseeing', icon: <AccountBalanceOutlinedIcon /> },
+  { name: 'Other', icon: <LocalActivityOutlinedIcon /> },
 ];
 
 const DialogAddExpense = ({ setRefresh }) => {
@@ -110,7 +118,7 @@ const DialogAddExpense = ({ setRefresh }) => {
           variant="outlined"
           label="Name"
           type="text"
-          defaultValue={'Other'}
+          defaultValue={selectedCategory}
           inputProps={{ minLength: 3 }}
           sx={{
             width: '100%',
@@ -131,9 +139,10 @@ const DialogAddExpense = ({ setRefresh }) => {
             onChange={handleSelect}
             sx={{ width: '100%' }}
           >
-            {category.map((option) => (
-              <MenuItem key={crypto.randomUUID()} value={option}>
-                {option}
+            {categories.map((option) => (
+              <MenuItem key={crypto.randomUUID()} value={option.name}>
+                <IconButton size="small">{option.icon}</IconButton>
+                {option.name}
               </MenuItem>
             ))}
           </Select>

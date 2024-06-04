@@ -4,8 +4,6 @@ import { Box } from '@mui/material';
 import { getSingleTrip } from '../api/tripsAPI';
 import { useParams } from 'react-router-dom';
 import { TripContext } from '../utilis/TripContext';
-import { ExploreContext } from '../utilis/ExploreContext';
-import { RotatingLines } from 'react-loader-spinner';
 import NotesAndBudget from '../components/singleTrip/NotesAndBudget';
 import PlacesToVisit from '../components/singleTrip/PlacesToVisit';
 import Footer from '../components/Footer';
@@ -16,15 +14,12 @@ import DialogAddExpense from '../components/singleTrip/budget_expenses/DialogAdd
 
 const SingleTrip = () => {
   const tripContext = useContext(TripContext);
-  const exploreContext = useContext(ExploreContext);
   const [refresh, setRefresh] = useState(false);
   const { trip, setTrip, setSumOfExpeneses } = tripContext;
-  const { setIsLoading, isLoading } = exploreContext;
   const { tripId } = useParams();
   const [percent, setPercent] = useState(0);
 
   const fetchData = async () => {
-    setIsLoading(true);
     const tripResponse = await getSingleTrip(tripId);
     if (tripResponse) {
       setTrip(tripResponse);
@@ -33,13 +28,6 @@ const SingleTrip = () => {
 
   useEffect(() => {
     fetchData();
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 200);
-
-    () => {
-      clearTimeout(timeout);
-    };
   }, [refresh]);
 
   const calcExpensesSum = async () => {
@@ -67,21 +55,21 @@ const SingleTrip = () => {
     }
   }, [trip, refresh]);
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-5/6">
-        <RotatingLines
-          visible={true}
-          height="80"
-          width="80"
-          color="grey"
-          strokeWidth="5"
-          animationDuration="0.75"
-          ariaLabel="rotating-lines-loading"
-        />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="flex justify-center items-center h-5/6">
+  //       <RotatingLines
+  //         visible={true}
+  //         height="80"
+  //         width="80"
+  //         color="grey"
+  //         strokeWidth="5"
+  //         animationDuration="0.75"
+  //         ariaLabel="rotating-lines-loading"
+  //       />
+  //     </div>
+  //   );
+  // }
   return (
     <Box className="w-full">
       {trip && (

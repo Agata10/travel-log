@@ -6,7 +6,6 @@ import {
   IconButton,
   Button,
   List,
-  ListItem,
 } from '@mui/material';
 import { useContext, useState, useEffect } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -16,11 +15,10 @@ import { TripContext } from '../../../utilis/TripContext';
 import { getTripExpenses } from '../../../api/tripsAPI';
 import ExpenseCard from './ExpenseCard';
 
-const BudgetDetails = () => {
+const BudgetDetails = ({ setRefresh, refresh }) => {
   const theme = useTheme();
   const [openDiv, setOpenDiv] = useState(true);
   const [expenses, setExpenses] = useState(null);
-  const [load, setLoad] = useState(false);
   const context = useContext(TripContext);
   const { sumOfExpenses, trip, setAddBudgetDialog, setAddExpenseDialog } =
     context;
@@ -35,17 +33,19 @@ const BudgetDetails = () => {
     },
   };
 
-  //fetch expenses when page loaded
-  const fetchData = async () => {
-    const expensesData = await getTripExpenses(trip._id);
-    if (expensesData) {
-      setExpenses(expensesData);
-    }
-  };
-
   useEffect(() => {
-    fetchData();
-  }, [load]);
+    //fetch expenses when page loaded
+    if (trip) {
+      const fetchData = async () => {
+        const expensesData = await getTripExpenses(trip._id);
+        if (expensesData) {
+          setExpenses(expensesData);
+        }
+      };
+
+      fetchData();
+    }
+  }, [refresh, trip]);
 
   return (
     <Grid container pt={3} pb={3} sx={{ width: '100%' }}>
@@ -100,7 +100,6 @@ const BudgetDetails = () => {
           xs={12}
           sx={{
             width: '100%',
-            border: '1px solid green',
             margin: '0 auto',
           }}
         >
@@ -148,7 +147,7 @@ const BudgetDetails = () => {
           <List
             sx={{
               borderRadius: '8px',
-              width: '70%',
+              width: '80%',
               margin: '20px auto',
               display: 'flex',
               gap: 2,
@@ -159,7 +158,7 @@ const BudgetDetails = () => {
           >
             {expenses &&
               expenses.map((e) => (
-                <ExpenseCard key={e._id} expense={e} setLoad={setLoad} />
+                <ExpenseCard key={e._id} expense={e} setRefresh={setRefresh} />
               ))}
           </List>
         </Grid>

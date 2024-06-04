@@ -146,7 +146,7 @@ const NotesAndBudget = ({ percent }) => {
                 style={{ width: `${percent}%` }}
               >
                 {percent > 0 && (
-                  <p className="absolute -right-12 -top-1">{percent}%</p>
+                  <p className="absolute -right-14 -top-1">{percent}%</p>
                 )}
               </div>
             </div>
