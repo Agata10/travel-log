@@ -41,7 +41,6 @@ const Iternary = () => {
 
     if (places) {
       //set up the places that do not have assign date or date is null
-      console.log(places);
       setIternaryPlaces(
         places.filter((place) => !('date' in place) || place['date'] === null)
       );

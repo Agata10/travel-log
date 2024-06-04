@@ -16,17 +16,12 @@ import DeleteOutlineOutlined from '@mui/icons-material/DeleteOutlineOutlined';
 import dayjs from 'dayjs';
 
 const IternaryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
-  //   const [selectedPlace, setSelectedPlace] = useState('');
   const [dayPlaces, setDayPlaces] = useState([]);
-  //   {
-  //     console.log(iternaryPlaces);
-  //   }
 
   useEffect(() => {
     const getPlacesByDay = async () => {
       const response = await getPlacesByDate(dayjs(day), trip._id);
       if (response) {
-        console.log(response);
         setDayPlaces(response);
       }
     };
@@ -35,16 +30,15 @@ const IternaryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
 
   const handleSelect = async (e) => {
     const placeId = e.target.value;
-    // setSelectedPlace('');
     //set iternary places without the selected place, so user can't pick it again
     setIternaryPlaces((prev) => prev.filter((place) => place._id !== placeId));
     //add date to the selected place
     const body = { date: day };
     await updatePlace(placeId, body);
+    document.activeElement.blur();
   };
 
   const handleDeleteDate = async (place) => {
-    console.log(place);
     const placeId = place._id;
     const body = { date: '' };
     await updatePlace(placeId, body);
