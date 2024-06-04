@@ -70,3 +70,13 @@ export const getTripExpenses = async (tripId) => {
     console.error(error.message);
   }
 };
+
+//get trip places by day
+export const getPlacesByDate = async (date, tripId) => {
+  try {
+    const place = await axios.get(`${BASE_URL}/trips/${tripId}/places/${date}`);
+    return place.data;
+  } catch (error) {
+    console.error(error.message);
+  }
+};

@@ -62,7 +62,6 @@ const PlacesToVisit = () => {
     await createPlace(body);
     placeRef.current.value = '';
     fetchPlacesToVisit();
-    console.log(places);
   };
 
   return (

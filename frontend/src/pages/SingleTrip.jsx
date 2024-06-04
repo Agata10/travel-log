@@ -11,6 +11,7 @@ import BudgetDetails from '../components/singleTrip/budget_expenses/BudgetDetail
 import DialogAddBudget from '../components/singleTrip/budget_expenses/DialogAddBudget';
 import { getTripExpenses } from '../api/tripsAPI';
 import DialogAddExpense from '../components/singleTrip/budget_expenses/DialogAddExpense';
+import Iternary from '../components/singleTrip/iternary/Iternary';
 
 const SingleTrip = () => {
   const tripContext = useContext(TripContext);
@@ -55,21 +56,6 @@ const SingleTrip = () => {
     }
   }, [trip, refresh]);
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex justify-center items-center h-5/6">
-  //       <RotatingLines
-  //         visible={true}
-  //         height="80"
-  //         width="80"
-  //         color="grey"
-  //         strokeWidth="5"
-  //         animationDuration="0.75"
-  //         ariaLabel="rotating-lines-loading"
-  //       />
-  //     </div>
-  //   );
-  // }
   return (
     <Box className="w-full">
       {trip && (
@@ -83,6 +69,7 @@ const SingleTrip = () => {
           <Box className="w-10/12 md:w-8/12 flex flex-col">
             <NotesAndBudget percent={percent} />
             <PlacesToVisit />
+            <Iternary />
             <BudgetDetails refresh={refresh} setRefresh={setRefresh} />
           </Box>
         </Box>
