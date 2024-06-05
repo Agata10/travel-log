@@ -68,7 +68,7 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 0,
-        height: { xs: '160px', sm: '135px' },
+        height: { xs: '160px', sm: '120px' },
         width: { xs: '100%', sm: '90%', md: '100%', lg: '80%' },
       }}
     >
