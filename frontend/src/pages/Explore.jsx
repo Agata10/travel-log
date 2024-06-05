@@ -82,9 +82,7 @@ const Explore = () => {
                 : { xs: '45vh', sm: '40vh', md: '70vh' },
             mb: { xs: 0, lg: 4 },
             paddingRight:
-              searchPlaces.length > 0
-                ? { xs: '4rem', sm: '2rem', md: '0.5rem' }
-                : '0.5rem',
+              searchPlaces.length > 0 ? { xs: '1rem', md: '0.5rem' } : '0.5rem',
           }}
         >
           <DialogAddPlaceToTrip />
@@ -100,9 +98,7 @@ const Explore = () => {
                 ? { xs: '50vh', md: '90vh' }
                 : { xs: '60vh', sm: '70vh', md: '90vh' },
             paddingRight:
-              searchPlaces.length > 0
-                ? { xs: '4rem', sm: '2rem', md: '0.5rem' }
-                : '0.5rem',
+              searchPlaces.length > 0 ? { xs: '1rem', md: '0.5rem' } : '0.5rem',
             mt: { xs: 0, md: 1 },
           }}
         >
