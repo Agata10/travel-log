@@ -9,6 +9,7 @@ export const ExploreContextProvider = ({ children }) => {
   const [bounds, setBounds] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   return (
     <ExploreContext.Provider
@@ -25,6 +26,8 @@ export const ExploreContextProvider = ({ children }) => {
         setOpen,
         selectedPlace,
         setSelectedPlace,
+        showAlert,
+        setShowAlert,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
-import { Grid } from '@mui/material';
+import { Grid, Alert } from '@mui/material';
 import Map from '../components/explore/Map';
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import ExplorePlaces from '../components/explore/ExplorePlaces';
 import { ExploreContext } from '../utilis/ExploreContext';
@@ -19,6 +19,8 @@ const Explore = () => {
     bounds,
     searchPlaces,
     setSearchPlaces,
+    showAlert,
+    setShowAlert,
   } = exploreContext;
 
   const setPlacesList = async () => {
@@ -62,6 +64,11 @@ const Explore = () => {
   return (
     <>
       <CssBaseline />
+      {showAlert && (
+        <Alert severity="success" onClose={() => setShowAlert(false)}>
+          Successfully added to favorites!
+        </Alert>
+      )}
       <Grid container spacing={1}>
         <Grid
           item
@@ -74,7 +81,7 @@ const Explore = () => {
           }}
         >
           <DialogAddPlaceToTrip />
-          <ExplorePlaces />
+          <ExplorePlaces setShowAlert={setShowAlert} />
         </Grid>
         <Grid
           item

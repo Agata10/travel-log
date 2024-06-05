@@ -16,7 +16,7 @@ import { ExploreContext } from '../../utilis/ExploreContext';
 
 const PlaceCard = ({ place }) => {
   const context = useContext(ExploreContext);
-  const { setOpen, setSelectedPlace } = context;
+  const { setOpen, setSelectedPlace, setShowAlert } = context;
   const theme = useTheme();
   // If user click  save place, show add to trip dialog
   ///NOTE: delete user Id, make it accessible only for log in user
@@ -36,7 +36,10 @@ const PlaceCard = ({ place }) => {
       favorite: true,
     };
     const response = await createPlace(body);
-    if (response) console.log('success');
+    if (response) {
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 2000);
+    }
   };
   return (
     <Card
