@@ -22,7 +22,7 @@ import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
-import icon from '../assets/images/globe.png';
+import icon from '../assets/images/globe2.png';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -89,7 +89,7 @@ const Navbar = ({ DrawerHeader }) => {
     minWidth: 0,
     mr: open ? 2 : 'auto',
     justifyContent: 'center',
-    color: theme.palette.primary.dark,
+    color: theme.palette.primary.light,
   };
 
   const handleDrawerOpen = () => {
@@ -106,11 +106,10 @@ const Navbar = ({ DrawerHeader }) => {
         component="nav"
         open={open}
         elevation={1}
-        sx={{ backgroundColor: theme.palette.primary.main }}
+        sx={{ backgroundColor: '#52796f' }}
       >
         <Toolbar>
           <IconButton
-            color={theme.palette.primary.dark}
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -125,8 +124,21 @@ const Navbar = ({ DrawerHeader }) => {
           <Icon sx={{ fontSize: 48 }}>
             <img src={icon} alt="Logo" />
           </Icon>
-          <Typography variant="h6" noWrap component="div">
-            TravelLog
+          <Typography variant="h3" noWrap component="div">
+            <span
+              className="font-logo font-bold text-5xl tracking-tighter"
+              style={{ color: theme.palette.primary.light }}
+            >
+              T
+            </span>
+            ravel
+            <span
+              className="font-logo font-bold text-4xl"
+              style={{ color: theme.palette.primary.light }}
+            >
+              L
+            </span>
+            og
           </Typography>
           <Box
             sx={{
@@ -140,9 +152,13 @@ const Navbar = ({ DrawerHeader }) => {
           >
             <Button
               sx={{
-                color: theme.palette.dark,
+                color: 'whitesmoke',
+                fontWeight: 600,
+                fontSize: '1.1rem',
                 '&:hover': {
-                  backgroundColor: theme.palette.primary.light,
+                  backgroundColor: 'inherit',
+                  textDecoration: `underline 2px ${theme.palette.primary.light}`,
+                  textUnderlineOffset: '5px',
                   color: 'white',
                 },
               }}
@@ -153,9 +169,13 @@ const Navbar = ({ DrawerHeader }) => {
             </Button>
             <Button
               sx={{
-                color: theme.palette.dark,
+                color: 'whitesmoke',
+                fontWeight: 600,
+                fontSize: '1.1rem',
                 '&:hover': {
-                  backgroundColor: theme.palette.primary.light,
+                  backgroundColor: 'inherit',
+                  textDecoration: `underline 2px ${theme.palette.primary.light}`,
+                  textUnderlineOffset: '5px',
                   color: 'white',
                 },
               }}
@@ -167,16 +187,20 @@ const Navbar = ({ DrawerHeader }) => {
             {false && (
               <Button
                 sx={{
-                  color: theme.palette.dark,
+                  color: 'whitesmoke',
+                  fontWeight: 500,
+                  fontSize: '1.1rem',
                   '&:hover': {
-                    backgroundColor: theme.palette.primary.light,
+                    backgroundColor: 'inherit',
+                    textDecoration: `underline 2px ${theme.palette.primary.light}`,
+                    textUnderlineOffset: '5px',
                     color: 'white',
                   },
                 }}
                 component={Link}
                 to="/logout"
               >
-                Logout
+                Log out
               </Button>
             )}
           </Box>
@@ -204,13 +228,15 @@ const Navbar = ({ DrawerHeader }) => {
             to="/"
           >
             <ListItemButton sx={{ px: 2.5 }}>
-              <ListItemIcon sx={{}}>
+              <ListItemIcon sx={drawerIconStyle}>
                 <HomeIcon fontSize="medium" />
               </ListItemIcon>
               <ListItemText
                 primary={'Home'}
-                sx={{
-                  opacity: open ? 1 : 0,
+                sx={{ opacity: open ? 1 : 0 }}
+                primaryTypographyProps={{
+                  sx: { fontWeight: 500 },
+                  fontSize: theme.typography.h6,
                 }}
               />
             </ListItemButton>
@@ -222,18 +248,15 @@ const Navbar = ({ DrawerHeader }) => {
             to="/explore"
           >
             <ListItemButton sx={{ px: 2.5 }}>
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 2 : 'auto',
-                  justifyContent: 'center',
-                  color: theme.palette.primary.dark,
-                }}
-              >
+              <ListItemIcon sx={drawerIconStyle}>
                 <TravelExploreIcon fontSize="medium" />
               </ListItemIcon>
               <ListItemText
                 primary={'Explore'}
+                primaryTypographyProps={{
+                  sx: { fontWeight: 500 },
+                  fontSize: theme.typography.h6,
+                }}
                 sx={{ opacity: open ? 1 : 0 }}
               />
             </ListItemButton>
@@ -245,12 +268,16 @@ const Navbar = ({ DrawerHeader }) => {
             to="/trips"
           >
             <ListItemButton sx={{ px: 2.5 }}>
-              <ListItemIcon sx={{ drawerIconStyle }}>
+              <ListItemIcon sx={drawerIconStyle}>
                 <ConnectingAirportsIcon fontSize="medium" />
               </ListItemIcon>
               <ListItemText
                 primary={'Your trips'}
                 sx={{ opacity: open ? 1 : 0 }}
+                primaryTypographyProps={{
+                  sx: { fontWeight: 500 },
+                  fontSize: theme.typography.h6,
+                }}
               />
             </ListItemButton>
           </ListItem>
@@ -261,12 +288,16 @@ const Navbar = ({ DrawerHeader }) => {
             to="/favorites"
           >
             <ListItemButton sx={{ px: 2.5 }}>
-              <ListItemIcon sx={{ drawerIconStyle }}>
+              <ListItemIcon sx={drawerIconStyle}>
                 <FavoriteIcon fontSize="medium" />
               </ListItemIcon>
               <ListItemText
                 primary={'Your favorites'}
                 sx={{ opacity: open ? 1 : 0 }}
+                primaryTypographyProps={{
+                  sx: { fontWeight: 500 },
+                  fontSize: theme.typography.h6,
+                }}
               />
             </ListItemButton>
           </ListItem>
@@ -287,12 +318,16 @@ const Navbar = ({ DrawerHeader }) => {
                   px: 2.5,
                 }}
               >
-                <ListItemIcon sx={{ drawerIconStyle }}>
+                <ListItemIcon sx={drawerIconStyle}>
                   <ManageAccountsIcon fontSize="medium" />
                 </ListItemIcon>
                 <ListItemText
                   primary={'Account'}
                   sx={{ opacity: open ? 1 : 0 }}
+                  primaryTypographyProps={{
+                    sx: { fontWeight: 500 },
+                    fontSize: theme.typography.h6,
+                  }}
                 />
               </ListItemButton>
             </ListItem>
@@ -309,12 +344,16 @@ const Navbar = ({ DrawerHeader }) => {
                   px: 2.5,
                 }}
               >
-                <ListItemIcon sx={{ drawerIconStyle }}>
+                <ListItemIcon sx={drawerIconStyle}>
                   <LogoutIcon fontSize="medium" />
                 </ListItemIcon>
                 <ListItemText
                   primary={'Log out'}
                   sx={{ opacity: open ? 1 : 0 }}
+                  primaryTypographyProps={{
+                    sx: { fontWeight: 500 },
+                    fontSize: theme.typography.h6,
+                  }}
                 />
               </ListItemButton>
             </ListItem>

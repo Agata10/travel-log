@@ -1,4 +1,4 @@
-import banner from '../../assets/images/myBanner.png';
+import banner from '../../assets/images/back4.png';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ const CallToAction = () => {
             marginBottom: '1rem',
             color: 'white',
             '&:hover': {
-              backgroundColor: theme.palette.primary.light,
+              backgroundColor: theme.palette.primary.dark,
             },
           }}
         >

@@ -18,6 +18,7 @@ import {
 
 let theme = createTheme({
   typography: {
+    fontFamily: ['Raleway', 'sans-serif'].join(','),
     h1: {
       fontSize: '3rem',
     },
@@ -45,13 +46,12 @@ let theme = createTheme({
   },
   palette: {
     secondary: {
-      main: '#79c7c5',
-      light: '#ade1e5',
+      main: '#cad2c5',
     },
     primary: {
-      main: '#73ab84',
-      light: '#99d19c',
-      dark: '#588157',
+      main: '#52796f',
+      light: '#84a98c',
+      dark: '#354f52',
     },
     dark: '#000501',
   },

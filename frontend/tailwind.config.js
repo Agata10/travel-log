@@ -6,6 +6,9 @@ export default {
       backgroundImage: {
         'trips-bg': "url('./src/assets/images/trips-background.jpg')",
       },
+      fontFamily: {
+        logo: ['Caveat', 'cursive'],
+      },
     },
   },
   plugins: [],
