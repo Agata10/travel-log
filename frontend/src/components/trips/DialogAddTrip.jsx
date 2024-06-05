@@ -65,10 +65,7 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
     >
       <DialogTitle>Add new trip</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          To subscribe to this website, please enter your email address here. We
-          will send updates occasionally.
-        </DialogContentText>
+        <DialogContentText>Oh, the places to go!</DialogContentText>
         <TextField
           inputRef={nameRef}
           autoFocus

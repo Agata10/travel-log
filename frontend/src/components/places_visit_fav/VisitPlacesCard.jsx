@@ -65,24 +65,37 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
       onMouseLeave={() => setHoverCard(null)}
       sx={{
         display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         padding: 0,
-        height: { xs: '140px', md: '120px' },
+        height: { xs: '160px', sm: '135px' },
         width: { xs: '100%', sm: '90%', md: '100%', lg: '80%' },
       }}
     >
       <Card
         elevation={3}
         sx={{
+          overflow: 'hidden',
           height: '100%',
-          width: '65%',
+          width: { xs: '70%', sm: '65%' },
           borderRadius: 3,
           mr: 2,
           pt: 1,
+
           '&:last-child': { pb: 0 },
+          '&:hover': {
+            overflow: 'auto',
+          },
         }}
       >
         <Box display="flex">
-          <CardContent sx={{ pt: 0, width: '100%', '&:last-child': { pb: 0 } }}>
+          <CardContent
+            sx={{
+              pt: 0,
+              width: '100%',
+              '&:last-child': { pb: 0 },
+            }}
+          >
             <TextField
               inputRef={nameRef}
               onBlur={handleNameBlur}
@@ -92,10 +105,11 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
               InputProps={{ disableUnderline: true }}
               sx={{
                 width: '100%',
+                '& .MuiInputBase-root': {
+                  padding: '0px',
+                },
                 '& .MuiInputBase-input': {
                   fontWeight: 500,
-                },
-                '& input': {
                   fontSize: theme.typography.h6,
                 },
                 '& .MuiInputBase-root.Mui-focused': {
@@ -133,7 +147,7 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
                 multiline
                 sx={{
                   width: '100%',
-                  '& input': {
+                  '& .MuiInputBase-input': {
                     fontSize: theme.typography.body2,
                   },
                 }}
@@ -147,8 +161,9 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
               inputRef={notesRef}
               className="overflow-y-hidden hover:overflow-y-visible"
               sx={{
-                display: { xs: 'none', md: 'flex' },
-                paddingTop: '10px',
+                display: 'flex',
+                // display: { xs: 'none', md: 'flex' },
+                paddingTop: '0px',
                 pl: 1,
                 '& .MuiInputBase-input': {
                   fontSize: '0.8rem',
@@ -173,8 +188,8 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
       <Paper
         sx={{
           borderRadius: 8,
-          height: { xs: '110px', md: '120px' },
-          width: '25%',
+          height: { xs: '150px', sm: '120px' },
+          width: { xs: '30%', sm: '25%' },
         }}
       >
         <img
