@@ -78,7 +78,7 @@ const PlaceMarker = ({ place }) => {
               // sticky={true}
               >
                 <img
-                  src={place.photo.images?.original.url}
+                  src={place.photo?.images?.original.url}
                   alt={place.name}
                   style={{
                     width: '110px',

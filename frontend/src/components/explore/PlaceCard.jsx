@@ -74,42 +74,58 @@ const PlaceCard = ({ place }) => {
             <Typography gutterBottom variant="h6">
               {place.name}
             </Typography>
-            <Box display="flex">
-              <LocationOnOutlinedIcon
-                fontSize="small"
-                sx={{ color: theme.palette.primary.main }}
-              />
-              <Typography
-                gutterBottom
-                variant="body2"
-                sx={{ fontWeight: 400, width: '100%' }}
-              >
-                {place.address}
-              </Typography>
-            </Box>
+            {place.address ? (
+              <Box display="flex">
+                <LocationOnOutlinedIcon
+                  fontSize="small"
+                  sx={{ color: theme.palette.primary.main }}
+                />
+                <Typography
+                  gutterBottom
+                  variant="body2"
+                  sx={{ fontWeight: 400, width: '100%' }}
+                >
+                  {place.address}
+                </Typography>
+              </Box>
+            ) : (
+              ''
+            )}
             <Box sx={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ paddingLeft: 1, fontWeight: 500 }}
-              >
-                {place.rating}
-              </Typography>
-              <Rating
-                name="read-only"
-                defaultValue={2}
-                value={Number(place.rating)}
-                readOnly
-                precision={0.1}
-                size="small"
-              />
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ fontWeight: 500 }}
-              >
-                ({place.num_reviews})
-              </Typography>
+              {place.rating ? (
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ paddingLeft: 1, fontWeight: 500 }}
+                >
+                  {place.rating}
+                </Typography>
+              ) : (
+                ''
+              )}
+              {place.rating ? (
+                <Rating
+                  name="read-only"
+                  defaultValue={2}
+                  value={Number(place.rating)}
+                  readOnly
+                  precision={0.1}
+                  size="small"
+                />
+              ) : (
+                ''
+              )}
+              {place.rating ? (
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ fontWeight: 500 }}
+                >
+                  ({place.num_reviews})
+                </Typography>
+              ) : (
+                ''
+              )}
             </Box>
           </CardContent>
         </Box>

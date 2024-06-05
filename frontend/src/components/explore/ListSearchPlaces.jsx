@@ -35,14 +35,18 @@ const ListSearchPlaces = () => {
         </ListItem>
       )}
       {searchPlaces.length > 0 &&
-        searchPlaces.map((place) => (
-          <ListItem
-            key={crypto.randomUUID()}
-            sx={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <PlaceCard place={place} />
-          </ListItem>
-        ))}
+        searchPlaces.map((place) =>
+          place.name && place.rating ? (
+            <ListItem
+              key={crypto.randomUUID()}
+              sx={{ display: 'flex', justifyContent: 'center' }}
+            >
+              <PlaceCard place={place} />
+            </ListItem>
+          ) : (
+            ''
+          )
+        )}
     </List>
   );
 };

@@ -43,7 +43,7 @@ export const getRestaurants = async (bounds) => {
   }
 };
 
-export const getHotels = async (bounds, setPlaces) => {
+export const getHotels = async (bounds) => {
   const options = {
     method: optionsBasic.method,
     url: hotel_url,
@@ -61,13 +61,14 @@ export const getHotels = async (bounds, setPlaces) => {
   };
   try {
     // const response = await axios.request(options);
-    // setPlaces(response.data);
+    // console.log(response.data.data);
+    // return response.data.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getAttractions = async (bounds, setPlaces) => {
+export const getAttractions = async (bounds) => {
   const options = {
     method: optionsBasic.method,
     url: attraction_url,
@@ -85,7 +86,7 @@ export const getAttractions = async (bounds, setPlaces) => {
   };
   try {
     // const response = await axios.request(options);
-    // setPlaces(response.data);
+    // return response.data.data;
   } catch (error) {
     console.error(error);
   }
