@@ -15,8 +15,8 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { getPlacesToVisit } from '../../api/tripsAPI';
 import { useParams } from 'react-router-dom';
 import { createPlace } from '../../api/placesAPI';
-import axios from 'axios';
 import { TripContext } from '../../utilis/TripContext';
+import { fetchImages } from '../../services/imagesAPI';
 
 const PlacesToVisit = () => {
   const theme = useTheme();
@@ -37,22 +37,9 @@ const PlacesToVisit = () => {
     fetchPlacesToVisit();
   }, []);
 
-  const fetchImages = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.unsplash.com/search/photos?query=${
-          placeRef.current.value
-        }&client_id=${import.meta.env.VITE_PHOTOS_API_KEY}`
-      );
-      return response.data.results[2].urls.regular;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   //NOTE, hide userID
   const handleAddPlace = async () => {
-    const image = await fetchImages();
+    const image = await fetchImages(placeRef.current.value);
     const body = {
       name: placeRef.current.value,
       img: image,

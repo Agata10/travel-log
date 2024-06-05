@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
         component="main"
         sx={{
           flexGrow: 1,
-          pl: 0,
+          pl: 1,
           width: '100%',
           // backgroundColor: 'whitesmoke',
           minHeight: '100vh',

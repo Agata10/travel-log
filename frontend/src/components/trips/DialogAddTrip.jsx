@@ -12,6 +12,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 import { createTrip } from '../../api/tripsAPI';
+import { fetchImages } from '../../services/imagesAPI';
 
 const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
   const nameRef = useRef();
@@ -43,12 +44,18 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
           } else {
             setError('');
           }
+          let image = '';
+          const response = await fetchImages(nameRef.current.value);
+          if (response) {
+            image = response;
+          }
           //NOTE:: hide user id, when auth take its id
           const body = {
             userId: '6637f3825bfc1879d0f2273d',
             name: nameRef.current.value,
             startDate: startDateRef.current.value,
             endDate: endDateRef.current.value,
+            img: image,
           };
           addTrip(body);
 

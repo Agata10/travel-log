@@ -1,4 +1,4 @@
-import { Button, Paper, Typography, useTheme } from '@mui/material';
+import { Box, Button, Paper, Typography, useTheme } from '@mui/material';
 
 const TripHeader = ({ setOpen }) => {
   const theme = useTheme();
@@ -9,17 +9,30 @@ const TripHeader = ({ setOpen }) => {
 
   return (
     <Paper
-      sx={{ boxShadow: '0 2px 5px #99d19c' }}
-      className="bg-trips-bg bg-cover bg-center bg-no-repeat w-10/12 md:w-8/12 h-20 flex justify-around items-center"
+      sx={{
+        boxShadow: `0 3px 5px ${theme.palette.primary.light}`,
+      }}
+      className="rounded-md bg-trips-bg bg-cover bg-center bg-no-repeat w-10/12 md:w-8/12 h-20 flex items-center"
     >
       {/*NOTE:: after auth, change it to user name */}
-      <Typography variant="h5">Hello, name!</Typography>
+      <Typography
+        variant="h3"
+        sx={{
+          fontWeight: 800,
+          color: theme.palette.primary.main,
+          marginLeft: { xs: '25px', sm: '50px' },
+        }}
+      >
+        Hello, name!
+      </Typography>
       <Button
         onClick={handleClickOpen}
         variant="contained"
         size="small"
         sx={{
           background: theme.palette.primary.main,
+          marginLeft: 'auto',
+          marginRight: { xs: '20px', sm: '50px', lg: '100px' },
           '&:hover': {
             backgroundColor: theme.palette.primary.light,
           },
