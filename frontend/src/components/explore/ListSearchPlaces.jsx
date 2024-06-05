@@ -3,10 +3,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import PlaceCard from './PlaceCard';
 import { ExploreContext } from '../../utilis/ExploreContext';
+import { Typography, useTheme } from '@mui/material';
 
 const ListSearchPlaces = () => {
   const expoloreContext = useContext(ExploreContext);
   const { searchPlaces } = expoloreContext;
+  const theme = useTheme();
 
   return (
     <List
@@ -16,6 +18,22 @@ const ListSearchPlaces = () => {
         paddingBottom: { xs: '0vh', sm: '8vh', md: '0vh' },
       }}
     >
+      {searchPlaces.length === 0 && (
+        <ListItem
+          sx={{
+            fontSize: theme.typography.fontSize.h2,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            paddingBottom: '100px',
+          }}
+        >
+          <Typography variant="h3" sx={{ color: theme.palette.primary.dark }}>
+            No places found
+          </Typography>
+        </ListItem>
+      )}
       {searchPlaces.length > 0 &&
         searchPlaces.map((place) => (
           <ListItem

@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { ExploreContext } from '../../utilis/ExploreContext';
 import {
   Typography,
@@ -8,6 +8,7 @@ import {
   Select,
   MenuItem,
   Box,
+  useTheme,
 } from '@mui/material';
 import data from '../../assets/fakeData_testing/places';
 
@@ -17,6 +18,7 @@ const FilterMapHeader = () => {
   const { searchPlaces, setSearchPlaces } = expoloreContext;
   const [selectedCategory, setSelectedCategory] = useState(options[0]);
   const [rating, setRating] = useState(3);
+  const theme = useTheme();
   //Depending on select option restaurants,attractions hotels, call api
   //Depending on rating filter places
 
@@ -40,6 +42,12 @@ const FilterMapHeader = () => {
           value={selectedCategory}
           label="Category"
           onChange={handleSelect}
+          sx={{
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: theme.palette.primary.main,
+              borderWidth: '2px',
+            },
+          }}
         >
           {options.map((option) => (
             <MenuItem key={option} value={option}>
@@ -49,11 +57,20 @@ const FilterMapHeader = () => {
         </Select>
       </FormControl>
       <div>
-        <Typography component="legend" sx={{ textAlign: 'center' }}>
+        <Typography
+          component="legend"
+          sx={{
+            textAlign: 'center',
+            color: theme.palette.primary.main,
+            fontWeight: 500,
+          }}
+        >
           Rating
         </Typography>
         <Rating
-          sx={{ fontSize: { xs: '1rem', sm: '1.5rem' } }}
+          sx={{
+            fontSize: { xs: '1rem', sm: '1.5rem' },
+          }}
           name="simple-controlled"
           value={rating}
           size="medium"

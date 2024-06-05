@@ -76,9 +76,15 @@ const Explore = () => {
           md={5}
           mt={2}
           sx={{
-            height: { xs: searchPlaces.length > 0 ? '55vh' : 150 },
+            height:
+              searchPlaces.length > 0
+                ? '55vh'
+                : { xs: '45vh', sm: '40vh', md: '70vh' },
             mb: { xs: 0, lg: 4 },
-            paddingRight: { xs: '4rem', sm: '2rem', md: '0.5rem' },
+            paddingRight:
+              searchPlaces.length > 0
+                ? { xs: '4rem', sm: '2rem', md: '0.5rem' }
+                : '0.5rem',
           }}
         >
           <DialogAddPlaceToTrip />
@@ -89,8 +95,14 @@ const Explore = () => {
           xs={12}
           md={7}
           sx={{
-            height: { xs: '50vh', md: '90vh' },
-            paddingRight: { xs: '4rem', sm: '2rem', md: '0.5rem' },
+            height:
+              searchPlaces.length > 0
+                ? { xs: '50vh', md: '90vh' }
+                : { xs: '60vh', sm: '70vh', md: '90vh' },
+            paddingRight:
+              searchPlaces.length > 0
+                ? { xs: '4rem', sm: '2rem', md: '0.5rem' }
+                : '0.5rem',
             mt: { xs: 0, md: 1 },
           }}
         >
