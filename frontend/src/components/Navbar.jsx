@@ -154,7 +154,8 @@ const Navbar = ({ DrawerHeader }) => {
               sx={{
                 color: 'whitesmoke',
                 fontWeight: 600,
-                fontSize: '1.1rem',
+                fontSize: theme.typography.h6,
+                display: open ? 'none' : 'inline',
                 '&:hover': {
                   backgroundColor: 'inherit',
                   textDecoration: `underline 2px ${theme.palette.primary.light}`,
@@ -171,7 +172,8 @@ const Navbar = ({ DrawerHeader }) => {
               sx={{
                 color: 'whitesmoke',
                 fontWeight: 600,
-                fontSize: '1.1rem',
+                display: open ? 'none' : 'inline',
+                fontSize: theme.typography.h6,
                 '&:hover': {
                   backgroundColor: 'inherit',
                   textDecoration: `underline 2px ${theme.palette.primary.light}`,
@@ -189,7 +191,7 @@ const Navbar = ({ DrawerHeader }) => {
                 sx={{
                   color: 'whitesmoke',
                   fontWeight: 500,
-                  fontSize: '1.1rem',
+                  fontSize: theme.typography.h6,
                   '&:hover': {
                     backgroundColor: 'inherit',
                     textDecoration: `underline 2px ${theme.palette.primary.light}`,
