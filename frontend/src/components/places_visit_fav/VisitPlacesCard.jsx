@@ -10,6 +10,7 @@ import {
   IconButton,
   TextField,
   useTheme,
+  InputAdornment,
 } from '@mui/material';
 import { deletePlace, getFavPlaces, updatePlace } from '../../api/placesAPI';
 import { useParams } from 'react-router-dom';
@@ -65,7 +66,7 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
       sx={{
         display: 'flex',
         padding: 0,
-        height: { xs: '130px', md: '120px' },
+        height: { xs: '140px', md: '120px' },
         width: { xs: '100%', sm: '90%', md: '100%', lg: '80%' },
       }}
     >
@@ -86,13 +87,18 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
               inputRef={nameRef}
               onBlur={handleNameBlur}
               variant="standard"
+              multiline
               defaultValue={place.name}
               InputProps={{ disableUnderline: true }}
               sx={{
+                width: '100%',
+                '& .MuiInputBase-input': {
+                  fontWeight: 500,
+                },
                 '& input': {
                   fontSize: theme.typography.h6,
                 },
-                '& input:focus': {
+                '& .MuiInputBase-root.Mui-focused': {
                   backgroundColor: 'whitesmoke',
                   borderRadius: '12px',
                   paddingLeft: '5px',
@@ -100,17 +106,31 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
               }}
             />
             <Box display="flex" sx={{ alignItems: 'flex-end' }}>
-              <LocationOnOutlinedIcon
+              {/* <LocationOnOutlinedIcon
                 fontSize="medium"
                 sx={{ color: theme.palette.primary.main, marginBottom: 0.5 }}
-              />
+              /> */}
               <TextField
                 inputRef={addressRef}
                 onBlur={handleAddressBlur}
                 placeholder="Add address"
                 variant="standard"
                 defaultValue={place.address}
-                InputProps={{ disableUnderline: true }}
+                InputProps={{
+                  disableUnderline: true,
+                  startAdornment: (
+                    <InputAdornment position="start" sx={{ margin: '0 auto' }}>
+                      <LocationOnOutlinedIcon
+                        fontSize="medium"
+                        sx={{
+                          color: theme.palette.primary.light,
+                          marginBottom: 0.5,
+                        }}
+                      />
+                    </InputAdornment>
+                  ),
+                }}
+                multiline
                 sx={{
                   width: '100%',
                   '& input': {
@@ -153,7 +173,7 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
       <Paper
         sx={{
           borderRadius: 8,
-          height: '120px',
+          height: { xs: '110px', md: '120px' },
           width: '25%',
         }}
       >
@@ -162,14 +182,16 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
           alt={place.name}
           style={{
             borderRadius: 8,
-            height: '120px',
+            height: '100%',
             width: '100%',
           }}
         />
       </Paper>
       {hoverCard === index && (
         <IconButton aria-label="delete" onClick={() => handleDelete(place)}>
-          <DeleteOutlineOutlinedIcon />
+          <DeleteOutlineOutlinedIcon
+            sx={{ color: theme.palette.primary.light }}
+          />
         </IconButton>
       )}
     </ListItem>

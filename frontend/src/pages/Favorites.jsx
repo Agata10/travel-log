@@ -30,7 +30,11 @@ const Favorites = () => {
         <Grid
           item
           xs={12}
-          sx={{ typography: { ...theme.typography.h4 } }}
+          sx={{
+            typography: { ...theme.typography.h3 },
+            fontWeight: 600,
+            color: useTheme().palette.primary.dark,
+          }}
           textAlign={'center'}
           mr={4}
           mb={5}
@@ -40,7 +44,7 @@ const Favorites = () => {
         <Grid
           item
           xs={12}
-          md={8}
+          md={12}
           sx={{
             overflow: 'auto',
             margin: '0 auto',
@@ -52,6 +56,7 @@ const Favorites = () => {
         </Grid>
         <Grid
           item
+          pb={8}
           sx={{
             width: '100%',
           }}

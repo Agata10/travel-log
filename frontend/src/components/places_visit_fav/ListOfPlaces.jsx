@@ -6,12 +6,14 @@ const ListOfPlaces = ({ places, setPlaces }) => {
     <List
       className="space-y-4"
       sx={{
-        width: '100%',
+        width: { xs: '95%', md: '65%' },
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         paddingTop: '2px',
         paddingBottom: '10px',
+        margin: '0 auto',
+        paddingLeft: { xs: 0, sm: 3 },
       }}
     >
       {places.map((place, index) => {
