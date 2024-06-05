@@ -60,7 +60,7 @@ let theme = createTheme({
 theme = responsiveFontSizes(theme);
 function App() {
   return (
-    <>
+    <div className=" overflow-x-hidden">
       <ThemeProvider theme={theme}>
         <Layout>
           <TripContextProvider>
@@ -80,7 +80,7 @@ function App() {
           </TripContextProvider>
         </Layout>
       </ThemeProvider>
-    </>
+    </div>
   );
 }
 
