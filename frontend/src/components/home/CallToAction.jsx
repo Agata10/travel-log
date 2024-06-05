@@ -7,14 +7,19 @@ const CallToAction = () => {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-4 sm:gap-0 md:gap-10 sm:w-10/12 md:w-full">
       <Box sx={{ width: { md: '40%', xs: '80%' } }}>
-        <Typography variant="h3" gutterBottom>
+        <Typography
+          variant="h3"
+          gutterBottom
+          sx={{ fontWeight: 500, color: theme.palette.dark }}
+        >
           Discover Your Next Adventure!
         </Typography>
         <Typography
           gutterBottom
+          variant="h6"
           sx={{
-            width: { md: '70%', xs: '100%' },
-            fontSize: { xs: 'h5', sm: 'h4', md: 'h6' },
+            fontWeight: 400,
+            width: { xs: '100%', md: '70%' },
           }}
         >
           Explore new destinations and create unforgettable memories with our

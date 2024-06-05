@@ -13,6 +13,7 @@ const MyPaper = styled(Paper)(() => ({
   justifyContent: 'center',
   padding: '0 10px',
   textAlign: 'center',
+  borderRadius: '8px',
 }));
 
 const Features = () => {
@@ -26,10 +27,11 @@ const Features = () => {
         gap: 4,
         textAlign: 'center',
         width: { xs: '95%', sm: '80%' },
+        margin: '0px auto',
+        paddingBottom: '80px',
       }}
-      margin={'0 auto'}
     >
-      <Typography variant="h5">
+      <Typography variant="h5" sx={{ fontWeight: 500, color: 'black' }}>
         Features to make planning trips easier
       </Typography>
       <Box
@@ -56,7 +58,7 @@ const Features = () => {
             sx={{ fontSize: '3.2rem', color: theme.palette.primary.dark }}
           />
           <Typography variant="body1">
-            Explore hotels,attractions and restaurants
+            Explore hotels, attractions and restaurants
           </Typography>
         </MyPaper>
         <MyPaper>

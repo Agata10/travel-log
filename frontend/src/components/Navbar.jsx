@@ -10,6 +10,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import LockPersonOutlinedIcon from '@mui/icons-material/LockPersonOutlined';
 import { useState } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
@@ -143,8 +145,8 @@ const Navbar = ({ DrawerHeader }) => {
           <Box
             sx={{
               display: {
-                // xs: 'none',
-                // sm: 'block',
+                xs: 'none',
+                sm: 'block',
                 position: 'absolute',
                 right: '2rem',
               },
@@ -295,6 +297,50 @@ const Navbar = ({ DrawerHeader }) => {
               </ListItemIcon>
               <ListItemText
                 primary={'Your favorites'}
+                sx={{ opacity: open ? 1 : 0 }}
+                primaryTypographyProps={{
+                  sx: { fontWeight: 500 },
+                  fontSize: theme.typography.h6,
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            component={Link}
+            to="/login"
+          >
+            <ListItemButton
+              sx={{ px: 2.5, display: { xs: 'flex', sm: 'none' } }}
+            >
+              <ListItemIcon sx={drawerIconStyle}>
+                <LoginOutlinedIcon fontSize="medium" />
+              </ListItemIcon>
+              <ListItemText
+                primary={'Log in'}
+                sx={{ opacity: open ? 1 : 0 }}
+                primaryTypographyProps={{
+                  sx: { fontWeight: 500 },
+                  fontSize: theme.typography.h6,
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            component={Link}
+            to="/signup"
+          >
+            <ListItemButton
+              sx={{ px: 2.5, display: { xs: 'flex', sm: 'none' } }}
+            >
+              <ListItemIcon sx={drawerIconStyle}>
+                <LockPersonOutlinedIcon fontSize="medium" />
+              </ListItemIcon>
+              <ListItemText
+                primary={'Sign up'}
                 sx={{ opacity: open ? 1 : 0 }}
                 primaryTypographyProps={{
                   sx: { fontWeight: 500 },
