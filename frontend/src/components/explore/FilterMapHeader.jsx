@@ -1,25 +1,62 @@
 import { useContext, useState, useEffect } from 'react';
 import { ExploreContext } from '../../utilis/ExploreContext';
-import { Typography, Rating } from '@mui/material';
+import {
+  Typography,
+  Rating,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Box,
+} from '@mui/material';
 import data from '../../assets/fakeData_testing/places';
 
+const options = ['Restaurants', 'Hotels', 'Attractions'];
 const FilterMapHeader = () => {
   const expoloreContext = useContext(ExploreContext);
   const { searchPlaces, setSearchPlaces } = expoloreContext;
+  const [selectedCategory, setSelectedCategory] = useState(options[0]);
   const [rating, setRating] = useState(3);
   //Depending on select option restaurants,attractions hotels, call api
   //Depending on rating filter places
 
+  const handleSelect = async () => {};
   return (
-    <>
-      {console.log(searchPlaces)}
+    <Box
+      sx={{
+        display: 'flex',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: { xs: 1, lg: 3 },
+        marginTop: '15px',
+      }}
+    >
+      <FormControl sx={{ width: { xs: '45%', lg: '25%' } }}>
+        <InputLabel id="trips-label">Category</InputLabel>
+        <Select
+          labelId="trips-label"
+          id="select-trip"
+          value={selectedCategory}
+          label="Category"
+          onChange={handleSelect}
+        >
+          {options.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <div>
         <Typography component="legend" sx={{ textAlign: 'center' }}>
           Rating
         </Typography>
         <Rating
+          sx={{ fontSize: { xs: '1rem', sm: '1.5rem' } }}
           name="simple-controlled"
           value={rating}
+          size="medium"
           precision={0.5}
           onChange={async (event, newValue) => {
             //filter the places, if rating is 4.0 show from 4.0 and more
@@ -36,7 +73,7 @@ const FilterMapHeader = () => {
           }}
         />
       </div>
-    </>
+    </Box>
   );
 };
 

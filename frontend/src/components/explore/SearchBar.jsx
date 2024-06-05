@@ -48,7 +48,7 @@ const SearchBar = ({ setPosition }) => {
         isOptionEqualToValue={(option, value) =>
           option.properties.city === value.properties.city
         }
-        sx={{ width: 300 }}
+        sx={{ width: '70%' }}
         renderInput={(params) => (
           <TextField
             {...params}
