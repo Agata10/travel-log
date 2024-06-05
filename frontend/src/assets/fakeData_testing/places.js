@@ -128,7 +128,7 @@ const places = [
         },
       },
     },
-    rating: 4.5,
+    rating: 3.5,
     num_reviews: 89,
     address: '10455 Sheridan Blvd, Westminster, CO 80020',
   },

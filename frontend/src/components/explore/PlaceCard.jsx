@@ -79,7 +79,11 @@ const PlaceCard = ({ place }) => {
                 fontSize="small"
                 sx={{ color: theme.palette.primary.main }}
               />
-              <Typography gutterBottom variant="body2" sx={{ fontWeight: 400 }}>
+              <Typography
+                gutterBottom
+                variant="body2"
+                sx={{ fontWeight: 400, width: '100%' }}
+              >
                 {place.address}
               </Typography>
             </Box>

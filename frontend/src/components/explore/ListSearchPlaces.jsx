@@ -13,6 +13,7 @@ const ListSearchPlaces = () => {
       className="overflow-scroll space-y-2 w-full"
       sx={{ height: { xs: '25vh', md: '77vh' } }}
     >
+      {console.log(searchPlaces)}
       {searchPlaces.length > 0 &&
         searchPlaces.map((place) => (
           <ListItem
