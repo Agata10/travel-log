@@ -10,6 +10,7 @@ const Footer = () => {
         fontWeight: 500,
         fontSize: theme.typography.body2,
         backgroundColor: theme.palette.primary.light,
+        color: 'whitesmoke',
       }}
     >
       Agata Deter &copy; Copyright 2024

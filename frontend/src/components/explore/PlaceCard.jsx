@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Rating from '@mui/material/Rating';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import { createPlace } from '../../api/placesAPI';
+import { createPlace, getFavPlaces } from '../../api/placesAPI';
 import { useContext } from 'react';
 import { ExploreContext } from '../../utilis/ExploreContext';
 
@@ -35,6 +35,12 @@ const PlaceCard = ({ place }) => {
       userId: '6637f3825bfc1879d0f2273d',
       favorite: true,
     };
+    const getFav = await getFavPlaces('6637f3825bfc1879d0f2273d');
+    //if place already exists as favorite
+    console.log(getFav);
+    if (getFav.find((p) => p.name === place.name)) {
+      return;
+    }
     const response = await createPlace(body);
     if (response) {
       setShowAlert(true);
