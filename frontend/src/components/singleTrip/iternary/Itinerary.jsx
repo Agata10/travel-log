@@ -11,9 +11,9 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { TripContext } from '../../../utilis/TripContext';
 import dayjs from 'dayjs';
-import IternaryDay from './IternaryDay';
+import ItineraryDay from './ItineraryDay';
 
-const Iternary = () => {
+const Itinerary = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const context = useContext(TripContext);
@@ -65,7 +65,7 @@ const Iternary = () => {
             >
               {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             </IconButton>
-            Iternary
+            Itinerary
           </Typography>
         </Box>
       </Grid>
@@ -82,7 +82,7 @@ const Iternary = () => {
             {days && (
               <List sx={{ padding: 0 }}>
                 {days.map((day) => (
-                  <IternaryDay
+                  <ItineraryDay
                     key={day}
                     day={day}
                     trip={trip}
@@ -99,4 +99,4 @@ const Iternary = () => {
   );
 };
 
-export default Iternary;
+export default Itinerary;

@@ -19,7 +19,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useTheme } from '@mui/material';
 
-const IternaryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
+const ItineraryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
   const [dayPlaces, setDayPlaces] = useState([]);
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -160,4 +160,4 @@ const IternaryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
   );
 };
 
-export default IternaryDay;
+export default ItineraryDay;

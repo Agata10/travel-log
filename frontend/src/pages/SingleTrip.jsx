@@ -11,7 +11,7 @@ import BudgetDetails from '../components/singleTrip/budget_expenses/BudgetDetail
 import DialogAddBudget from '../components/singleTrip/budget_expenses/DialogAddBudget';
 import { getTripExpenses } from '../api/tripsAPI';
 import DialogAddExpense from '../components/singleTrip/budget_expenses/DialogAddExpense';
-import Iternary from '../components/singleTrip/iternary/Iternary';
+import Itinerary from '../components/singleTrip/iternary/Itinerary';
 
 const SingleTrip = () => {
   const tripContext = useContext(TripContext);
@@ -69,7 +69,7 @@ const SingleTrip = () => {
           <Box className="w-10/12 md:w-8/12 flex flex-col">
             <NotesAndBudget percent={percent} />
             <PlacesToVisit />
-            <Iternary />
+            <Itinerary />
             <BudgetDetails refresh={refresh} setRefresh={setRefresh} />
           </Box>
         </Box>
