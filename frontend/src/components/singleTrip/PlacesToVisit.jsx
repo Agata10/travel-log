@@ -65,7 +65,10 @@ const PlacesToVisit = () => {
       >
         <Box className="flex justify-between">
           <Typography variant="h5" sx={{ fontWeight: 500 }}>
-            <IconButton onClick={() => setOpen((prev) => !prev)}>
+            <IconButton
+              onClick={() => setOpen((prev) => !prev)}
+              sx={{ color: theme.palette.primary.main }}
+            >
               {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             </IconButton>
             Places to visit

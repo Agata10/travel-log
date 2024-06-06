@@ -27,7 +27,7 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
     borderRadius: '8px',
     backgroundColor: theme.palette.primary.main,
     color: '#ffffff',
-    padding: { xs: '1px', sm: '6px 16px' },
+    padding: { xs: '3px', sm: '6px 16px' },
     '&:hover': {
       backgroundColor: theme.palette.primary.light,
       color: 'whitesmoke',
