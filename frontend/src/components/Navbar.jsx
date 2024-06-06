@@ -12,7 +12,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import LockPersonOutlinedIcon from '@mui/icons-material/LockPersonOutlined';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import { styled, useTheme } from '@mui/material/styles';
@@ -25,6 +25,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
 import icon from '../assets/images/globe2.png';
+import { AuthContext } from '../utilis/context/AuthContext';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -85,6 +86,8 @@ const Drawer = styled(MuiDrawer, {
 
 const Navbar = ({ DrawerHeader }) => {
   const [open, setOpen] = useState(false);
+  const authContext = useContext(AuthContext);
+  const { authUser, setAuthUser } = authContext;
   const theme = useTheme();
 
   const drawerIconStyle = {
@@ -100,6 +103,14 @@ const Navbar = ({ DrawerHeader }) => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleLoggingOut = () => {
+    //we need remove token from localStorage
+    localStorage.removeItem('token');
+
+    //set auth user to null
+    setAuthUser(null);
   };
   return (
     <>
@@ -188,7 +199,7 @@ const Navbar = ({ DrawerHeader }) => {
             >
               Sign Up
             </Button>
-            {false && (
+            {authUser && (
               <Button
                 sx={{
                   color: 'whitesmoke',
@@ -203,6 +214,7 @@ const Navbar = ({ DrawerHeader }) => {
                 }}
                 component={Link}
                 to="/logout"
+                onClick={handleLoggingOut}
               >
                 Log out
               </Button>
@@ -350,8 +362,8 @@ const Navbar = ({ DrawerHeader }) => {
             </ListItemButton>
           </ListItem>
         </List>
-        {false && <Divider />}
-        {false && (
+        {authUser && <Divider />}
+        {authUser && (
           <List>
             <ListItem
               disablePadding
@@ -391,6 +403,7 @@ const Navbar = ({ DrawerHeader }) => {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                onClick={handleLoggingOut}
               >
                 <ListItemIcon sx={drawerIconStyle}>
                   <LogoutIcon fontSize="medium" />

@@ -1,6 +1,6 @@
 import { Box, Container, Typography, useTheme } from '@mui/material';
 import { Button, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,6 +10,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Footer from '../components/Footer';
+import { login } from '../api/authAPI';
+import { AuthContext } from '../utilis/context/AuthContext';
 
 const formData = {
   email: '',
@@ -22,6 +24,8 @@ const LogIn = () => {
   const [isError, setIsError] = useState(false);
   const [errorText, setErrorText] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const authContext = useContext(AuthContext);
+  const { setAuthUser } = authContext;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -47,7 +51,19 @@ const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form.firstName, form.lastName, form.email, form.password);
+    const authAPI = await login(form);
+
+    if (authAPI && !authAPI.error) {
+      const token = authAPI.data.token;
+      localStorage.setItem('token', token);
+      setAuthUser(authAPI);
+      // const user = await getUser();
+      // if (user) {
+      //   setAuthUser(user);
+      // }
+    } else {
+      alert(authAPI.error);
+    }
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,6 +87,8 @@ const LogIn = () => {
         <Box
           component="form"
           onSubmit={handleSubmit}
+          autoComplete="off"
+          noValidate
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -84,6 +102,7 @@ const LogIn = () => {
             label="Email"
             variant="outlined"
             type="email"
+            name="email"
             sx={inputStyle}
             error={isError ? true : false}
             helperText={isError ? errorText : ''}
@@ -95,13 +114,14 @@ const LogIn = () => {
             sx={{ ...inputStyle, m: 1, width: '25ch' }}
             variant="outlined"
             required
-            value={form.password}
-            onChange={handleChange}
           >
             <InputLabel htmlFor="password">Password</InputLabel>
             <OutlinedInput
               id="password"
+              name="password"
               type={showPassword ? 'text' : 'password'}
+              value={form.password}
+              onChange={handleChange}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton

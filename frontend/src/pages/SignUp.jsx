@@ -1,6 +1,6 @@
 import { Box, Container, Typography, useTheme } from '@mui/material';
 import { Button, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,6 +10,9 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Footer from '../components/Footer';
+import { signup } from '../api/authAPI';
+import { AuthContext } from '../utilis/context/AuthContext';
+import { getUser } from '../api/userAPI';
 
 const formData = {
   firstName: '',
@@ -24,6 +27,8 @@ const SignUp = () => {
   const [isError, setIsError] = useState(false);
   const [errorText, setErrorText] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const authContext = useContext(AuthContext);
+  const { setAuthUser } = authContext;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -49,7 +54,19 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form.firstName, form.lastName, form.email, form.password);
+    const authAPI = await signup(form);
+
+    if (authAPI && !authAPI.error) {
+      const token = authAPI.data.token;
+      localStorage.setItem('token', token);
+      setAuthUser(authAPI);
+      // const user = await getUser();
+      // if (user) {
+      //   setAuthUser(user);
+      // }
+    } else {
+      alert(authAPI.error.response.data);
+    }
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,6 +90,8 @@ const SignUp = () => {
         <Box
           component="form"
           onSubmit={handleSubmit}
+          noValidate
+          autoComplete="off"
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -91,6 +110,7 @@ const SignUp = () => {
             helperText={isError ? errorText : ''}
             required
             fullWidth
+            name="firstName"
             value={form.firstName}
             onChange={handleChange}
           />
@@ -102,6 +122,7 @@ const SignUp = () => {
             error={isError ? true : false}
             helperText={isError ? errorText : ''}
             required
+            name="lastName"
             value={form.lastName}
             onChange={handleChange}
           />
@@ -113,6 +134,7 @@ const SignUp = () => {
             error={isError ? true : false}
             helperText={isError ? errorText : ''}
             required
+            name="email"
             value={form.email}
             onChange={handleChange}
           />
@@ -120,13 +142,14 @@ const SignUp = () => {
             sx={{ ...inputStyle, m: 1, width: '25ch' }}
             variant="outlined"
             required
-            value={form.password}
-            onChange={handleChange}
           >
             <InputLabel htmlFor="password">Password</InputLabel>
             <OutlinedInput
               id="password"
+              name="password"
               type={showPassword ? 'text' : 'password'}
+              value={form.password}
+              onChange={handleChange}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton

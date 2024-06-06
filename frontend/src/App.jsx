@@ -63,8 +63,8 @@ function App() {
   return (
     <div className="overflow-x-hidden">
       <ThemeProvider theme={theme}>
-        <Layout>
-          <AuthContextProvider>
+        <AuthContextProvider>
+          <Layout>
             <TripContextProvider>
               <ExploreContextProvider>
                 <Routes>
@@ -80,8 +80,8 @@ function App() {
                 </Routes>
               </ExploreContextProvider>
             </TripContextProvider>
-          </AuthContextProvider>
-        </Layout>
+          </Layout>
+        </AuthContextProvider>
       </ThemeProvider>
     </div>
   );
