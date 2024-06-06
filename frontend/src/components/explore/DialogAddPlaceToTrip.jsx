@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { getTrips } from '../../api/tripsAPI';
-import { ExploreContext } from '../../utilis/ExploreContext';
+import { ExploreContext } from '../../utilis/context/ExploreContext';
 import { createPlace } from '../../api/placesAPI';
 
 const DialogAddPlaceToTrip = () => {

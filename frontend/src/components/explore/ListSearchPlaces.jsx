@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import PlaceCard from './PlaceCard';
-import { ExploreContext } from '../../utilis/ExploreContext';
+import { ExploreContext } from '../../utilis/context/ExploreContext';
 import { Typography, useTheme } from '@mui/material';
 
 const ListSearchPlaces = () => {

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import DialogAddTrip from '../components/trips/DialogAddTrip';
 import { getTrips } from '../api/tripsAPI';
 import { useEffect, useContext } from 'react';
-import { ExploreContext } from '../utilis/ExploreContext';
+import { ExploreContext } from '../utilis/context/ExploreContext';
 import { RotatingLines } from 'react-loader-spinner';
 
 const Trips = () => {

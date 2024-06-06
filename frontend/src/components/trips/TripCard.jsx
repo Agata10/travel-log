@@ -10,8 +10,8 @@ import {
 import { deleteTrip } from '../../api/tripsAPI';
 import { useNavigate } from 'react-router-dom';
 import { getSingleTrip } from '../../api/tripsAPI';
-import { TripContext } from '../../utilis/TripContext';
-import { ExploreContext } from '../../utilis/ExploreContext';
+import { TripContext } from '../../utilis/context/TripContext';
+import { ExploreContext } from '../../utilis/context/ExploreContext';
 import { useContext } from 'react';
 import bg from '../../assets/images/trip.jpg';
 //Change the format of displaying the date on trip card

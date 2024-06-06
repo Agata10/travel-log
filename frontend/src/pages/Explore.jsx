@@ -3,7 +3,7 @@ import Map from '../components/explore/Map';
 import { useEffect, useContext, useState } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import ExplorePlaces from '../components/explore/ExplorePlaces';
-import { ExploreContext } from '../utilis/ExploreContext';
+import { ExploreContext } from '../utilis/context/ExploreContext.jsx';
 import { getRestaurants } from '../services/travelAPI';
 import CssBaseline from '@mui/material/CssBaseline';
 import data from '../assets/fakeData_testing/places.js';

@@ -12,7 +12,7 @@ import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { createPlace, getFavPlaces } from '../../api/placesAPI';
 import { useContext } from 'react';
-import { ExploreContext } from '../../utilis/ExploreContext';
+import { ExploreContext } from '../../utilis/context/ExploreContext';
 
 const PlaceCard = ({ place }) => {
   const context = useContext(ExploreContext);

@@ -9,7 +9,7 @@ import {
 import { useContext, useEffect, useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { TripContext } from '../../../utilis/TripContext';
+import { TripContext } from '../../../utilis/context/TripContext';
 import dayjs from 'dayjs';
 import ItineraryDay from './ItineraryDay';
 

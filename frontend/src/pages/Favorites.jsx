@@ -2,7 +2,7 @@ import { useTheme, Grid } from '@mui/material';
 import Footer from '../components/Footer';
 import ListOfPlaces from '../components/places_visit_fav/ListOfPlaces';
 import { useContext, useEffect } from 'react';
-import { TripContext } from '../utilis/TripContext';
+import { TripContext } from '../utilis/context/TripContext';
 import { getFavPlaces } from '../api/placesAPI';
 
 const visitPlaces = false;

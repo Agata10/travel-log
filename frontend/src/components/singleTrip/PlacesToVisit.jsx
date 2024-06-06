@@ -15,7 +15,7 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { getPlacesToVisit } from '../../api/tripsAPI';
 import { useParams } from 'react-router-dom';
 import { createPlace } from '../../api/placesAPI';
-import { TripContext } from '../../utilis/TripContext';
+import { TripContext } from '../../utilis/context/TripContext';
 import { fetchImages } from '../../services/imagesAPI';
 //to pass that visit places screen, not favorites to listOfPlaces component
 const visitPlaces = true;

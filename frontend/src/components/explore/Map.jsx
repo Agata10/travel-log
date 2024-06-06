@@ -9,7 +9,7 @@ import {
 import { Browser } from 'leaflet';
 import { useEffect, useState, useContext } from 'react';
 import 'leaflet/dist/leaflet.css';
-import { ExploreContext } from '../../utilis/ExploreContext';
+import { ExploreContext } from '../../utilis/context/ExploreContext';
 import icon from '../../assets/images/loc.png';
 import L from 'leaflet';
 import { Rating } from '@mui/material';

@@ -1,7 +1,7 @@
 import Layout from './components/Layout';
 import Explore from './pages/Explore';
-import { ExploreContextProvider } from './utilis/ExploreContext';
-import { TripContextProvider } from './utilis/TripContext';
+import { ExploreContextProvider } from './utilis/context/ExploreContext';
+import { TripContextProvider } from './utilis/context/TripContext';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Favorites from './pages/Favorites';
@@ -15,6 +15,7 @@ import {
   responsiveFontSizes,
   ThemeProvider,
 } from '@mui/material/styles';
+import { AuthContextProvider } from './utilis/context/AuthContext';
 
 let theme = createTheme({
   typography: {
@@ -63,21 +64,23 @@ function App() {
     <div className="overflow-x-hidden">
       <ThemeProvider theme={theme}>
         <Layout>
-          <TripContextProvider>
-            <ExploreContextProvider>
-              <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/explore" element={<Explore />} />
-                <Route path="/trips" element={<Trips />} />
-                <Route path="/trips/trip/:tripId" element={<SingleTrip />} />
-                <Route path="/favorites" element={<Favorites />} />
-                <Route path="/profile" element={<Account />} />
-                <Route path="/logout" element={<Navigate to="/" />} />
-                <Route path="/login" element={<LogIn />} />
-                <Route path="/signup" element={<SignUp />} />
-              </Routes>
-            </ExploreContextProvider>
-          </TripContextProvider>
+          <AuthContextProvider>
+            <TripContextProvider>
+              <ExploreContextProvider>
+                <Routes>
+                  <Route path="/" element={<Homepage />} />
+                  <Route path="/explore" element={<Explore />} />
+                  <Route path="/trips" element={<Trips />} />
+                  <Route path="/trips/trip/:tripId" element={<SingleTrip />} />
+                  <Route path="/favorites" element={<Favorites />} />
+                  <Route path="/profile" element={<Account />} />
+                  <Route path="/logout" element={<Navigate to="/" />} />
+                  <Route path="/login" element={<LogIn />} />
+                  <Route path="/signup" element={<SignUp />} />
+                </Routes>
+              </ExploreContextProvider>
+            </TripContextProvider>
+          </AuthContextProvider>
         </Layout>
       </ThemeProvider>
     </div>

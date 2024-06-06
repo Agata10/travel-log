@@ -10,7 +10,7 @@ import {
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useRef, useState, useContext } from 'react';
-import { TripContext } from '../../utilis/TripContext';
+import { TripContext } from '../../utilis/context/TripContext';
 import { updateTrip } from '../../api/tripsAPI';
 
 const NotesAndBudget = ({ percent }) => {

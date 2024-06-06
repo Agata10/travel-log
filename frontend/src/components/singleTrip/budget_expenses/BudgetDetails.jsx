@@ -11,7 +11,7 @@ import { useContext, useState, useEffect } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Paper } from '@mui/material';
-import { TripContext } from '../../../utilis/TripContext';
+import { TripContext } from '../../../utilis/context/TripContext';
 import { getTripExpenses } from '../../../api/tripsAPI';
 import ExpenseCard from './ExpenseCard';
 

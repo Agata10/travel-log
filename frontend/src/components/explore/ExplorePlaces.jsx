@@ -2,7 +2,7 @@ import ListSearchPlaces from './ListSearchPlaces';
 import SearchBar from './SearchBar';
 import FilterMapHeader from './FilterMapHeader';
 import { useContext } from 'react';
-import { ExploreContext } from '../../utilis/ExploreContext';
+import { ExploreContext } from '../../utilis/context/ExploreContext';
 import { Box } from '@mui/material';
 // import axios from 'axios';
 // import { getRestaurants } from '../../services/travelAPI';

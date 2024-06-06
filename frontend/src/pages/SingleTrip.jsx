@@ -3,7 +3,7 @@ import SingleTripHeader from '../components/singleTrip/SingleTripHeader';
 import { Box } from '@mui/material';
 import { getSingleTrip } from '../api/tripsAPI';
 import { useParams } from 'react-router-dom';
-import { TripContext } from '../utilis/TripContext';
+import { TripContext } from '../utilis/context/TripContext';
 import NotesAndBudget from '../components/singleTrip/NotesAndBudget';
 import PlacesToVisit from '../components/singleTrip/PlacesToVisit';
 import Footer from '../components/Footer';

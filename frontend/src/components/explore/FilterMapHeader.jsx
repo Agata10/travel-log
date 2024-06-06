@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { ExploreContext } from '../../utilis/ExploreContext';
+import { ExploreContext } from '../../utilis/context/ExploreContext';
 import {
   Typography,
   Rating,

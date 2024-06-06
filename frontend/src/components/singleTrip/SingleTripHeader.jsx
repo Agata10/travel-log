@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 import { useContext, useRef } from 'react';
-import { TripContext } from '../../utilis/TripContext';
+import { TripContext } from '../../utilis/context/TripContext';
 import { useParams } from 'react-router-dom';
 import { updateTrip } from '../../api/tripsAPI';
 import { useTheme } from '@mui/material';
