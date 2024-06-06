@@ -19,13 +19,22 @@ import LocalActivityOutlinedIcon from '@mui/icons-material/LocalActivityOutlined
 import { useEffect, useState } from 'react';
 
 const categories = [
-  { name: 'Flights', icon: <FlightTakeoffIcon /> },
-  { name: 'Lodging', icon: <HotelIcon /> },
-  { name: 'Car rental', icon: <CarRentalIcon /> },
-  { name: 'Transit', icon: <DirectionsTransitIcon /> },
-  { name: 'Food', icon: <RestaurantIcon /> },
-  { name: 'Sightseeing', icon: <AccountBalanceOutlinedIcon /> },
-  { name: 'Other', icon: <LocalActivityOutlinedIcon /> },
+  { name: 'Flights', icon: <FlightTakeoffIcon sx={{ color: '#84a98c' }} /> },
+  { name: 'Lodging', icon: <HotelIcon sx={{ color: '#84a98c' }} /> },
+  { name: 'Car rental', icon: <CarRentalIcon sx={{ color: '#84a98c' }} /> },
+  {
+    name: 'Transit',
+    icon: <DirectionsTransitIcon sx={{ color: '#84a98c' }} />,
+  },
+  { name: 'Food', icon: <RestaurantIcon sx={{ color: '#84a98c' }} /> },
+  {
+    name: 'Sightseeing',
+    icon: <AccountBalanceOutlinedIcon sx={{ color: '#84a98c' }} />,
+  },
+  {
+    name: 'Other',
+    icon: <LocalActivityOutlinedIcon sx={{ color: '#84a98c' }} />,
+  },
 ];
 
 const ExpenseCard = ({ expense, setRefresh }) => {
@@ -56,7 +65,7 @@ const ExpenseCard = ({ expense, setRefresh }) => {
         display: 'flex',
         padding: 0,
         margin: '0 auto',
-        width: { xs: '100%', sm: '90%', md: '100%', lg: '80%' },
+        width: { xs: '100%', sm: '90%', md: '100%', lg: '100%' },
       }}
     >
       <Card
@@ -84,15 +93,18 @@ const ExpenseCard = ({ expense, setRefresh }) => {
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'flex-start',
                 alignItems: 'center',
+                paddingLeft: { xs: '0', md: '2rem' },
                 gap: 1,
-                width: '25%',
+                width: { xs: '60%', md: '35%' },
               }}
             >
               {icon}
               <Box>
-                <Typography sx={{ fontSize: theme.typography.body1 }}>
+                <Typography
+                  sx={{ fontSize: theme.typography.body1, fontWeight: 500 }}
+                >
                   {expense.description}
                 </Typography>
                 <Typography sx={{ fontSize: theme.typography.body2 }}>

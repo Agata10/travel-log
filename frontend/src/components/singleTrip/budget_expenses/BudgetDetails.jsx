@@ -25,11 +25,12 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
 
   const btnStyle = {
     borderRadius: '8px',
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.main,
     color: '#ffffff',
+    padding: { xs: '1px', sm: '6px 16px' },
     '&:hover': {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.dark,
+      backgroundColor: theme.palette.primary.light,
+      color: 'whitesmoke',
     },
   };
 
@@ -57,17 +58,30 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
         }}
         textAlign={'center'}
       >
-        <Box className="flex justify-between pb-2 w-full">
-          <Typography variant="h5" sx={{ fontWeight: 500 }}>
-            <IconButton onClick={() => setOpenDiv((prev) => !prev)}>
+        <Box className="flex mb-2 space-between w-full">
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 500,
+              textAlign: 'left',
+            }}
+          >
+            <IconButton
+              onClick={() => setOpenDiv((prev) => !prev)}
+              sx={{
+                color: theme.palette.primary.main,
+              }}
+            >
               {openDiv ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             </IconButton>
             Budget And Expenses
           </Typography>
+
           <Box
             display={'flex'}
             sx={{
-              alignSelf: 'flex-end',
+              alignSelf: 'center',
+              marginLeft: 'auto',
               gap: '15px',
             }}
           >
@@ -75,6 +89,7 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
               onClick={() => setAddBudgetDialog(true)}
               sx={{
                 fontSize: theme.typography.h6,
+                display: { xs: 'none', md: 'flex' },
                 '&:hover': {
                   transform: 'scale(1.2)',
                   color: theme.palette.primary.main,
@@ -100,27 +115,25 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
           xs={12}
           sx={{
             width: '100%',
-            margin: '0 auto',
           }}
         >
           <Paper
             elevation={1}
             sx={{
               borderRadius: '8px',
-              width: '60%',
+              width: { xs: '100%', sm: '80%', md: '60%' },
               height: '80px',
-              display: 'flex',
               margin: '0 auto',
-              justifyContent: ' space-around',
-              alignItems: 'space-around',
-              flexDirection: 'column',
+              boxShadow: `0px 2px 3px ${theme.palette.primary.light}`,
             }}
           >
             <Box
               display={'flex'}
               sx={{
-                width: '80%',
-                margin: '0 auto',
+                width: '100%',
+                height: '100%',
+                alignItems: 'center',
+                padding: '0 5px',
                 justifyContent: 'space-around',
               }}
             >
@@ -135,7 +148,13 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
               </Typography>
               <Button
                 size="small"
-                sx={btnStyle}
+                sx={{
+                  ...btnStyle,
+                  backgroundColor: theme.palette.primary.light,
+                  '&:hover': {
+                    backgroundColor: theme.palette.primary.main,
+                  },
+                }}
                 variant="standard"
                 onClick={() => setAddExpenseDialog(true)}
               >
@@ -147,7 +166,7 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
           <List
             sx={{
               borderRadius: '8px',
-              width: '80%',
+              width: { xs: '100%', md: '80%' },
               margin: '20px auto',
               display: 'flex',
               gap: 2,
