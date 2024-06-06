@@ -11,8 +11,16 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Footer from '../components/Footer';
 
+const formData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+};
+
 const SignUp = () => {
   const theme = useTheme();
+  const [form, setForm] = useState(formData);
   const [isError, setIsError] = useState(false);
   const [errorText, setErrorText] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -39,7 +47,14 @@ const SignUp = () => {
     color: theme.palette.primary.light,
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(form.firstName, form.lastName, form.email, form.password);
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
   return (
     <>
       <Container
@@ -49,7 +64,6 @@ const SignUp = () => {
           width: '100%',
           height: '90vh',
           alignItems: ' center',
-          border: '1px solid black',
           paddingTop: 4,
         }}
       >
@@ -77,6 +91,8 @@ const SignUp = () => {
             helperText={isError ? errorText : ''}
             required
             fullWidth
+            value={form.firstName}
+            onChange={handleChange}
           />
           <TextField
             label="Last name"
@@ -86,6 +102,8 @@ const SignUp = () => {
             error={isError ? true : false}
             helperText={isError ? errorText : ''}
             required
+            value={form.lastName}
+            onChange={handleChange}
           />
           <TextField
             label="Email"
@@ -95,11 +113,15 @@ const SignUp = () => {
             error={isError ? true : false}
             helperText={isError ? errorText : ''}
             required
+            value={form.email}
+            onChange={handleChange}
           />
           <FormControl
             sx={{ ...inputStyle, m: 1, width: '25ch' }}
             variant="outlined"
             required
+            value={form.password}
+            onChange={handleChange}
           >
             <InputLabel htmlFor="password">Password</InputLabel>
             <OutlinedInput
