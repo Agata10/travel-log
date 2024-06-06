@@ -5,6 +5,8 @@ import { useContext, useEffect } from 'react';
 import { TripContext } from '../utilis/TripContext';
 import { getFavPlaces } from '../api/placesAPI';
 
+const visitPlaces = false;
+
 const Favorites = () => {
   const theme = useTheme();
   const context = useContext(TripContext);
@@ -52,7 +54,13 @@ const Favorites = () => {
             height: '80vh',
           }}
         >
-          {places && <ListOfPlaces places={places} setPlaces={setPlaces} />}
+          {places && (
+            <ListOfPlaces
+              places={places}
+              setPlaces={setPlaces}
+              visitPlaces={visitPlaces}
+            />
+          )}
         </Grid>
         <Grid
           item

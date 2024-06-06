@@ -17,6 +17,8 @@ import { useParams } from 'react-router-dom';
 import { createPlace } from '../../api/placesAPI';
 import { TripContext } from '../../utilis/TripContext';
 import { fetchImages } from '../../services/imagesAPI';
+//to pass that visit places screen, not favorites to listOfPlaces component
+const visitPlaces = true;
 
 const PlacesToVisit = () => {
   const theme = useTheme();
@@ -98,7 +100,7 @@ const PlacesToVisit = () => {
               inputRef={placeRef}
               label="Add a new place"
               variant="standard"
-              sx={{ width: '50%' }}
+              sx={{ width: { xs: '80%', md: '50%' }, marginBottom: '1.5rem' }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -110,8 +112,14 @@ const PlacesToVisit = () => {
               }}
             />
           </Box>
-          <Box>
-            {places && <ListOfPlaces places={places} setPlaces={setPlaces} />}
+          <Box sx={{ width: '100%' }}>
+            {places && (
+              <ListOfPlaces
+                places={places}
+                setPlaces={setPlaces}
+                visitPlaces={visitPlaces}
+              />
+            )}
           </Box>
         </Grid>
       )}

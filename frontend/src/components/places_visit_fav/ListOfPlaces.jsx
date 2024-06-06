@@ -1,12 +1,14 @@
 import VisitPlacesCard from './VisitPlacesCard';
 import { List } from '@mui/material';
 
-const ListOfPlaces = ({ places, setPlaces }) => {
+const ListOfPlaces = ({ places, setPlaces, visitPlaces }) => {
   return (
     <List
       className="space-y-4"
       sx={{
-        width: { xs: '95%', md: '65%' },
+        width: visitPlaces
+          ? { xs: '100%', sm: '100%', md: '80%' }
+          : { xs: '95%', md: '65%' },
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -24,6 +26,7 @@ const ListOfPlaces = ({ places, setPlaces }) => {
             place={place}
             places={places}
             setPlaces={setPlaces}
+            visitPlaces={visitPlaces}
           />
         );
       })}

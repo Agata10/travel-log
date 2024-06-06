@@ -11,7 +11,6 @@ import {
   TextField,
   useTheme,
   InputAdornment,
-  Alert,
 } from '@mui/material';
 import { deletePlace, getFavPlaces, updatePlace } from '../../api/placesAPI';
 import { useParams } from 'react-router-dom';
@@ -19,7 +18,7 @@ import { getPlacesToVisit } from '../../api/tripsAPI';
 
 const ariaLabel = { 'aria-label': 'description' };
 
-const VisitPlacesCard = ({ index, place, setPlaces }) => {
+const VisitPlacesCard = ({ index, place, setPlaces, visitPlaces }) => {
   const [hoverCard, setHoverCard] = useState(null);
   const theme = useTheme();
   const { tripId } = useParams();
@@ -69,7 +68,7 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 0,
-        height: { xs: '160px', sm: '120px' },
+        height: visitPlaces ? { xs: '140px' } : { xs: '160px', sm: '120px' },
         width: { xs: '100%', sm: '90%', md: '100%', lg: '80%' },
       }}
     >
@@ -136,10 +135,10 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
                   startAdornment: (
                     <InputAdornment position="start" sx={{ margin: '0 auto' }}>
                       <LocationOnOutlinedIcon
-                        fontSize="medium"
+                        fontSize="small"
                         sx={{
                           color: theme.palette.primary.light,
-                          marginBottom: 0.5,
+                          marginBottom: 0,
                         }}
                       />
                     </InputAdornment>
@@ -149,7 +148,7 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
                 sx={{
                   width: '100%',
                   '& .MuiInputBase-input': {
-                    fontSize: theme.typography.body2,
+                    fontSize: theme.typography.body1,
                   },
                 }}
               />
@@ -167,7 +166,7 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
                 paddingTop: '0px',
                 pl: 1,
                 '& .MuiInputBase-input': {
-                  fontSize: '0.8rem',
+                  fontSize: theme.typography.body2,
                 },
               }}
               multiline
@@ -175,12 +174,6 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
               size="small"
               InputProps={{
                 disableUnderline: true,
-                style: {
-                  fontSize: {
-                    md: 20,
-                    xs: 12,
-                  },
-                },
               }}
             />
           </CardContent>
@@ -189,8 +182,10 @@ const VisitPlacesCard = ({ index, place, setPlaces }) => {
       <Paper
         sx={{
           borderRadius: 8,
-          height: { xs: '150px', sm: '120px' },
-          width: { xs: '30%', sm: '25%' },
+          height: visitPlaces ? { xs: '140px' } : { xs: '150px', sm: '120px' },
+          width: visitPlaces
+            ? { xs: '50%', sm: '30%' }
+            : { xs: '30%', sm: '25%' },
         }}
       >
         <img
