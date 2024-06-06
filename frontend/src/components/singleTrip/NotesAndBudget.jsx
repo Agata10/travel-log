@@ -22,10 +22,11 @@ const NotesAndBudget = ({ percent }) => {
 
   const btnStyle = {
     borderRadius: '8px',
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.main,
     color: '#ffffff',
+    padding: { xs: '3px', sm: '6px 16px' },
     '&:hover': {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.light,
       color: theme.palette.dark,
     },
   };
@@ -43,22 +44,27 @@ const NotesAndBudget = ({ percent }) => {
   return (
     <Box className="flex flex-col ">
       <Box className="flex justify-between">
-        <Typography variant="h5">
+        <Typography variant="h5" sx={{ fontWeight: 500 }}>
           <IconButton onClick={() => setOpen((prev) => !prev)}>
             {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
           </IconButton>
           Notes
         </Typography>
-        <Box className="flex justify-between pb-2" sx={{ width: '50%' }}>
-          <Typography variant="h5" sx={{ paddingLeft: 2 }}>
+        <Box
+          className="flex justify-end sm:justify-between pb-2"
+          sx={{ width: '50%' }}
+        >
+          <Typography
+            variant="h5"
+            sx={{
+              paddingLeft: 2,
+              fontWeight: 500,
+              display: { xs: 'none', sm: 'flex' },
+            }}
+          >
             Budget
           </Typography>
-          <Button
-            size="small"
-            sx={btnStyle}
-            variant="standard"
-            // onClick={() => handleDeleteTrip(trip._id)}
-          >
+          <Button size="small" sx={btnStyle} variant="standard">
             Show details
           </Button>
         </Box>
@@ -66,13 +72,13 @@ const NotesAndBudget = ({ percent }) => {
       {open && (
         <Box
           elevation={1}
-          className="w-full h-20 flex gap-4"
+          className="w-full h-20 flex xs:gap-1 gap-4"
           sx={{ borderRadius: '12px' }}
         >
           <Paper
+            elevation={2}
             sx={{
-              backgroundColor: 'whitesmoke',
-              borderRadius: '12px',
+              borderRadius: '8px',
               width: '50%',
               height: '100px',
               display: 'flex',
@@ -91,22 +97,21 @@ const NotesAndBudget = ({ percent }) => {
               InputProps={{
                 disableUnderline: true,
                 sx: {
-                  fontSize: '1rem',
+                  fontSize: theme.typography.body1,
                   fontWeight: 'semi-bold',
-                  paddingLeft: '15px',
-                  paddingTop: '5px',
+                  padding: '15px',
                   '&:hover': {
                     backgroundColor: 'whitesmoke',
-                    borderRadius: '12px',
+                    borderRadius: '8px',
                   },
                 },
               }}
             />
           </Paper>
           <Paper
+            elevation={2}
             sx={{
-              backgroundColor: 'whitesmoke',
-              borderRadius: '12px',
+              borderRadius: '8px',
               width: '50%',
               height: '100px',
               display: 'flex',
@@ -117,40 +122,45 @@ const NotesAndBudget = ({ percent }) => {
           >
             <Box
               display="flex"
-              sx={{ alignItems: 'flex-end', cursor: 'default' }}
+              sx={{
+                alignItems: 'flex-end',
+                cursor: 'default',
+                fontSize: theme.typography.h6,
+                fontWeight: 400,
+              }}
             >
-              {/* <TextField
-                inputRef={budgetRef}
-                // onBlur={handleAddressBlur}
-                placeholder="Add address"
-                variant="standard"
-                type="number"
-                defaultValue={trip.budget}
-                InputProps={{ disableUnderline: true }}
-                sx={{
-                  width: '20%',
-                  '& input': {
-                    fontSize: theme.typography.body2,
-                  },
-                }}
-              />
-              <EditIcon
-                fontSize="medium"
-                sx={{ color: theme.palette.primary.main, marginBottom: 0.5 }}
-              /> */}
               {sumOfExpenses}$
             </Box>
-            <div className="w-8/12 h-4 bg-slate-300 rounded-md">
-              <div
-                className="h-4 bg-green-700 rounded-md relative"
-                style={{ width: `${percent}%` }}
+            <Box
+              sx={{ backgroundColor: theme.palette.secondary.main }}
+              className="w-10/12 sm:w-8/12 h-4 bg-slate-300 rounded-md"
+            >
+              <Box
+                className="h-4 rounded-md relative"
+                sx={{
+                  width: `${percent}%`,
+                  backgroundColor: theme.palette.primary.light,
+                }}
               >
                 {percent > 0 && (
-                  <p className="absolute -right-14 -top-1">{percent}%</p>
+                  <Typography
+                    sx={{
+                      fontSize: theme.typography.body2,
+                      fontWeight: 400,
+                      display: { xs: 'none', sm: 'flex' },
+                    }}
+                    className="absolute -right-12 -top-0.5"
+                  >
+                    {percent}%
+                  </Typography>
                 )}
-              </div>
-            </div>
-            <p style={{ cursor: 'default' }}>Budget: {trip.budget}$</p>
+              </Box>
+            </Box>
+            <Typography
+              sx={{ cursor: 'default', fontSize: theme.typography.body1 }}
+            >
+              Budget: {trip.budget}$
+            </Typography>
           </Paper>
         </Box>
       )}

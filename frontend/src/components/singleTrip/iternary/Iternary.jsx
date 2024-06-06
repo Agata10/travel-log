@@ -58,7 +58,7 @@ const Iternary = () => {
         textAlign={'center'}
       >
         <Box className="flex justify-between">
-          <Typography variant="h5">
+          <Typography variant="h5" sx={{ fontWeight: 500 }}>
             <IconButton onClick={() => setOpen((prev) => !prev)}>
               {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             </IconButton>

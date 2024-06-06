@@ -58,7 +58,7 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
         textAlign={'center'}
       >
         <Box className="flex justify-between pb-2 w-full">
-          <Typography variant="h5">
+          <Typography variant="h5" sx={{ fontWeight: 500 }}>
             <IconButton onClick={() => setOpenDiv((prev) => !prev)}>
               {openDiv ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             </IconButton>
