@@ -60,7 +60,7 @@ const SingleTrip = () => {
     <Box className="w-full">
       {trip && (
         <Box
-          className=" w-full flex flex-col items-center gap-10 min-h-screen"
+          className=" w-full flex flex-col items-center gap-10 min-h-screen mb-10"
           pt={4}
         >
           <DialogAddBudget setRefresh={setRefresh} />

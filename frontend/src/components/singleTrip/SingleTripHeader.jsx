@@ -1,4 +1,4 @@
-import { Paper, TextField } from '@mui/material';
+import { Box, Paper, TextField } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -7,6 +7,7 @@ import { useContext, useRef } from 'react';
 import { TripContext } from '../../utilis/TripContext';
 import { useParams } from 'react-router-dom';
 import { updateTrip } from '../../api/tripsAPI';
+import { useTheme } from '@mui/material';
 
 const SingleTripHeader = ({ setRefresh }) => {
   const tripContext = useContext(TripContext);
@@ -15,6 +16,24 @@ const SingleTripHeader = ({ setRefresh }) => {
   const inputRef = useRef();
   const startRef = useRef(trip.startDate);
   const endRef = useRef(trip.endDate);
+  const theme = useTheme();
+
+  const pickerStyle = {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: theme.palette.primary.light,
+      },
+      '&:hover fieldset': {
+        borderColor: theme.palette.primary.dark,
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: theme.palette.primary.main,
+      },
+      '& .MuiSvgIcon-root': {
+        color: theme.palette.primary.main,
+      },
+    },
+  };
 
   const updateTripData = async (body) => {
     const response = await updateTrip(tripId, body);
@@ -46,7 +65,6 @@ const SingleTripHeader = ({ setRefresh }) => {
   };
 
   const handleInputBlur = () => {
-    console.log(inputRef.current.value);
     if (inputRef.current.value !== trip.name) {
       updateTripData({ name: inputRef.current.value });
     }
@@ -54,11 +72,13 @@ const SingleTripHeader = ({ setRefresh }) => {
 
   return (
     <Paper
-      sx={{ boxShadow: '0 2px 5px #99d19c' }}
-      className="w-10/12 md:w-8/12 h-20 flex justify-around items-center"
+      sx={{
+        boxShadow: `0 2px 3px ${theme.palette.primary.light}`,
+        borderRadius: '8px',
+      }}
+      className="w-11/12 md:w-8/12 h-fit sm:h-20 flex flex-col sm:flex-row gap-3 justify-around items-center py-3 sm:py-0 px-4"
     >
-      {/* change it to user name */}
-      <div className="w-3/12">
+      <div className="w-6/12 sm:w-4/12 text-center">
         <TextField
           inputRef={inputRef}
           defaultValue={trip.name}
@@ -67,8 +87,9 @@ const SingleTripHeader = ({ setRefresh }) => {
           InputProps={{
             disableUnderline: true,
             sx: {
-              fontSize: '1.5rem',
-              fontWeight: 'semi-bold',
+              fontSize: theme.typography.h4,
+              fontWeight: 600,
+              color: theme.palette.primary.main,
               width: 'fit-content',
               '&:hover': {
                 backgroundColor: 'whitesmoke',
@@ -79,22 +100,32 @@ const SingleTripHeader = ({ setRefresh }) => {
           }}
         />
       </div>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DesktopDatePicker
-          inputRef={startRef}
-          label="Start Date"
-          minDate={dayjs(trip?.startDate)}
-          defaultValue={dayjs(trip.startDate)}
-          onChange={(date) => handleStartDateChange(date)}
-        />
-        <DesktopDatePicker
-          inputRef={endRef}
-          label="End Date"
-          minDate={dayjs(trip?.startDate)}
-          defaultValue={dayjs(trip.endDate)}
-          onChange={(date) => handleEndDateChange(date)}
-        />
-      </LocalizationProvider>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: 2,
+        }}
+      >
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DesktopDatePicker
+            inputRef={startRef}
+            label="Start Date"
+            minDate={dayjs(trip?.startDate)}
+            defaultValue={dayjs(trip.startDate)}
+            onChange={(date) => handleStartDateChange(date)}
+            sx={pickerStyle}
+          />
+          <DesktopDatePicker
+            inputRef={endRef}
+            label="End Date"
+            minDate={dayjs(trip?.startDate)}
+            defaultValue={dayjs(trip.endDate)}
+            onChange={(date) => handleEndDateChange(date)}
+            sx={pickerStyle}
+          />
+        </LocalizationProvider>
+      </Box>
     </Paper>
   );
 };
