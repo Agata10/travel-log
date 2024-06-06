@@ -33,7 +33,7 @@ module.exports.login = async (req, res, next) => {
       userIsFound.password
     );
     if (!isPassValid) {
-      return res.status(400).json({ error: 'Password does not match' });
+      return res.status(400).json({ error: 'Invalid password' });
     }
     //create token
     const token = genereteToken(userIsFound._id);
