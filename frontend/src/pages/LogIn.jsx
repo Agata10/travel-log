@@ -77,6 +77,7 @@ const LogIn = () => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
+
   return (
     <>
       <Container

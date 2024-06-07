@@ -14,8 +14,16 @@ import { signup } from '../api/authAPI';
 import { AuthContext } from '../utilis/context/AuthContext';
 import { getUser } from '../api/userAPI';
 import { useNavigate } from 'react-router-dom';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const formData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+};
+
+const errors = {
   firstName: '',
   lastName: '',
   email: '',
@@ -27,7 +35,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState(formData);
   const [isError, setIsError] = useState(false);
-  const [errorText, setErrorText] = useState('');
+  const [errorText, setErrorText] = useState(errors);
   const [serverError, setServerError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const authContext = useContext(AuthContext);
@@ -74,10 +82,12 @@ const SignUp = () => {
       setServerError(authAPI.error);
     }
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
+
   return (
     <>
       <Container
@@ -93,7 +103,7 @@ const SignUp = () => {
         <Typography variant="h6" gutterBottom>
           Sign up
         </Typography>
-        <Box
+        <ValidatorForm
           component="form"
           onSubmit={handleSubmit}
           noValidate
@@ -107,38 +117,44 @@ const SignUp = () => {
             marginBottom: '20px',
           }}
         >
-          <TextField
+          <TextValidator
             label="First name"
             variant="outlined"
             type="text"
             sx={inputStyle}
-            error={isError ? true : false}
-            helperText={isError ? errorText : ''}
+            validators={['required', 'minStringLength:3']}
+            errorMessages={[
+              'This field is required',
+              'Minimum of 3 characters',
+            ]}
             required
             fullWidth
             name="firstName"
             value={form.firstName}
             onChange={handleChange}
           />
-          <TextField
+          <TextValidator
             label="Last name"
             variant="outlined"
             type="text"
             sx={inputStyle}
-            error={isError ? true : false}
-            helperText={isError ? errorText : ''}
+            validators={['required', 'minStringLength:3']}
+            errorMessages={[
+              'This field is required',
+              'Minimum of 3 characters',
+            ]}
             required
             name="lastName"
             value={form.lastName}
             onChange={handleChange}
           />
-          <TextField
+          <TextValidator
             label="Email"
             variant="outlined"
             type="email"
             sx={inputStyle}
-            error={isError ? true : false}
-            helperText={isError ? errorText : ''}
+            validators={['required', 'isEmail']}
+            errorMessages={['This field is required', 'Email is not valid']}
             required
             name="email"
             value={form.email}
@@ -149,26 +165,37 @@ const SignUp = () => {
             variant="outlined"
             required
           >
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <OutlinedInput
+            <TextValidator
               id="password"
               name="password"
               type={showPassword ? 'text' : 'password'}
               value={form.password}
               onChange={handleChange}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                    sx={{ color: theme.palette.primary.main }}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
+              validators={[
+                'required',
+                'matchRegexp:^(?=.*\\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$',
+              ]}
+              errorMessages={[
+                'This field is required',
+                'At least 8 characters' +
+                  '\n' +
+                  'One symbol \n One number \n One upper letter \n One lower letter',
+              ]}
               label="Password"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                      sx={{ color: theme.palette.primary.main }}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
           </FormControl>
           <FormControl
@@ -176,22 +203,25 @@ const SignUp = () => {
             variant="outlined"
             required
           >
-            <InputLabel htmlFor="conf-password">Confirm Password</InputLabel>
-            <OutlinedInput
+            <TextValidator
               id="conf-password"
               type={showPassword ? 'text' : 'password'}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                    sx={{ color: theme.palette.primary.main }}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
+              validators={['required', 'isEmail']}
+              errorMessages={['This field is required', 'Email is not valid']}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                      sx={{ color: theme.palette.primary.main }}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
               label="Confirm Password"
             />
           </FormControl>
@@ -207,7 +237,7 @@ const SignUp = () => {
           >
             Submit
           </Button>
-        </Box>
+        </ValidatorForm>
       </Container>
       <Footer />
     </>

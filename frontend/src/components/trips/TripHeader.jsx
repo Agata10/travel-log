@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Typography, useTheme } from '@mui/material';
+import { Button, Paper, Typography, useTheme } from '@mui/material';
 import { useContext } from 'react';
 import { AuthContext } from '../../utilis/context/AuthContext';
 
@@ -17,7 +17,6 @@ const TripHeader = ({ setOpen }) => {
       }}
       className="rounded-md bg-trips-bg bg-cover bg-center bg-no-repeat w-10/12 md:w-8/12 h-20 flex items-center"
     >
-      {/*NOTE:: after auth, change it to user name */}
       <Typography
         variant="h3"
         sx={{
