@@ -12,8 +12,9 @@ const requireAuth = async (req, res, next) => {
   const token = authorization.split(' ')[1];
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    const _id = payload._id;
-    req._id = await User.findOne({ _id }).select('_id');
+    const id = payload.id;
+    req._id = id;
+    console.log(req._id);
     next();
   } catch (err) {
     next({ message: err.message, status: 403 });
