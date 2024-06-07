@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 import { login } from '../api/authAPI';
 import { AuthContext } from '../utilis/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../api/userAPI';
 
 const formData = {
   email: '',
@@ -55,11 +56,17 @@ const LogIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const authAPI = await login(form);
-
+    console.log(authAPI);
     if (authAPI && !authAPI.error) {
       const token = authAPI.token;
       localStorage.setItem('token', token);
-      setAuthUser(authAPI);
+      const user = await getUser();
+      setAuthUser({
+        _id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        token: token,
+      });
       setServerError(null);
       navigate('/trips');
     } else {

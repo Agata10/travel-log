@@ -59,7 +59,6 @@ const SignUp = () => {
     if (authAPI && !authAPI.error) {
       const token = authAPI.token;
       localStorage.setItem('token', token);
-      setAuthUser(authAPI);
       // const user = await getUser();
       // if (user) {
       //   setAuthUser(user);

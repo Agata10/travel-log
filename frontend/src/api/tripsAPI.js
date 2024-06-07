@@ -1,12 +1,13 @@
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-const headers = {
-  Authorization: `Bearer ${localStorage.getItem('token')}`,
-};
 
 //get all trips
 export const getTrips = async (userId) => {
   try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     const response = await axios(`${BASE_URL}/trips/${userId}`, {
       headers,
     });
@@ -19,6 +20,10 @@ export const getTrips = async (userId) => {
 //create single trip
 export const createTrip = async (body) => {
   try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     const trip = await axios.post(`${BASE_URL}/trips`, body, { headers });
     return trip.data;
   } catch (error) {
@@ -29,6 +34,10 @@ export const createTrip = async (body) => {
 //get trip
 export const getSingleTrip = async (tripId) => {
   try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     const response = await axios.get(`${BASE_URL}/trips/trip/${tripId}`, {
       headers,
     });
@@ -41,6 +50,10 @@ export const getSingleTrip = async (tripId) => {
 //update trip
 export const updateTrip = async (tripId, body) => {
   try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     const response = await axios.put(`${BASE_URL}/trips/${tripId}`, body, {
       headers,
     });
@@ -53,6 +66,10 @@ export const updateTrip = async (tripId, body) => {
 //delete trip
 export const deleteTrip = async (id) => {
   try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     await axios.delete(`${BASE_URL}/trips/${id}`, { headers });
     return;
   } catch (error) {
@@ -63,6 +80,10 @@ export const deleteTrip = async (id) => {
 //get trip places to visit
 export const getPlacesToVisit = async (tripId) => {
   try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     const response = await axios(`${BASE_URL}/trips/${tripId}/places`, {
       headers,
     });
@@ -75,6 +96,10 @@ export const getPlacesToVisit = async (tripId) => {
 //get trip expenses
 export const getTripExpenses = async (tripId) => {
   try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     const response = await axios(`${BASE_URL}/trips/${tripId}/expenses`, {
       headers,
     });
@@ -87,6 +112,10 @@ export const getTripExpenses = async (tripId) => {
 //get trip places by day
 export const getPlacesByDate = async (date, tripId) => {
   try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     const place = await axios.get(
       `${BASE_URL}/trips/${tripId}/places/${date}`,
       { headers }
