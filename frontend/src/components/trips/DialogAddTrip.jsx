@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -13,12 +13,15 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 import { createTrip } from '../../api/tripsAPI';
 import { fetchImages } from '../../services/imagesAPI';
+import { AuthContext } from '../../utilis/context/AuthContext';
 
 const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
   const nameRef = useRef();
   const startDateRef = useRef();
   const endDateRef = useRef();
   const [error, setError] = useState(null);
+  const authContext = useContext(AuthContext);
+  const { authUser } = authContext;
 
   const handleClose = () => {
     setOpen(false);
@@ -49,8 +52,8 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
           if (response) {
             image = response;
           }
-          //NOTE:: hide user id, when auth take its id
           const body = {
+            userId: authUser._id,
             name: nameRef.current.value,
             startDate: startDateRef.current.value,
             endDate: endDateRef.current.value,

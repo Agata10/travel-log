@@ -8,6 +8,7 @@ import { getTrips } from '../api/tripsAPI';
 import { useEffect, useContext } from 'react';
 import { ExploreContext } from '../utilis/context/ExploreContext';
 import { RotatingLines } from 'react-loader-spinner';
+import { AuthContext } from '../utilis/context/AuthContext';
 
 const Trips = () => {
   const [open, setOpen] = useState(false);
@@ -15,12 +16,14 @@ const Trips = () => {
   const [trips, setTrips] = useState(null);
   const exploreContext = useContext(ExploreContext);
   const { setIsLoading, isLoading } = exploreContext;
+  const authContext = useContext(AuthContext);
+  const { authUser } = authContext;
 
   //NOTE: make it accessible only for log in user, add user id after auth
   //the id is passed as the url params api/tripsAPI.js
   const fetchData = async () => {
     setIsLoading(true);
-    const tripsResponse = await getTrips();
+    const tripsResponse = await getTrips(authUser._id);
     if (tripsResponse) {
       setTrips(tripsResponse);
     }

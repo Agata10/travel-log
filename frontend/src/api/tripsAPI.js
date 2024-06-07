@@ -5,9 +5,9 @@ const headers = {
 };
 
 //get all trips
-export const getTrips = async () => {
+export const getTrips = async (userId) => {
   try {
-    const response = await axios(`${BASE_URL}/trips/6637f3825bfc1879d0f2273d`, {
+    const response = await axios(`${BASE_URL}/trips/${userId}`, {
       headers,
     });
     return response.data;
