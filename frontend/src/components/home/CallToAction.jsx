@@ -1,9 +1,13 @@
 import banner from '../../assets/images/back4.png';
 import { Box, Button, Typography, useTheme } from '@mui/material';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../utilis/context/AuthContext';
 
 const CallToAction = () => {
   const theme = useTheme();
+  const { authUser } = useContext(AuthContext);
+
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-4 sm:gap-0 md:gap-10 sm:w-10/12 md:w-full">
       <Box sx={{ width: { md: '40%', xs: '80%' } }}>
@@ -37,8 +41,7 @@ const CallToAction = () => {
             },
           }}
         >
-          {/* change it when auth user */}
-          <Link to="/login">Start planning</Link>
+          <Link to={!authUser ? '/login' : '/trips'}>Start planning</Link>
         </Button>
       </Box>
       <Box sx={{ width: { md: '40%', xs: '80%' } }}>

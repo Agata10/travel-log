@@ -54,7 +54,6 @@ const ExpenseCard = ({ expense, setRefresh }) => {
   }, [expense]);
 
   const handleDelete = async () => {
-    console.log(expense._id);
     await deleteExpense(expense._id);
     setRefresh((prev) => !prev);
   };

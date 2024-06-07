@@ -1,6 +1,6 @@
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import {
   Card,
   Box,
@@ -15,11 +15,13 @@ import {
 import { deletePlace, getFavPlaces, updatePlace } from '../../api/placesAPI';
 import { useParams } from 'react-router-dom';
 import { getPlacesToVisit } from '../../api/tripsAPI';
+import { AuthContext } from '../../utilis/context/AuthContext';
 
 const ariaLabel = { 'aria-label': 'description' };
 
 const VisitPlacesCard = ({ index, place, setPlaces, visitPlaces }) => {
   const [hoverCard, setHoverCard] = useState(null);
+  const { authUser } = useContext(AuthContext);
   const theme = useTheme();
   const { tripId } = useParams();
   const notesRef = useRef();
@@ -32,7 +34,7 @@ const VisitPlacesCard = ({ index, place, setPlaces, visitPlaces }) => {
       setPlaces(await getPlacesToVisit(tripId));
     } else {
       //make sure that if fav place page there is not tripId
-      const userId = '6637f3825bfc1879d0f2273d';
+      const userId = authUser?._id;
       setPlaces(await getFavPlaces(userId));
     }
   };

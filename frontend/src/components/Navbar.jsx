@@ -16,7 +16,7 @@ import { useContext, useState } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import { styled, useTheme } from '@mui/material/styles';
-import { Button, Box, Icon } from '@mui/material';
+import { Button, Box, Icon, Avatar } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
@@ -163,61 +163,105 @@ const Navbar = ({ DrawerHeader }) => {
               },
             }}
           >
-            <Button
-              sx={{
-                color: 'whitesmoke',
-                fontWeight: 600,
-                fontSize: theme.typography.h6,
-                display: open ? 'none' : 'inline',
-                '&:hover': {
-                  backgroundColor: 'inherit',
-                  textDecoration: `underline 2px ${theme.palette.primary.light}`,
-                  textUnderlineOffset: '5px',
-                  color: 'white',
-                },
-              }}
-              component={Link}
-              to="/login"
-            >
-              Log In
-            </Button>
-            <Button
-              sx={{
-                color: 'whitesmoke',
-                fontWeight: 600,
-                display: open ? 'none' : 'inline',
-                fontSize: theme.typography.h6,
-                '&:hover': {
-                  backgroundColor: 'inherit',
-                  textDecoration: `underline 2px ${theme.palette.primary.light}`,
-                  textUnderlineOffset: '5px',
-                  color: 'white',
-                },
-              }}
-              component={Link}
-              to="/signup"
-            >
-              Sign Up
-            </Button>
-            {authUser && (
-              <Button
+            {!authUser && (
+              <Box
                 sx={{
-                  color: 'whitesmoke',
-                  fontWeight: 500,
-                  fontSize: theme.typography.h6,
-                  '&:hover': {
-                    backgroundColor: 'inherit',
-                    textDecoration: `underline 2px ${theme.palette.primary.light}`,
-                    textUnderlineOffset: '5px',
-                    color: 'white',
+                  display: {
+                    xs: 'none',
+                    sm: 'flex',
                   },
                 }}
-                component={Link}
-                to="/logout"
-                onClick={handleLoggingOut}
               >
-                Log out
-              </Button>
+                <Button
+                  sx={{
+                    color: 'whitesmoke',
+                    fontWeight: 600,
+                    fontSize: theme.typography.h6,
+                    display: open ? 'none' : 'inline',
+                    '&:hover': {
+                      backgroundColor: 'inherit',
+                      textDecoration: `underline 2px ${theme.palette.primary.light}`,
+                      textUnderlineOffset: '5px',
+                      color: 'white',
+                    },
+                  }}
+                  component={Link}
+                  to="/login"
+                >
+                  Log In
+                </Button>
+                <Button
+                  sx={{
+                    color: 'whitesmoke',
+                    fontWeight: 600,
+                    display: open ? 'none' : 'inline',
+                    fontSize: theme.typography.h6,
+                    '&:hover': {
+                      backgroundColor: 'inherit',
+                      textDecoration: `underline 2px ${theme.palette.primary.light}`,
+                      textUnderlineOffset: '5px',
+                      color: 'white',
+                    },
+                  }}
+                  component={Link}
+                  to="/signup"
+                >
+                  Sign Up
+                </Button>
+              </Box>
+            )}
+            {authUser && (
+              <Box
+                sx={{
+                  display: {
+                    xs: 'none',
+                    sm: 'flex',
+                  },
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: '4px',
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 500,
+                    color: theme.palette.primary.dark,
+                    display: { xs: 'none', sm: 'flex' },
+                  }}
+                >
+                  <Avatar
+                    size="small"
+                    sx={{
+                      width: '2rem',
+                      height: '2rem',
+                      marginRight: '10px',
+                      color: theme.palette.primary.main,
+                      backgroundColor: theme.palette.primary.light,
+                    }}
+                  />
+                  {authUser ? `Hello, ${authUser.firstName}!` : 'Hello!'}
+                </Typography>
+
+                <Button
+                  sx={{
+                    color: 'whitesmoke',
+                    fontWeight: 500,
+                    fontSize: theme.typography.h6,
+                    '&:hover': {
+                      backgroundColor: 'inherit',
+                      textDecoration: `underline 2px ${theme.palette.primary.light}`,
+                      textUnderlineOffset: '5px',
+                      color: 'white',
+                    },
+                  }}
+                  component={Link}
+                  to="/logout"
+                  onClick={handleLoggingOut}
+                >
+                  Log out
+                </Button>
+              </Box>
             )}
           </Box>
         </Toolbar>
@@ -317,50 +361,54 @@ const Navbar = ({ DrawerHeader }) => {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem
-            disablePadding
-            sx={{ display: 'block' }}
-            component={Link}
-            to="/login"
-          >
-            <ListItemButton
-              sx={{ px: 2.5, display: { xs: 'flex', sm: 'none' } }}
+          {!authUser && (
+            <ListItem
+              disablePadding
+              sx={{ display: 'block' }}
+              component={Link}
+              to="/login"
             >
-              <ListItemIcon sx={drawerIconStyle}>
-                <LoginOutlinedIcon fontSize="medium" />
-              </ListItemIcon>
-              <ListItemText
-                primary={'Log in'}
-                sx={{ opacity: open ? 1 : 0 }}
-                primaryTypographyProps={{
-                  sx: { fontWeight: 500 },
-                  fontSize: theme.typography.h6,
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-          <ListItem
-            disablePadding
-            sx={{ display: 'block' }}
-            component={Link}
-            to="/signup"
-          >
-            <ListItemButton
-              sx={{ px: 2.5, display: { xs: 'flex', sm: 'none' } }}
+              <ListItemButton
+                sx={{ px: 2.5, display: { xs: 'flex', sm: 'none' } }}
+              >
+                <ListItemIcon sx={drawerIconStyle}>
+                  <LoginOutlinedIcon fontSize="medium" />
+                </ListItemIcon>
+                <ListItemText
+                  primary={'Log in'}
+                  sx={{ opacity: open ? 1 : 0 }}
+                  primaryTypographyProps={{
+                    sx: { fontWeight: 500 },
+                    fontSize: theme.typography.h6,
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
+          )}
+          {!authUser && (
+            <ListItem
+              disablePadding
+              sx={{ display: 'block' }}
+              component={Link}
+              to="/signup"
             >
-              <ListItemIcon sx={drawerIconStyle}>
-                <LockPersonOutlinedIcon fontSize="medium" />
-              </ListItemIcon>
-              <ListItemText
-                primary={'Sign up'}
-                sx={{ opacity: open ? 1 : 0 }}
-                primaryTypographyProps={{
-                  sx: { fontWeight: 500 },
-                  fontSize: theme.typography.h6,
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
+              <ListItemButton
+                sx={{ px: 2.5, display: { xs: 'flex', sm: 'none' } }}
+              >
+                <ListItemIcon sx={drawerIconStyle}>
+                  <LockPersonOutlinedIcon fontSize="medium" />
+                </ListItemIcon>
+                <ListItemText
+                  primary={'Sign up'}
+                  sx={{ opacity: open ? 1 : 0 }}
+                  primaryTypographyProps={{
+                    sx: { fontWeight: 500 },
+                    fontSize: theme.typography.h6,
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
+          )}
         </List>
         {authUser && <Divider />}
         {authUser && (

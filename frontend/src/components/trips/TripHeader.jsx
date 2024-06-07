@@ -1,7 +1,10 @@
 import { Box, Button, Paper, Typography, useTheme } from '@mui/material';
+import { useContext } from 'react';
+import { AuthContext } from '../../utilis/context/AuthContext';
 
 const TripHeader = ({ setOpen }) => {
   const theme = useTheme();
+  const { authUser } = useContext(AuthContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,7 +26,7 @@ const TripHeader = ({ setOpen }) => {
           marginLeft: { xs: '25px', sm: '50px' },
         }}
       >
-        Hello, name!
+        {authUser ? `Hello, ${authUser.firstName}!` : 'Hello!'}
       </Typography>
       <Button
         onClick={handleClickOpen}

@@ -14,40 +14,48 @@ import { createPlace, getFavPlaces } from '../../api/placesAPI';
 import { useContext } from 'react';
 import { ExploreContext } from '../../utilis/context/ExploreContext';
 import { AuthContext } from '../../utilis/context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const PlaceCard = ({ place }) => {
-  const context = useContext(ExploreContext);
-  const { setOpen, setSelectedPlace, setShowAlert } = context;
   const theme = useTheme();
-  const authContext = useContext(AuthContext);
-  const { authUser } = authContext;
+  const { authUser } = useContext(AuthContext);
+  const { setOpen, setSelectedPlace, setShowAlert } =
+    useContext(ExploreContext);
+  const navigate = useNavigate();
 
   // If user click  save place, show add to trip dialog
   const handleAddPlace = () => {
-    setOpen(true);
-    setSelectedPlace(place);
+    if (!authUser) {
+      navigate('/login');
+    } else {
+      setOpen(true);
+      setSelectedPlace(place);
+    }
   };
 
   // If user click add to fav, add it to the favorites places
   const handleAddToFav = async () => {
-    const userId = authUser._id;
-    const body = {
-      name: place.name,
-      address: place.address,
-      img: place.photo.images.original.url,
-      userId: userId,
-      favorite: true,
-    };
-    const getFav = await getFavPlaces(userId);
-    //if place already exists as favorite
-    console.log(getFav);
-    if (getFav.find((p) => p.name === place.name)) {
-      return;
-    }
-    const response = await createPlace(body);
-    if (response) {
-      setShowAlert(true);
-      setTimeout(() => setShowAlert(false), 2000);
+    if (!authUser) {
+      navigate('/login');
+    } else {
+      const userId = authUser._id;
+      const body = {
+        name: place.name,
+        address: place.address,
+        img: place.photo.images.original.url,
+        userId: userId,
+        favorite: true,
+      };
+      const getFav = await getFavPlaces(userId);
+      //if place already exists as favorite
+      if (getFav.find((p) => p.name === place.name)) {
+        return;
+      }
+      const response = await createPlace(body);
+      if (response) {
+        setShowAlert(true);
+        setTimeout(() => setShowAlert(false), 2000);
+      }
     }
   };
   return (

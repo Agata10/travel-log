@@ -15,73 +15,56 @@ import {
   responsiveFontSizes,
   ThemeProvider,
 } from '@mui/material/styles';
-import { AuthContextProvider } from './utilis/context/AuthContext';
 
-let theme = createTheme({
-  typography: {
-    fontFamily: ['Raleway', 'sans-serif'].join(','),
-    h1: {
-      fontSize: '3rem',
-    },
-    h2: {
-      fontSize: '2.5rem',
-    },
-    h3: {
-      fontSize: '2rem',
-    },
-    h4: {
-      fontSize: '1.75rem',
-    },
-    h5: {
-      fontSize: '1.5rem',
-    },
-    h6: {
-      fontSize: '1.25rem',
-    },
-    body1: {
-      fontSize: '1rem',
-    },
-    body2: {
-      fontSize: '0.875rem',
-    },
-  },
-  palette: {
-    secondary: {
-      main: '#cad2c5',
-    },
-    primary: {
-      main: '#52796f',
-      light: '#84a98c',
-      dark: '#354f52',
-    },
-    dark: '#000501',
-  },
-});
+import { AuthContext } from './utilis/context/AuthContext';
+import { themeMaterialUI } from './assets/themeMaterialUI';
+import { useContext } from 'react';
 
+let theme = createTheme(themeMaterialUI);
 theme = responsiveFontSizes(theme);
+
 function App() {
+  const authContext = useContext(AuthContext);
+  const { authUser } = authContext;
+
   return (
     <div className="overflow-x-hidden">
       <ThemeProvider theme={theme}>
-        <AuthContextProvider>
-          <Layout>
-            <TripContextProvider>
-              <ExploreContextProvider>
-                <Routes>
-                  <Route path="/" element={<Homepage />} />
-                  <Route path="/explore" element={<Explore />} />
-                  <Route path="/trips" element={<Trips />} />
-                  <Route path="/trips/trip/:tripId" element={<SingleTrip />} />
-                  <Route path="/favorites" element={<Favorites />} />
-                  <Route path="/profile" element={<Account />} />
-                  <Route path="/logout" element={<Navigate to="/" />} />
-                  <Route path="/login" element={<LogIn />} />
-                  <Route path="/signup" element={<SignUp />} />
-                </Routes>
-              </ExploreContextProvider>
-            </TripContextProvider>
-          </Layout>
-        </AuthContextProvider>
+        <TripContextProvider>
+          <ExploreContextProvider>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/explore" element={<Explore />} />
+                <Route
+                  path="/trips"
+                  element={authUser ? <Trips /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/trips/trip/:tripId"
+                  element={authUser ? <SingleTrip /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/favorites"
+                  element={authUser ? <Favorites /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/profile"
+                  element={authUser ? <Account /> : <Navigate to="/login" />}
+                />
+                <Route path="/logout" element={<Navigate to="/" />} />
+                <Route
+                  path="/login"
+                  element={!authUser ? <LogIn /> : <Navigate to="/" />}
+                />
+                <Route
+                  path="/signup"
+                  element={!authUser ? <SignUp /> : <Navigate to="/" />}
+                />
+              </Routes>
+            </Layout>
+          </ExploreContextProvider>
+        </TripContextProvider>
       </ThemeProvider>
     </div>
   );
