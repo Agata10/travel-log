@@ -17,7 +17,7 @@ import ExpenseCard from './ExpenseCard';
 
 const BudgetDetails = ({ setRefresh, refresh }) => {
   const theme = useTheme();
-  const [openDiv, setOpenDiv] = useState(true);
+  const [openDiv, setOpenDiv] = useState(false);
   const [expenses, setExpenses] = useState(null);
   const context = useContext(TripContext);
   const { sumOfExpenses, trip, setAddBudgetDialog, setAddExpenseDialog } =

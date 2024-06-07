@@ -14,7 +14,7 @@ import { TripContext } from '../../utilis/context/TripContext';
 import { updateTrip } from '../../api/tripsAPI';
 
 const NotesAndBudget = ({ percent }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const tripContext = useContext(TripContext);
   const { trip, setTrip, sumOfExpenses } = tripContext;
   const theme = useTheme();
