@@ -8,15 +8,18 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { getTrips } from '../../api/tripsAPI';
 import { ExploreContext } from '../../utilis/context/ExploreContext';
 import { createPlace } from '../../api/placesAPI';
+import { AuthContext } from '../../utilis/context/AuthContext';
 
 const DialogAddPlaceToTrip = () => {
   const exploreContext = useContext(ExploreContext);
   const { open, setOpen, selectedPlace } = exploreContext;
   const [selectedTrip, setSelectedTrip] = useState('');
   const [options, setOptions] = useState(null);
+  const authContext = useContext(AuthContext);
+  const { authUser } = authContext;
 
   const getTripsData = async () => {
-    const data = await getTrips();
+    const data = await getTrips(authUser._id);
     if (data) {
       setOptions(data);
       setSelectedTrip(data[0]._id);
@@ -39,8 +42,7 @@ const DialogAddPlaceToTrip = () => {
   const addPlaceToTrip = async (body) => {
     await createPlace(body);
   };
-  //NOTE: delete/hide userId later when auth user
-  //disable it for not auth user
+
   return (
     <Dialog
       open={open}

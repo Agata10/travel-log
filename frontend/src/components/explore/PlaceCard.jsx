@@ -13,29 +13,32 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { createPlace, getFavPlaces } from '../../api/placesAPI';
 import { useContext } from 'react';
 import { ExploreContext } from '../../utilis/context/ExploreContext';
+import { AuthContext } from '../../utilis/context/AuthContext';
 
 const PlaceCard = ({ place }) => {
   const context = useContext(ExploreContext);
   const { setOpen, setSelectedPlace, setShowAlert } = context;
   const theme = useTheme();
+  const authContext = useContext(AuthContext);
+  const { authUser } = authContext;
+
   // If user click  save place, show add to trip dialog
-  ///NOTE: delete user Id, make it accessible only for log in user
   const handleAddPlace = () => {
     setOpen(true);
     setSelectedPlace(place);
   };
 
   // If user click add to fav, add it to the favorites places
-  ///NOTE: delete user Id, make it accessible only for log in user
   const handleAddToFav = async () => {
+    const userId = authUser._id;
     const body = {
       name: place.name,
       address: place.address,
       img: place.photo.images.original.url,
-      userId: '6637f3825bfc1879d0f2273d',
+      userId: userId,
       favorite: true,
     };
-    const getFav = await getFavPlaces('6637f3825bfc1879d0f2273d');
+    const getFav = await getFavPlaces(userId);
     //if place already exists as favorite
     console.log(getFav);
     if (getFav.find((p) => p.name === place.name)) {

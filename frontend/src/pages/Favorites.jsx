@@ -4,6 +4,7 @@ import ListOfPlaces from '../components/places_visit_fav/ListOfPlaces';
 import { useContext, useEffect } from 'react';
 import { TripContext } from '../utilis/context/TripContext';
 import { getFavPlaces } from '../api/placesAPI';
+import { AuthContext } from '../utilis/context/AuthContext';
 
 const visitPlaces = false;
 
@@ -11,10 +12,11 @@ const Favorites = () => {
   const theme = useTheme();
   const context = useContext(TripContext);
   const { places, setPlaces } = context;
+  const authContext = useContext(AuthContext);
+  const { authUser } = authContext;
 
-  ///NOTE: delete userId, make it accessible  only for log in user
   const setUpFavPlaces = async () => {
-    const userId = '6637f3825bfc1879d0f2273d';
+    const userId = authUser._id;
     const data = await getFavPlaces(userId);
     if (data) {
       setPlaces(data);
