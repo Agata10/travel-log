@@ -1,17 +1,8 @@
 const User = require('../models/userModel');
 
-module.exports.getAllUsers = async (req, res, next) => {
-  try {
-    const result = await User.find();
-    res.json(result);
-  } catch (err) {
-    next(err);
-  }
-};
-
 module.exports.getUser = async (req, res, next) => {
   try {
-    const result = await User.findById(req.params.id);
+    const result = await User.findById(req._id);
     res.json(result);
   } catch (err) {
     next(err);
