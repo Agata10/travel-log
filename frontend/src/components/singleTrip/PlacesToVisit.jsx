@@ -16,7 +16,9 @@ import { getPlacesToVisit } from '../../api/tripsAPI';
 import { useParams } from 'react-router-dom';
 import { createPlace } from '../../api/placesAPI';
 import { TripContext } from '../../utilis/context/TripContext';
+import { AuthContext } from '../../utilis/context/AuthContext';
 import { fetchImages } from '../../services/imagesAPI';
+
 //to pass that visit places screen, not favorites to listOfPlaces component
 const visitPlaces = true;
 
@@ -25,6 +27,8 @@ const PlacesToVisit = () => {
   const [open, setOpen] = useState(false);
   const context = useContext(TripContext);
   const { places, setPlaces } = context;
+  const authContext = useContext(AuthContext);
+  const { authUser } = authContext;
   const placeRef = useRef();
   const { tripId } = useParams();
 
@@ -45,7 +49,7 @@ const PlacesToVisit = () => {
     const body = {
       name: placeRef.current.value,
       img: image,
-      userId: '6637f3825bfc1879d0f2273d',
+      userId: authUser._id,
       tripId: tripId,
     };
     await createPlace(body);
