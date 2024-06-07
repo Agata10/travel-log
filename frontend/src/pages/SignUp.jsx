@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 import { signup } from '../api/authAPI';
 import { AuthContext } from '../utilis/context/AuthContext';
 import { getUser } from '../api/userAPI';
+import { useNavigate } from 'react-router-dom';
 
 const formData = {
   firstName: '',
@@ -23,9 +24,11 @@ const formData = {
 
 const SignUp = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [form, setForm] = useState(formData);
   const [isError, setIsError] = useState(false);
   const [errorText, setErrorText] = useState('');
+  const [serverError, setServerError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const authContext = useContext(AuthContext);
   const { setAuthUser } = authContext;
@@ -59,12 +62,16 @@ const SignUp = () => {
     if (authAPI && !authAPI.error) {
       const token = authAPI.token;
       localStorage.setItem('token', token);
-      // const user = await getUser();
-      // if (user) {
-      //   setAuthUser(user);
-      // }
+      const user = await getUser();
+      setAuthUser({
+        _id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        token: token,
+      });
+      navigate('/');
     } else {
-      alert(authAPI.error.response.data);
+      setServerError(authAPI.error);
     }
   };
   const handleChange = (e) => {
@@ -188,7 +195,9 @@ const SignUp = () => {
               label="Confirm Password"
             />
           </FormControl>
-
+          <div className="pt-0 pb-4 text-sm text-red-800 font-semibold">
+            {serverError ? serverError : ''}
+          </div>
           <Button
             type="submit"
             variant="contained"
