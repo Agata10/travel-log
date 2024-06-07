@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 8080;
 const configDB = require('./conn');
 configDB();
 
+const requireAuth = require('./middleware/authMiddleware');
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const tripRoutes = require('./routes/tripRoutes');
@@ -28,10 +29,10 @@ app.get('/', (req, res, next) => {
   res.json({ msg: 'Connected to the API' }).status(200);
 });
 
-app.use('/api/users', userRoutes);
-app.use('/api/trips', tripRoutes);
-app.use('/api/expenses', expenseRoutes);
-app.use('/api/places', placeRoutes);
+app.use('/api/users', requireAuth, userRoutes);
+app.use('/api/trips', requireAuth, tripRoutes);
+app.use('/api/expenses', requireAuth, expenseRoutes);
+app.use('/api/places', requireAuth, placeRoutes);
 app.use(authRoutes);
 //error handling
 app.use((err, req, res, next) => {
