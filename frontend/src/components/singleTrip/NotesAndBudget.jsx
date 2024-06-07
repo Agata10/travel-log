@@ -159,13 +159,11 @@ const NotesAndBudget = ({ percent }) => {
                 )}
               </Box>
             </Box>
-            (
             <Typography
               sx={{ cursor: 'default', fontSize: theme.typography.body1 }}
             >
               Budget: {trip.budget}$
             </Typography>
-            )
           </Paper>
         </Box>
       )}

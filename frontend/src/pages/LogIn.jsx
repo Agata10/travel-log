@@ -12,6 +12,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Footer from '../components/Footer';
 import { login } from '../api/authAPI';
 import { AuthContext } from '../utilis/context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const formData = {
   email: '',
@@ -27,6 +28,7 @@ const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const authContext = useContext(AuthContext);
   const { setAuthUser } = authContext;
+  const navigate = useNavigate();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -59,10 +61,7 @@ const LogIn = () => {
       localStorage.setItem('token', token);
       setAuthUser(authAPI);
       setServerError(null);
-      // const user = await getUser();
-      // if (user) {
-      //   setAuthUser(user);
-      // }
+      navigate('/trips');
     } else {
       setServerError(authAPI.error);
     }

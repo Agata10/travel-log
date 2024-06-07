@@ -29,7 +29,9 @@ const Trips = () => {
     }
   };
   useEffect(() => {
-    fetchData();
+    if (authUser) {
+      fetchData();
+    }
     const timeout = setTimeout(() => {
       setIsLoading(false);
     }, 800);
@@ -37,7 +39,7 @@ const Trips = () => {
     () => {
       clearTimeout(timeout);
     };
-  }, [tripAdded]);
+  }, [authUser, tripAdded]);
 
   if (isLoading) {
     return (

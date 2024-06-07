@@ -25,8 +25,10 @@ const Favorites = () => {
 
   //set places to favorites from db when first loaded
   useEffect(() => {
-    setUpFavPlaces();
-  }, []);
+    if (authUser) {
+      setUpFavPlaces();
+    }
+  }, [authUser]);
 
   return (
     <>
