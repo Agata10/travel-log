@@ -196,7 +196,7 @@ const SignUp = () => {
             />
           </FormControl>
           <div className="pt-0 pb-4 text-sm text-red-800 font-semibold">
-            {serverError ? serverError : ''}
+            {serverError === 'User already exists' ? serverError : ''}
           </div>
           <Button
             type="submit"
