@@ -55,7 +55,7 @@ const LogIn = () => {
     const authAPI = await login(form);
 
     if (authAPI && !authAPI.error) {
-      const token = authAPI.data.token;
+      const token = authAPI.token;
       localStorage.setItem('token', token);
       setAuthUser(authAPI);
       setServerError(null);
