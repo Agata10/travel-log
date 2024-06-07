@@ -106,7 +106,7 @@ const Navbar = ({ DrawerHeader }) => {
   };
 
   const handleLoggingOut = () => {
-    //we need remove token from localStorage
+    //remove token from localStorage
     localStorage.removeItem('token');
 
     //set auth user to null

@@ -23,6 +23,7 @@ const LogIn = () => {
   const [form, setForm] = useState(formData);
   const [isError, setIsError] = useState(false);
   const [errorText, setErrorText] = useState('');
+  const [serverError, setServerError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const authContext = useContext(AuthContext);
   const { setAuthUser } = authContext;
@@ -57,12 +58,13 @@ const LogIn = () => {
       const token = authAPI.data.token;
       localStorage.setItem('token', token);
       setAuthUser(authAPI);
+      setServerError(null);
       // const user = await getUser();
       // if (user) {
       //   setAuthUser(user);
       // }
     } else {
-      alert(authAPI.error);
+      setServerError(authAPI.error);
     }
   };
   const handleChange = (e) => {
@@ -111,7 +113,7 @@ const LogIn = () => {
             onChange={handleChange}
           />
           <FormControl
-            sx={{ ...inputStyle, m: 1, width: '25ch' }}
+            sx={{ ...inputStyle, mt: 1, width: '25ch' }}
             variant="outlined"
             required
           >
@@ -137,7 +139,9 @@ const LogIn = () => {
               label="Password"
             />
           </FormControl>
-
+          <div className="pt-0 pb-4 text-sm text-red-800 font-semibold">
+            {serverError ? serverError : ''}
+          </div>
           <Button
             type="submit"
             variant="contained"
