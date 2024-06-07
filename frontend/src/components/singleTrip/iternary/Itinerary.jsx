@@ -48,7 +48,7 @@ const Itinerary = () => {
   }, [places]);
 
   return (
-    <Grid container pt={4} sx={{ width: '100%' }}>
+    <Grid container pt={open ? 4 : 2} sx={{ width: '100%' }}>
       <Grid
         item
         sx={{

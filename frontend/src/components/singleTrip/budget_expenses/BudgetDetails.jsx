@@ -49,7 +49,7 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
   }, [refresh, trip]);
 
   return (
-    <Grid container pt={3} pb={3} sx={{ width: '100%' }}>
+    <Grid container pt={openDiv ? 4 : 2} pb={3} sx={{ width: '100%' }}>
       <Grid
         item
         sx={{
