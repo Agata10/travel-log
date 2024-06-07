@@ -7,7 +7,7 @@ export const signup = async (body) => {
     if (response.status !== 200) {
       throw new Error('Invalid request');
     }
-    return response;
+    return response.data;
   } catch (err) {
     console.error(err);
     return { error: err.response.data.error };
@@ -20,7 +20,7 @@ export const login = async (body) => {
     if (response.status !== 200) {
       throw new Error('Invalid request');
     }
-    return response;
+    return response.data;
   } catch (err) {
     console.error(err);
     return { error: err.response.data.error };
