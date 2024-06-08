@@ -18,6 +18,7 @@ import { createPlace } from '../../api/placesAPI';
 import { TripContext } from '../../utilis/context/TripContext';
 import { AuthContext } from '../../utilis/context/AuthContext';
 import { fetchImages } from '../../services/imagesAPI';
+import { uploadImg } from '../../services/cloudinaryAPI';
 
 //to pass that visit places screen, not favorites to listOfPlaces component
 const visitPlaces = true;
@@ -46,9 +47,11 @@ const PlacesToVisit = () => {
   //NOTE, hide userID
   const handleAddPlace = async () => {
     const image = await fetchImages(placeRef.current.value);
+    const cloudImg = await uploadImg(image);
+
     const body = {
       name: placeRef.current.value,
-      img: image,
+      img: cloudImg,
       userId: authUser._id,
       tripId: tripId,
     };

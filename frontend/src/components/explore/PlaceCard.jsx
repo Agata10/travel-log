@@ -15,6 +15,7 @@ import { useContext } from 'react';
 import { ExploreContext } from '../../utilis/context/ExploreContext';
 import { AuthContext } from '../../utilis/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { uploadImg } from '../../services/cloudinaryAPI';
 
 const PlaceCard = ({ place }) => {
   const theme = useTheme();
@@ -39,10 +40,11 @@ const PlaceCard = ({ place }) => {
       navigate('/login');
     } else {
       const userId = authUser._id;
+      const cloudImg = await uploadImg(place.photo.images.original.url);
       const body = {
         name: place.name,
         address: place.address,
-        img: place.photo.images.original.url,
+        img: cloudImg,
         userId: userId,
         favorite: true,
       };

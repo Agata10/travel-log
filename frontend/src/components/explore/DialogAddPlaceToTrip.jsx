@@ -9,6 +9,7 @@ import { getTrips } from '../../api/tripsAPI';
 import { ExploreContext } from '../../utilis/context/ExploreContext';
 import { createPlace } from '../../api/placesAPI';
 import { AuthContext } from '../../utilis/context/AuthContext';
+import { uploadImg } from '../../services/cloudinaryAPI';
 
 const DialogAddPlaceToTrip = () => {
   const exploreContext = useContext(ExploreContext);
@@ -51,9 +52,14 @@ const DialogAddPlaceToTrip = () => {
         component: 'form',
         onSubmit: async (event) => {
           event.preventDefault();
+
+          const cloudImg = await uploadImg(
+            selectedPlace.photo.images.original.url
+          );
+
           const body = {
             name: selectedPlace.name,
-            img: selectedPlace.photo.images.original.url,
+            img: cloudImg,
             address: selectedPlace.address,
             tripId: selectedTrip,
             userId: authUser._id,
