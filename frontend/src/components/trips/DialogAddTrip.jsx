@@ -14,6 +14,8 @@ import dayjs from 'dayjs';
 import { createTrip } from '../../api/tripsAPI';
 import { fetchImages } from '../../services/imagesAPI';
 import { AuthContext } from '../../utilis/context/AuthContext';
+import { uploadImg } from '../../services/cloudinaryAPI';
+import { convertURLtoBlob } from '../../services/imagesAPI';
 
 const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
   const nameRef = useRef();
@@ -48,10 +50,16 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
             setError('');
           }
           let image = '';
-          const response = await fetchImages(nameRef.current.value);
-          if (response) {
-            image = response;
+          const imgUrl = await fetchImages(nameRef.current.value);
+          if (imgUrl) {
+            const imageBlob = await convertURLtoBlob(imgUrl);
+            if (imageBlob) {
+              const uploadToCloud = await uploadImg(imageBlob);
+              image = uploadToCloud;
+            }
           }
+
+          console.log(image);
           const body = {
             userId: authUser._id,
             name: nameRef.current.value,

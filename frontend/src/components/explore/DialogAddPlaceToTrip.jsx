@@ -56,7 +56,7 @@ const DialogAddPlaceToTrip = () => {
             img: selectedPlace.photo.images.original.url,
             address: selectedPlace.address,
             tripId: selectedTrip,
-            userId: '6637f3825bfc1879d0f2273d',
+            userId: authUser._id,
           };
           addPlaceToTrip(body);
           handleClose();
