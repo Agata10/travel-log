@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState, useRef } from 'react';
 import SingleTripHeader from '../components/singleTrip/SingleTripHeader';
 import { Box } from '@mui/material';
 import { getSingleTrip } from '../api/tripsAPI';
@@ -19,6 +19,13 @@ const SingleTrip = () => {
   const { trip, setTrip, setSumOfExpeneses } = tripContext;
   const { tripId } = useParams();
   const [percent, setPercent] = useState(0);
+  const boxRef = useRef(null);
+  const [openDiv, setOpenDiv] = useState(false);
+
+  const scrollToBox = () => {
+    boxRef.current.scrollIntoView({ behavior: 'smooth' });
+    setOpenDiv(true);
+  };
 
   const fetchData = async () => {
     const tripResponse = await getSingleTrip(tripId);
@@ -67,10 +74,20 @@ const SingleTrip = () => {
           <DialogAddExpense setRefresh={setRefresh} />
           <SingleTripHeader setRefresh={setRefresh} />
           <Box className="w-10/12 md:w-8/12 flex flex-col">
-            <NotesAndBudget percent={percent} />
+            <NotesAndBudget
+              percent={percent}
+              scrollToBox={scrollToBox}
+              setOpenDiv={setOpenDiv}
+            />
             <PlacesToVisit />
             <Itinerary />
-            <BudgetDetails refresh={refresh} setRefresh={setRefresh} />
+            <BudgetDetails
+              refresh={refresh}
+              setRefresh={setRefresh}
+              boxRef={boxRef}
+              openDiv={openDiv}
+              setOpenDiv={setOpenDiv}
+            />
           </Box>
         </Box>
       )}

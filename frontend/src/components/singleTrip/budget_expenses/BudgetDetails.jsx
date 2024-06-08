@@ -15,9 +15,14 @@ import { TripContext } from '../../../utilis/context/TripContext';
 import { getTripExpenses } from '../../../api/tripsAPI';
 import ExpenseCard from './ExpenseCard';
 
-const BudgetDetails = ({ setRefresh, refresh }) => {
+const BudgetDetails = ({
+  setRefresh,
+  refresh,
+  boxRef,
+  openDiv,
+  setOpenDiv,
+}) => {
   const theme = useTheme();
-  const [openDiv, setOpenDiv] = useState(false);
   const [expenses, setExpenses] = useState(null);
   const context = useContext(TripContext);
   const { sumOfExpenses, trip, setAddBudgetDialog, setAddExpenseDialog } =
@@ -58,7 +63,7 @@ const BudgetDetails = ({ setRefresh, refresh }) => {
         }}
         textAlign={'center'}
       >
-        <Box className="flex mb-2 space-between w-full">
+        <Box className="flex mb-2 space-between w-full" ref={boxRef}>
           <Typography
             variant="h5"
             sx={{

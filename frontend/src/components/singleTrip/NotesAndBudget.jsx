@@ -13,7 +13,7 @@ import { useRef, useState, useContext } from 'react';
 import { TripContext } from '../../utilis/context/TripContext';
 import { updateTrip } from '../../api/tripsAPI';
 
-const NotesAndBudget = ({ percent }) => {
+const NotesAndBudget = ({ percent, scrollToBox }) => {
   const [open, setOpen] = useState(false);
   const tripContext = useContext(TripContext);
   const { trip, setTrip, sumOfExpenses } = tripContext;
@@ -67,7 +67,12 @@ const NotesAndBudget = ({ percent }) => {
           >
             Budget
           </Typography>
-          <Button size="small" sx={btnStyle} variant="standard">
+          <Button
+            size="small"
+            sx={btnStyle}
+            variant="standard"
+            onClick={scrollToBox}
+          >
             Show details
           </Button>
         </Box>
