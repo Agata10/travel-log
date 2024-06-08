@@ -12,15 +12,3 @@ export const fetchImages = async (place) => {
     console.log(err);
   }
 };
-
-// Download image as Blob
-export const convertURLtoBlob = async (url) => {
-  try {
-    const response = await axios.get(url, { responseType: 'blob' });
-    console.log(response.data);
-    return response.data;
-  } catch (err) {
-    console.error(err);
-    return null;
-  }
-};

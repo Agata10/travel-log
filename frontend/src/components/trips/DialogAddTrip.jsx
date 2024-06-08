@@ -15,7 +15,6 @@ import { createTrip } from '../../api/tripsAPI';
 import { fetchImages } from '../../services/imagesAPI';
 import { AuthContext } from '../../utilis/context/AuthContext';
 import { uploadImg } from '../../services/cloudinaryAPI';
-import { convertURLtoBlob } from '../../services/imagesAPI';
 
 const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
   const nameRef = useRef();
@@ -52,14 +51,10 @@ const DialogAddTrip = ({ open, setOpen, setTripAdded }) => {
           let image = '';
           const imgUrl = await fetchImages(nameRef.current.value);
           if (imgUrl) {
-            const imageBlob = await convertURLtoBlob(imgUrl);
-            if (imageBlob) {
-              const uploadToCloud = await uploadImg(imageBlob);
-              image = uploadToCloud;
-            }
+            const uploadToCloud = await uploadImg(imgUrl);
+            image = uploadToCloud;
           }
 
-          console.log(image);
           const body = {
             userId: authUser._id,
             name: nameRef.current.value,
