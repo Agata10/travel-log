@@ -1,4 +1,11 @@
-import { Box, Container, Typography, useTheme } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import { Button, TextField } from '@mui/material';
 import { useState, useContext } from 'react';
 import IconButton from '@mui/material/IconButton';
@@ -14,6 +21,7 @@ import { login } from '../api/authAPI';
 import { AuthContext } from '../utilis/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { getUser } from '../api/userAPI';
+import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 
 const formData = {
   email: '',
@@ -30,6 +38,7 @@ const LogIn = () => {
   const authContext = useContext(AuthContext);
   const { setAuthUser } = authContext;
   const navigate = useNavigate();
+  const isBigScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -56,7 +65,10 @@ const LogIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const authAPI = await login(form);
-    console.log(authAPI);
+    if (form.email.length === 0 || form.password.length === 0) {
+      setServerError('Please fill out all fields.');
+      return;
+    }
     if (authAPI && !authAPI.error) {
       const token = authAPI.token;
       localStorage.setItem('token', token);
@@ -90,21 +102,28 @@ const LogIn = () => {
           paddingTop: 4,
         }}
       >
-        <Typography variant="h6" gutterBottom>
-          Log In
+        <Avatar
+          sx={{
+            color: theme.palette.primary.dark,
+            backgroundColor: theme.palette.primary.light,
+          }}
+        />
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ fontWeight: 500, color: theme.palette.primary.dark }}
+        >
+          Log in
         </Typography>
-        <Box
+        <ValidatorForm
           component="form"
           onSubmit={handleSubmit}
           autoComplete="off"
           noValidate
-          sx={{
+          style={{
+            width: isBigScreen ? '30%' : '60%',
             display: 'flex',
             flexDirection: 'column',
-            width: '30%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginBottom: '20px',
           }}
         >
           <TextField
@@ -112,53 +131,64 @@ const LogIn = () => {
             variant="outlined"
             type="email"
             name="email"
-            sx={inputStyle}
+            sx={{ ...inputStyle, margin: '20px auto' }}
             error={isError ? true : false}
             helperText={isError ? errorText : ''}
             required
+            fullWidth
             value={form.email}
             onChange={handleChange}
           />
           <FormControl
-            sx={{ ...inputStyle, mt: 1, width: '25ch' }}
+            sx={{ ...inputStyle, width: '100%' }}
             variant="outlined"
             required
           >
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <OutlinedInput
+            <TextValidator
               id="password"
               name="password"
               type={showPassword ? 'text' : 'password'}
               value={form.password}
               onChange={handleChange}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                    sx={{ color: theme.palette.primary.main }}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
+              sx={{
+                ...inputStyle,
+                width: '100%',
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                      sx={{ color: theme.palette.primary.main }}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
               label="Password"
             />
           </FormControl>
-          <div className="pt-0 pb-4 text-sm text-red-800 font-semibold">
+          <div className="pt-1 pb-4 text-sm text-red-800 font-semibold text-center">
             {serverError ? serverError : ''}
           </div>
           <Button
             type="submit"
             variant="contained"
             size="medium"
-            sx={{ fontSize: theme.typography.body1, fontWeight: 500 }}
+            sx={{
+              fontSize: theme.typography.body1,
+              fontWeight: 500,
+              width: { xs: '50%', sm: '35%' },
+              margin: '5px auto',
+            }}
             endIcon={<KeyboardArrowRightIcon />}
           >
             Log in
           </Button>
-        </Box>
+        </ValidatorForm>
       </Container>
       <Footer />
     </>

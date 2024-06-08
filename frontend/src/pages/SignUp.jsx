@@ -37,7 +37,7 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const authContext = useContext(AuthContext);
   const { setAuthUser } = authContext;
-  const isSmallScreen = useMediaQuery(theme.breakpoints.up('md'));
+  const isBigScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -127,7 +127,7 @@ const SignUp = () => {
           noValidate
           autoComplete="off"
           style={{
-            width: isSmallScreen ? '30%' : '60%',
+            width: isBigScreen ? '30%' : '60%',
             display: 'flex',
             flexDirection: 'column',
           }}
