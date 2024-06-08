@@ -18,7 +18,7 @@ import bg from '../../assets/images/trip.jpg';
 const changeDate = (string) => {
   const date = new Date(string);
   const day = String(date.getDate()).padStart(2, '0');
-  const month = date.toLocaleString('default', { month: 'long' });
+  const month = date.toLocaleString('default', { month: 'short' });
   const year = date.getFullYear();
 
   return `${day} ${month} ${year}`;
@@ -69,7 +69,7 @@ const TripCard = ({ trip, setTripAdded }) => {
       elevation={2}
       id={trip._id}
       sx={{
-        width: { xs: 200, md: 250 },
+        width: { xs: 220, sm: 250 },
         minHeight: 270,
         maxHeight: 300,
         borderRadius: '12px',
