@@ -106,9 +106,9 @@ Token contains three parts:
 6. In browser `http://localhost:8080/` or `http://localhost:3000/`
 
 ## Screenshots
-1. For better project managment I used Jira to track sprints.
+1. For better project managment I used Jira to track sprints and project progress/issues.
     <img src="./screenshots/jira.png" width="800" height="500">
-2. Wireframes created using Figma
+2. Wireframe created using Figma
     <img src="./screenshots/wireframe.png" width="800" height="500">
 3. Homepage
     <img src="./screenshots/home.png" width="800" height="500">
