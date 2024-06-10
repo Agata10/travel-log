@@ -7,7 +7,14 @@ export const fetchImages = async (place) => {
         import.meta.env.VITE_PHOTOS_API_KEY
       }`
     );
-    return response.data.results[2].urls.regular;
+    const images = response.data.results;
+    if (images.length > 0) {
+      const randomIndex = Math.floor(Math.random() * images.length);
+      const imageUrl = images[randomIndex].urls.regular;
+      return imageUrl;
+    } else {
+      return response.data.results[1].urls.regular;
+    }
   } catch (err) {
     console.log(err);
   }

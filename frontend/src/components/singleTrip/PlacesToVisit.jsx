@@ -44,7 +44,6 @@ const PlacesToVisit = () => {
     fetchPlacesToVisit();
   }, []);
 
-  //NOTE, hide userID
   const handleAddPlace = async () => {
     const image = await fetchImages(placeRef.current.value);
     const cloudImg = await uploadImg(image);

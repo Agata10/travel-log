@@ -28,8 +28,6 @@ const formData = {
 const LogIn = () => {
   const theme = useTheme();
   const [form, setForm] = useState(formData);
-  const [isError, setIsError] = useState(false);
-  const [errorText, setErrorText] = useState('');
   const [serverError, setServerError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const authContext = useContext(AuthContext);
@@ -178,7 +176,6 @@ const LogIn = () => {
             sx={{
               fontSize: theme.typography.body1,
               fontWeight: 500,
-              width: { xs: '50%', sm: '35%' },
               margin: '5px auto',
             }}
             endIcon={<KeyboardArrowRightIcon />}

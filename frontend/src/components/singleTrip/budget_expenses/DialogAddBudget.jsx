@@ -22,8 +22,7 @@ const DialogAddBudget = ({ setRefresh }) => {
   const addBudgetToTrip = async () => {
     await updateTrip(trip._id, { budget: budgetRef.current.value });
   };
-  //NOTE: delete/hide userId later when auth user
-  //disable it for not auth user
+
   return (
     <Dialog
       open={addBudgetDialog}

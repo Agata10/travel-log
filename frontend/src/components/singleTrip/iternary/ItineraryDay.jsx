@@ -14,7 +14,6 @@ import { useEffect, useState } from 'react';
 import { updatePlace } from '../../../api/placesAPI';
 import { getPlacesByDate } from '../../../api/tripsAPI';
 import DeleteOutlineOutlined from '@mui/icons-material/DeleteOutlineOutlined';
-import dayjs from 'dayjs';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useTheme } from '@mui/material';
@@ -26,7 +25,7 @@ const ItineraryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
 
   useEffect(() => {
     const getPlacesByDay = async () => {
-      const response = await getPlacesByDate(dayjs(day), trip._id);
+      const response = await getPlacesByDate(day, trip._id);
       if (response) {
         setDayPlaces(response);
       }

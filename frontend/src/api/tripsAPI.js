@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_PROD_URL;
 
 //get all trips
 export const getTrips = async (userId) => {
@@ -120,6 +120,7 @@ export const getPlacesByDate = async (date, tripId) => {
       `${BASE_URL}/trips/${tripId}/places/${date}`,
       { headers }
     );
+    console.log(place.data);
     return place.data;
   } catch (error) {
     console.error(error.message);

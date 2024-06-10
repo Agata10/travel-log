@@ -33,7 +33,6 @@ const VisitPlacesCard = ({ index, place, setPlaces, visitPlaces }) => {
     if (tripId) {
       setPlaces(await getPlacesToVisit(tripId));
     } else {
-      //make sure that if fav place page there is not tripId
       const userId = authUser?._id;
       setPlaces(await getFavPlaces(userId));
     }

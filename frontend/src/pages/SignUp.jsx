@@ -69,13 +69,15 @@ const SignUp = () => {
       const token = authAPI.token;
       localStorage.setItem('token', token);
       const user = await getUser();
-      setAuthUser({
-        _id: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        token: token,
-      });
-      navigate('/');
+      if (user) {
+        setAuthUser({
+          _id: user._id,
+          email: user.email,
+          firstName: user.firstName,
+          token: token,
+        });
+        navigate('/');
+      }
     } else {
       setServerError(authAPI.error);
     }

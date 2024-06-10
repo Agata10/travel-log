@@ -4,7 +4,7 @@ const Footer = () => {
   const theme = useTheme();
   return (
     <Box
-      className="flex justify-center w-full items-center mt-auto py-4 absolute bottom-0"
+      className="flex justify-center w-full items-center mt-auto py-4 absolute bottom-0 -z-10"
       sx={{
         fontFamily: theme.typography.fontFamily,
         fontWeight: 500,
