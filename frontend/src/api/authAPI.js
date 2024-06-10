@@ -1,9 +1,8 @@
 import axios from 'axios';
-// const BASE_URL = import.meta.env.DEV
-//   ? import.meta.env.VITE_AUTH_URL
-//   : import.meta.env.VITE_PROD_URL;
+const BASE_URL = import.meta.env.DEV
+  ? import.meta.env.VITE_AUTH_URL
+  : import.meta.env.VITE_AUTH_PROD_URL;
 
-const BASE_URL = import.meta.env.VITE_AUTH_PROD_URL;
 export const signup = async (body) => {
   try {
     const response = await axios.post(`${BASE_URL}/signup`, body);

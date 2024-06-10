@@ -1,5 +1,7 @@
 import axios from 'axios';
-const BASE_URL = import.meta.env.VITE_BASE_PROD_URL;
+const BASE_URL = import.meta.env.DEV
+  ? import.meta.env.VITE_BASE_URL
+  : import.meta.env.VITE_BASE_PROD_URL;
 
 //get user
 export const getUser = async () => {
