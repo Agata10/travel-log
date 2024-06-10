@@ -35,33 +35,40 @@ Application for tracking your trips in one place, add trips, places, your favour
 1. Clone the project `git clone https://link-to-project`
 2. Go to the project directory `cd backend`
 3. Install packages `npm install`
-4. Create `.env` file and include your `ATLAS_URI`, optionally incluce `PORT`, `SALT_ROUNDS`, and `JWT_SECRET`.
+4. Create `.env` file and include your `ATLAS_URI`, optionally include `PORT`, `SALT_ROUNDS`, and `JWT_SECRET`.
 5. Run with node.js `nodemon server`
-   - or `npm run dev`
-6. In browser `http://localhost:3000/`
+   - or `node server`
+6. In browser `http://localhost:8080/` or `http://localhost:3000/`
 
 ## API routes
 
 - **GET** / -- Logging connection to API.
-  - **GET** /api/users/ -- Get user with given id.
+
+  - **GET** /api/users -- Get user with given id.
   - **PUT** /api/users/:id -- Update user with given id.
   - **DELETE** /api/users/:id -- Detele user with given id.
-  - **GET** /api/trips/:userId -- Get all trips for specific user.
+
+  - **POST** /api/trips -- Create a trip.
+
     - **GET** /api/trips/trip/:tripId -- Get single trip.
-    - **POST** /api/trips -- Create a trip.
+    - **GET** /api/trips/:userId -- Get all trips for specific user.
     - **PUT** /api/trips/:id -- Update the trip with given id.
     - **DELETE** /api/posts/:id -- Delete the trip with given id.
       - **GET** /api/trips/:id/expenses -- Get all expenses for given trip.
       - **GET** /api/trips/:id/places -- Get all places for given trip.
       - **GET** /api/trips/:id/places/:date -- Get all places for a given itinerary day.
+
   - **POST** /api/places -- Create a place.
+
     - **PUT** /api/places/:id -- Update the place.
     - **DELETE** /api/places/:id -- Delete the place.
       - **PUT** /api/places/:id/favorites -- Update the favorite property for the place.
-      - **GET** /api/places/favorites -- Get favorites places.
-      - **GET** /api/places/:date/ -- Get place with given date.
-  - **POST** /api/expenses/ -- Create expense.
+      - **GET** /api/places/favorites/:userId -- Get favorites places for specific user.
+
+  - **POST** /api/expenses -- Create expense.
+
     - **PUT** /api/expenses/:id -- Update expense.
     - **DELETE** /api/expenses/:id -- Delete expense.
+
   - **POST** /login -- Login an exisiting user.
   - **POST** /signup -- Create a new user.
