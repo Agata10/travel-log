@@ -11,7 +11,6 @@ Application for tracking your trips in one place, add trips, places, your favour
  [Challenges](#challenges)
      [Future app possibilities](#possibilities)
   [What I learned](#what-i-learned)
-
  [Screenshots](#screenshots)
  [Run Locally](#run-locally)
  [API routes](#api-routes)
@@ -24,6 +23,8 @@ The application allows user to track their trips in one place. The can add place
 Frontend part was created using Vite and React. I used many packages that are listed below for better user experience. I styled application with Materail UI, Tailwind CSS and CSS.
 <br/>
 Backend was created using Express.js. I used jwt token for the user authentication and personal data security, bcrypt for hashing the user password.
+<br/>
+For UI/UX design I used Figma to create wireframes. What is more, I managed my project using Jira Software that allowed me to track my sprints, add issues and track overall progress of my project.
 
 ## Technologies
 
@@ -80,7 +81,6 @@ The application can have some improvements like:
 1. How to use reference to other documents in mongoose Schema.
 2. How to use JWT token:
 Token contains three parts:
-<br>
 
 `Header` - which contains type of token and the siging version of algorithm used.
 <br>
@@ -104,6 +104,12 @@ Token contains three parts:
 4. Create `.env` file and include your `ATLAS_URI`, optionally include `PORT`, `SALT_ROUNDS`, and `JWT_SECRET`. Do step from 2 to 4 for frontend(step 4 has different env variables).
 5. Run with node.js `nodemon server` or `node server`(in backend folder). Run `npm run dev` (in frontend)
 6. In browser `http://localhost:8080/` or `http://localhost:3000/`
+
+## Screenshots
+1. For better project managment I used Jira to track sprints.
+1. Wireframes created using Figma
+2. Homepage
+3. Trips page
 
 ## Database
 
