@@ -3,7 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { useEffect, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { InputAdornment, useTheme } from '@mui/material';
-import { fetchAutocompletePlaces } from '../../services/mapAPI';
+import { fetchAutocompletePlaces } from '../../../src/services/mapAPI';
 
 const SearchBar = ({ setPosition }) => {
   const [options, setOptions] = useState([]);
