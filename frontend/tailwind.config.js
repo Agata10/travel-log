@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'trips-bg': "url('./src/assets/images/trips-background.jpg')",
+        'trips-bg': "url('../src/assets/images/trips-background.jpg')",
       },
       fontFamily: {
         logo: ['Caveat', 'cursive'],
