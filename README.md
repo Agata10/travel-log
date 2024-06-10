@@ -4,14 +4,14 @@ Application for tracking your trips in one place, add trips, places, your favour
 
 ## Table of Contents
 
-  | Backend documentation |   Frontend documentation |
-  |:-----| :-----|
-  |  [About](#about) |    [About](#about) |
-  |  [Technologies](#technologies) |    [Technologies](#technologies) |
-  |  [Database](#database) |  [Run Locally](#run-locally) |
-  | [Run Locally](#run-locally) |   [Challenges](#challenges) |
-  | [API routes](#api-routes) |    [Future app possibilities](#possibilities) |
-  | [What I learned](#what-i-learned) |    [Screenshots](#screenshots) |
+| Backend documentation             | Frontend documentation                     |
+| :-------------------------------- | :----------------------------------------- |
+| [About](#about)                   | [About](#about)                            |
+| [Technologies](#technologies)     | [Technologies](#technologies)              |
+| [Database](#database)             | [Run Locally](#run-locally)                |
+| [Run Locally](#run-locally)       | [Challenges](#challenges)                  |
+| [API routes](#api-routes)         | [Future app possibilities](#possibilities) |
+| [What I learned](#what-i-learned) | [Screenshots](#screenshots)                |
 
 ## About
 
@@ -43,16 +43,17 @@ Application for tracking your trips in one place, add trips, places, your favour
 ## API routes
 
 - **GET** / -- Logging connection to API.
-  - **GET** /api/users -- Get all users.
-    - **GET** /api/users/:id -- Get user with given id.
-    - **PUT** /api/users/:id -- Update user with given id.
-    - **DELETE** /api/users/:id -- Detele user with given id.
-  - **GET** /api/trips/:userId -- Get all trips for specific. user.
+  - **GET** /api/users/ -- Get user with given id.
+  - **PUT** /api/users/:id -- Update user with given id.
+  - **DELETE** /api/users/:id -- Detele user with given id.
+  - **GET** /api/trips/:userId -- Get all trips for specific user.
+    - **GET** /api/trips/trip/:tripId -- Get single trip.
     - **POST** /api/trips -- Create a trip.
-    - **PUT** /api/tirps/:id -- Update the trip with given id.
+    - **PUT** /api/trips/:id -- Update the trip with given id.
     - **DELETE** /api/posts/:id -- Delete the trip with given id.
       - **GET** /api/trips/:id/expenses -- Get all expenses for given trip.
       - **GET** /api/trips/:id/places -- Get all places for given trip.
+      - **GET** /api/trips/:id/places/:date -- Get all places for a given itinerary day.
   - **POST** /api/places -- Create a place.
     - **PUT** /api/places/:id -- Update the place.
     - **DELETE** /api/places/:id -- Delete the place.
