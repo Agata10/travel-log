@@ -27,7 +27,6 @@ const PasswordChange = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { authUser } = useContext(AuthContext);
   const [success, setSuccess] = useState(false);
-  const isBigScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
