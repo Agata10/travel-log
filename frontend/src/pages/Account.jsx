@@ -7,7 +7,7 @@ import { AuthContext } from '../utilis/context/AuthContext';
 import { getUser, updateUser } from '../api/userAPI';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { useNavigate } from 'react-router-dom';
-import DialogDeleteAccount from '../components/accountSettings/DialogDeleteAccount';
+import DialogDeleteProfile from '../components/accountSettings/DialogDeleteProfile';
 
 const Account = () => {
   const theme = useTheme();
@@ -98,7 +98,7 @@ const Account = () => {
 
   return (
     <>
-      {open && <DialogDeleteAccount setOpen={setOpen} />}
+      {open && <DialogDeleteProfile setOpen={setOpen} />}
       <Box
         sx={{
           display: 'flex',

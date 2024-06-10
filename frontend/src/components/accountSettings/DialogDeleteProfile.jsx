@@ -6,7 +6,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { AuthContext } from '../../utilis/context/AuthContext';
 import { deleteUser } from '../../api/userAPI';
 
-const DialogDeleteAccount = ({ setOpen }) => {
+const DialogDeleteProfile = ({ setOpen }) => {
   const { authUser, setAuthUser } = useContext(AuthContext);
 
   const handleClose = () => {
@@ -51,4 +51,4 @@ const DialogDeleteAccount = ({ setOpen }) => {
   );
 };
 
-export default DialogDeleteAccount;
+export default DialogDeleteProfile;
