@@ -1,18 +1,13 @@
-import {
-  Avatar,
-  Box,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Avatar, Box, Typography, useTheme } from '@mui/material';
 import { Button } from '@mui/material';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Footer from '../components/Footer';
 import { AuthContext } from '../utilis/context/AuthContext';
 import { getUser, updateUser } from '../api/userAPI';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { useNavigate } from 'react-router-dom';
+import DialogDeleteAccount from '../components/accountSettings/DialogDeleteAccount';
 
 const Account = () => {
   const theme = useTheme();
@@ -22,7 +17,7 @@ const Account = () => {
   const authContext = useContext(AuthContext);
   const { setAuthUser, authUser } = authContext;
   const [success, setSuccess] = useState(false);
-  const isBigScreen = useMediaQuery(theme.breakpoints.up('md'));
+  const [open, setOpen] = useState(false);
 
   const getUserData = async () => {
     const user = await getUser();
@@ -92,7 +87,9 @@ const Account = () => {
     }, 3000);
   };
 
-  const handleDelete = async () => {};
+  const handleDelete = async () => {
+    setOpen(true);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -101,6 +98,7 @@ const Account = () => {
 
   return (
     <>
+      {open && <DialogDeleteAccount setOpen={setOpen} />}
       <Box
         sx={{
           display: 'flex',
@@ -126,13 +124,47 @@ const Account = () => {
         >
           Edit Profile
         </Typography>
+        <div className="flex justify-between gap-4 pb-8">
+          <Button
+            onClick={() =>
+              navigate('/profile/password', { password: form.password })
+            }
+            type="button"
+            variant="contained"
+            size="small"
+            sx={{
+              fontSize: theme.typography.body2,
+              fontWeight: 500,
+              padding: '8px 5px',
+              margin: '0px auto',
+            }}
+          >
+            Change password
+          </Button>
+          <Button
+            type="button"
+            onClick={handleDelete}
+            variant="contained"
+            size="small"
+            sx={{
+              fontSize: theme.typography.body2,
+              fontWeight: 500,
+              padding: '8px 5px',
+              margin: '0px auto',
+              backgroundColor: '#65000B',
+              '&:hover': { backgroundColor: '#D21404' },
+            }}
+          >
+            Delete account
+          </Button>
+        </div>
         <ValidatorForm
           component="form"
           onSubmit={handleSubmit}
           noValidate
           autoComplete="off"
           style={{
-            width: isBigScreen ? '30%' : '60%',
+            width: '300px',
             display: 'flex',
             flexDirection: 'column',
           }}
@@ -194,45 +226,13 @@ const Account = () => {
               variant="contained"
               size="medium"
               sx={{
-                fontSize: theme.typography.body1,
+                fontSize: theme.typography.body2,
                 fontWeight: 500,
-                width: { xs: '50%', sm: '25%' },
                 margin: '10px auto',
               }}
               endIcon={<KeyboardArrowRightIcon />}
             >
               Save
-            </Button>
-            <Button
-              onClick={() =>
-                navigate('/profile/password', { password: form.password })
-              }
-              type="button"
-              variant="contained"
-              size="medium"
-              sx={{
-                fontSize: theme.typography.body1,
-                fontWeight: 500,
-                margin: '10px auto',
-              }}
-              endIcon={<KeyboardArrowRightIcon />}
-            >
-              Change password
-            </Button>
-            <Button
-              type="button"
-              onClick={handleDelete}
-              variant="contained"
-              size="medium"
-              sx={{
-                fontSize: theme.typography.body1,
-                fontWeight: 500,
-                margin: '10px auto',
-                backgroundColor: '#65000B',
-              }}
-              endIcon={<KeyboardArrowRightIcon />}
-            >
-              Delete account
             </Button>
           </Box>
         </ValidatorForm>
