@@ -92,7 +92,6 @@ const LogIn = () => {
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
-          height: '90vh',
           alignItems: ' center',
           paddingTop: 4,
         }}
@@ -127,8 +126,6 @@ const LogIn = () => {
             type="email"
             name="email"
             sx={{ ...inputStyle, margin: '20px auto' }}
-            error={isError ? true : false}
-            helperText={isError ? errorText : ''}
             required
             fullWidth
             value={form.email}

@@ -94,7 +94,6 @@ const PasswordChange = () => {
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
-          height: '100vh',
           alignItems: ' center',
           paddingTop: 4,
           overflow: 'auto',
