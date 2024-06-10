@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   Container,
   Typography,
   useMediaQuery,
@@ -9,8 +8,6 @@ import {
 import { Button, TextField } from '@mui/material';
 import { useState, useContext } from 'react';
 import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';

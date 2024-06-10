@@ -6,7 +6,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { Button } from '@mui/material';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
@@ -15,13 +15,11 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Footer from '../Footer';
 import { AuthContext } from '../../utilis/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { updateUser } from '../../api/userAPI';
 
-const PasswordChange = ({ password }) => {
+const PasswordChange = () => {
   const theme = useTheme();
-  const navigate = useNavigate();
   const [pass, setPass] = useState('');
   const confpassInput = useRef();
   const [error, setError] = useState(false);
@@ -112,7 +110,11 @@ const PasswordChange = ({ password }) => {
         <Typography
           variant="h4"
           gutterBottom
-          sx={{ fontWeight: 500, color: theme.palette.primary.dark }}
+          sx={{
+            fontWeight: 500,
+            color: theme.palette.primary.dark,
+            paddingTop: '8px',
+          }}
         >
           Change Password
         </Typography>
@@ -122,13 +124,14 @@ const PasswordChange = ({ password }) => {
           noValidate
           autoComplete="off"
           style={{
-            width: isBigScreen ? '30%' : '60%',
+            width: '300px',
             display: 'flex',
             flexDirection: 'column',
+            paddingTop: '12px',
           }}
         >
           <FormControl
-            sx={{ ...inputStyle, width: { xs: '100%', sm: '50%' } }}
+            sx={{ ...inputStyle, width: '100%', paddingBottom: '12px' }}
             variant="outlined"
             required
           >
@@ -175,7 +178,7 @@ const PasswordChange = ({ password }) => {
             />
           </FormControl>
           <FormControl
-            sx={{ ...inputStyle, width: { xs: '100%', sm: '50%' } }}
+            sx={{ ...inputStyle, width: '100%' }}
             variant="outlined"
             required
           >
@@ -221,7 +224,6 @@ const PasswordChange = ({ password }) => {
               sx={{
                 fontSize: theme.typography.body1,
                 fontWeight: 500,
-                width: { xs: '50%', sm: '25%' },
                 margin: '10px auto',
               }}
               endIcon={<KeyboardArrowRightIcon />}
