@@ -14,3 +14,33 @@ export const getUser = async () => {
     console.error(error.message);
   }
 };
+
+//update user
+export const updateUser = async (userId, body) => {
+  try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const user = await axios.put(`${BASE_URL}/users/${userId}`, body, {
+      headers,
+    });
+    return user.data;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+//delete user
+export const deleteUser = async (userId) => {
+  try {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const user = await axios.delete(`${BASE_URL}/users/${userId}`, { headers });
+    return user.data;
+  } catch (error) {
+    console.error(error.message);
+  }
+};

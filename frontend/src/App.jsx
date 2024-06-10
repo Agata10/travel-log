@@ -19,14 +19,18 @@ import {
 import { AuthContext } from './utilis/context/AuthContext';
 import { themeMaterialUI } from './assets/themeMaterialUI';
 import { useContext } from 'react';
+import PasswordChange from './components/accountSettings/PasswordChange';
 
 let theme = createTheme(themeMaterialUI);
 theme = responsiveFontSizes(theme);
 
 function App() {
-  const authContext = useContext(AuthContext);
-  const { authUser } = authContext;
+  const { authUser, isLoading } = useContext(AuthContext);
 
+  if (isLoading) {
+    // Show a loading spinner or some kind of loading indicator
+    return <div>Loading...</div>;
+  }
   return (
     <div className="overflow-x-hidden">
       <ThemeProvider theme={theme}>
@@ -51,6 +55,12 @@ function App() {
                 <Route
                   path="/profile"
                   element={authUser ? <Account /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/profile/password"
+                  element={
+                    authUser ? <PasswordChange /> : <Navigate to="/login" />
+                  }
                 />
                 <Route path="/logout" element={<Navigate to="/" />} />
                 <Route

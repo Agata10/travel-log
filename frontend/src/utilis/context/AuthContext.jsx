@@ -9,11 +9,10 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(isLoading);
+    setIsLoading(true);
     const getUserData = async () => {
       if (token) {
         const user = await getUser();
-
         if (user) {
           setAuthUser({
             _id: user._id,
@@ -23,13 +22,14 @@ export const AuthContextProvider = ({ children }) => {
           });
         } else {
           setAuthUser(null);
+          setIsLoading(false);
         }
-        setIsLoading(false);
       }
+      setIsLoading(false);
     };
 
     getUserData();
-  }, [isLoading]);
+  }, []);
 
   return (
     <AuthContext.Provider
