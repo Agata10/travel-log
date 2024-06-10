@@ -107,12 +107,16 @@ Token contains three parts:
 
 ## Screenshots
 1. For better project managment I used Jira to track sprints.
+<br>
     <img src="./screenshots/jira.png" width="700" height="500">
 1. Wireframes created using Figma
+<br>
     <img src="./screenshots/wireframe.png" width="700" height="500">
 2. Homepage
+<br>
     <img src="./screenshots/home.png" width="700" height="500">
 3. Trips page
+<br>
     <img src="./screenshots/trips.png" width="700" height="500">
 
 ## Database
