@@ -1,10 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Avatar, Box, Typography, useTheme } from '@mui/material';
 import { Button } from '@mui/material';
 import { useContext, useRef, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
