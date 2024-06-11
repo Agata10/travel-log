@@ -20,7 +20,7 @@ Application for tracking your trips in one place, add trips, places, your favour
 ## About
 The application allows user to track their trips in one place. The can add places to it, budget, expenses and create their own itinerary. What is more, the website provides map for searching new places: hotels, restaurants and attractions for chosen location.
 <br/>
-Frontend part was created using Vite and React. I used many packages that are listed below for better user experience. I styled application with Materail UI, Tailwind CSS and CSS.
+Frontend part was created using Vite and React. I used many packages that are listed below for better user experience. I styled application with Materail UI, Tailwind CSS and CSS. For form validation I used react-material-ui-form-validator that allows use validator checks and easily display errors.
 <br/>
 Backend was created using Express.js. I used jwt token for the user authentication and personal data security, bcrypt for hashing the user password.
 <br/>
@@ -52,7 +52,8 @@ For UI/UX design I used Figma to create wireframes. What is more, I managed my p
  - Add places from search list to your trip
 
 2. Trips page
- - Add, view or delete trips. Add starting date and end date to your trip.
+ - Add, view or delete trips
+ - Add starting date and end date to your trip.
 
 3. Single trip page
  - Edit your trip, change name or dates
@@ -61,7 +62,8 @@ For UI/UX design I used Figma to create wireframes. What is more, I managed my p
  - Look for places to add to your trip, add address and notes to them
 
 4. Favorites page
-- Edit or delete your fav places, add address or notes
+- Edit or delete your fav places
+- Add address or notes
 
 5. Profile page
 - Edit your profile
@@ -74,6 +76,7 @@ The application can have some improvements like:
 2. Change display of iternary, so user can edit the places, add address and notes.
 3. Try to implement different map holder, not leaflet so the tooltip are following the mouse, and I could use z-index for hovering over them.
 4. Add e-mail confirmations.
+5. Because of the API limits I didn't applied it to search bar on single trip page, in places to visit section. For future app improvements, I would add autocomplete API to it.
 
 ## What I learned
 
