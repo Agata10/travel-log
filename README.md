@@ -16,7 +16,6 @@ Application for tracking your trips in one place, add trips, places, your favour
 - [Run Locally](#run-locally)
 - [API routes](#api-routes)
 - [Database](#database)
-- [License](#license)
 
 
 ## About
@@ -161,17 +160,3 @@ Token contains three parts:
   - **POST** /login -- Login an exisiting user.
   - **POST** /signup -- Create a new user.
 
-## LICENCE
-
-Custom License for travel-log
-Copyright (c) [2024] [Agata Deter]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), subject to the following conditions:
-
-Contribution: Any person wishing to contribute to the project must first obtain express written permission from the original author. Contributions are subject to approval by the original author.
-
-Copying, Forking, and Modification: The Software, or any derivative works thereof, may not be copied, forked, or modified without explicit written permission from the original author.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-For permission requests or inquiries, please contact me.
