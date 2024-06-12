@@ -122,7 +122,6 @@ export const getPlacesByDate = async (date, tripId) => {
       `${BASE_URL}/trips/${tripId}/places/${date}`,
       { headers }
     );
-    console.log(place.data);
     return place.data;
   } catch (error) {
     console.error(error.message);

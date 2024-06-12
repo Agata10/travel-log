@@ -38,7 +38,8 @@ const ItineraryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
     //set iternary places without the selected place, so user can't pick it again
     setIternaryPlaces((prev) => prev.filter((place) => place._id !== placeId));
     //add date to the selected place
-    const body = { date: day };
+    const isoDay = new Date(day).toISOString();
+    const body = { date: isoDay };
     await updatePlace(placeId, body);
     document.activeElement.blur();
   };
