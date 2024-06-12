@@ -5,21 +5,21 @@ Application for tracking your trips in one place, add trips, places, your favour
 ## Table of Contents
 
 
-[About](#about)
- [Technologies](#technologies)
- [Site link](#site-link)
-  [Features](#features)
- [Challenges](#challenges)
-[Future app possibilities](#possibilities)
-  [What I learned](#what-i-learned)
- [Screenshots](#screenshots)
- [Run Locally](#run-locally)
- [API routes](#api-routes)
-  [Database](#database)
+- [About](#about)
+- [Technologies](#technologies)
+- [Site link](#site-link)
+- [Features](#features)
+- [Challenges](#challenges)
+- [Future app possibilities](#possibilities)
+- [What I learned](#what-i-learned)
+- [Screenshots](#screenshots)
+- [Run Locally](#run-locally)
+- [API routes](#api-routes)
+- [Database](#database)
 
 
 ## About
-The application allows user to track their trips in one place. The can add places to it, budget, expenses and create their own itinerary. What is more, the website provides map for searching new places: hotels, restaurants and attractions for chosen location.
+The application allows user to track their trips in one place. They can add places to it, budget, expenses and create their own itinerary. What is more, the website provides map for searching new places: hotels, restaurants and attractions for chosen location.
 <br/>
 Frontend part was created using Vite and React. I used many packages that are listed below for better user experience. I styled application with Materail UI, Tailwind CSS and CSS. For form validation I used react-material-ui-form-validator that allows use validator checks and easily display errors.
 <br/>
@@ -65,6 +65,7 @@ https://travel-log-1.onrender.com/
  - Add notes so you won't forget anything
  - Set your limits - add budget, add expenses and track how much you spend
  - Look for places to add to your trip, add address and notes to them
+ - Plan each day by creating Itinerary
 
 4. Favorites page
 - Edit or delete your fav places
