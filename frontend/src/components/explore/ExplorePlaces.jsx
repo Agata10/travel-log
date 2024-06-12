@@ -9,7 +9,7 @@ import { Box } from '@mui/material';
 
 const ExplorePlaces = () => {
   const exploreContext = useContext(ExploreContext);
-  const { setPosition } = exploreContext;
+  const {  setPosition } = exploreContext;
 
   return (
     <Box className="flex flex-col items-center">

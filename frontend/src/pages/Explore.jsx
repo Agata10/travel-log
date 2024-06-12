@@ -20,12 +20,14 @@ const Explore = () => {
     setSearchPlaces,
     showAlert,
     setShowAlert,
+    setPrevPlaces,
   } = exploreContext;
 
   const setPlacesList = async () => {
     const placesData = await getRestaurants(bounds);
-    console.log(placesData);
+    // console.log(placesData);
     if (placesData) {
+      setPrevPlaces(placesData);
       setSearchPlaces(placesData);
     }
   };

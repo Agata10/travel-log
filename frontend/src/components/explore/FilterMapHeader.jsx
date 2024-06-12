@@ -10,7 +10,7 @@ import {
   Box,
   useTheme,
 } from '@mui/material';
-import data from '../../assets/fakeData_testing/places';
+// import data from '../../assets/fakeData_testing/places';
 import {
   getAttractions,
   getHotels,
@@ -20,17 +20,10 @@ import {
 const options = ['Restaurants', 'Hotels', 'Attractions'];
 const FilterMapHeader = () => {
   const expoloreContext = useContext(ExploreContext);
-  const { searchPlaces, setSearchPlaces, bounds, setPrevPlaces, prevPlaces } =
-    expoloreContext;
+  const { setSearchPlaces, bounds, prevPlaces } = expoloreContext;
   const [selectedCategory, setSelectedCategory] = useState(options[0]);
   const [rating, setRating] = useState(3);
   const theme = useTheme();
-
-  useEffect(() => {
-    if (searchPlaces) {
-      setPrevPlaces(searchPlaces);
-    }
-  }, []);
 
   //Depending on select option restaurants,attractions hotels, call api
   //Depending on rating filter places
@@ -77,6 +70,7 @@ const FilterMapHeader = () => {
       //get places from previous places that were saved
       //or if no places found
       if (newValue < rating) {
+        console.log(prevPlaces);
         setRating(newValue);
         setSearchPlaces(prevPlaces.filter((place) => place.rating >= newValue));
         return;

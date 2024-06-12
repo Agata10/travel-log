@@ -4,11 +4,34 @@ import ListItem from '@mui/material/ListItem';
 import PlaceCard from './PlaceCard';
 import { ExploreContext } from '../../utilis/context/ExploreContext';
 import { Typography, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 
 const ListSearchPlaces = () => {
   const expoloreContext = useContext(ExploreContext);
-  const { searchPlaces } = expoloreContext;
+  const { searchPlaces, isLoading } = expoloreContext;
   const theme = useTheme();
+
+  {
+    if (isLoading) {
+      return (
+        <Box
+          sx={{
+            position: 'relative',
+            top: '10%',
+            width: '100%',
+            height: '70vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="h3" sx={{ color: theme.palette.primary.dark }}>
+            Loading places...
+          </Typography>
+        </Box>
+      );
+    }
+  }
 
   return (
     <List
