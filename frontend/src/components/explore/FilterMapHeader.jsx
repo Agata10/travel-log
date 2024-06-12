@@ -17,7 +17,7 @@ import {
   getRestaurants,
 } from '../../services/travelAPI';
 
-const options = ['Restaurants', 'Hotels', 'Attractions'];
+const options = ['Restaurants', 'Attractions'];
 const FilterMapHeader = () => {
   const expoloreContext = useContext(ExploreContext);
   const { setSearchPlaces, bounds, prevPlaces } = expoloreContext;
@@ -36,12 +36,12 @@ const FilterMapHeader = () => {
           setSearchPlaces(placesData);
         }
         break;
-      case 'Hotels':
-        placesData = await getHotels(bounds);
-        if (placesData) {
-          setSearchPlaces(placesData);
-        }
-        break;
+      // case 'Hotels':
+      //   placesData = await getHotels(bounds);
+      //   if (placesData) {
+      //     setSearchPlaces(placesData);
+      //   }
+      //   break;
       case 'Attractions':
         placesData = await getAttractions(bounds);
         if (placesData) {
