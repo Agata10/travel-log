@@ -1,18 +1,17 @@
 import { Grid, Alert } from '@mui/material';
 import Map from '../components/explore/Map';
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import ExplorePlaces from '../components/explore/ExplorePlaces';
 import { ExploreContext } from '../utilis/context/ExploreContext.jsx';
 import { getRestaurants } from '../services/travelAPI';
 import CssBaseline from '@mui/material/CssBaseline';
-import data from '../assets/fakeData_testing/places.js';
+// import data from '../assets/fakeData_testing/places.js';
 import DialogAddPlaceToTrip from '../components/explore/DialogAddPlaceToTrip.jsx';
 
 const Explore = () => {
   const exploreContext = useContext(ExploreContext);
   const {
-    position,
     setPosition,
     isLoading,
     setIsLoading,
@@ -56,8 +55,8 @@ const Explore = () => {
   //when page first loaded, load the places list as restaurants from Travel API
   useEffect(() => {
     if (bounds) {
-      //setPlacesList();
-      setSearchPlaces(data);
+      setPlacesList();
+      // setSearchPlaces(data);
     }
   }, [bounds]);
 

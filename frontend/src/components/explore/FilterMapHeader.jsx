@@ -39,21 +39,21 @@ const FilterMapHeader = () => {
     switch (category) {
       case 'Restaurants':
         placesData = await getRestaurants(bounds);
-        console.log(placesData);
+        // console.log(placesData);
         if (placesData) {
           setSearchPlaces(placesData);
         }
         break;
       case 'Hotels':
         placesData = await getHotels(bounds);
-        console.log(placesData);
+        // console.log(placesData);
         if (placesData) {
           setSearchPlaces(placesData);
         }
         break;
       case 'Attractions':
         placesData = await getAttractions(bounds);
-        console.log(placesData);
+        // console.log(placesData);
         if (placesData) {
           setSearchPlaces(placesData);
         }
