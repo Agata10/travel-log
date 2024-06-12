@@ -58,7 +58,7 @@ const Explore = () => {
   //when page first loaded, load the places list as restaurants from Travel API
   useEffect(() => {
     if (bounds) {
-      // setPlacesList();
+      setPlacesList();
       // setSearchPlaces(data);
     }
   }, [position,bounds]);
