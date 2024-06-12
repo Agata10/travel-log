@@ -13,7 +13,7 @@ import {
 // import data from '../../assets/fakeData_testing/places';
 import {
   getAttractions,
-  getHotels,
+  // getHotels,
   getRestaurants,
 } from '../../services/travelAPI';
 

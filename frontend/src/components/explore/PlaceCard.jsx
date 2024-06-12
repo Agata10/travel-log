@@ -80,6 +80,7 @@ const PlaceCard = ({ place }) => {
         sx={{
           display: 'flex',
           flexDirection: 'row',
+          justifyContent: 'space-between',
           gap: { xs: 0, lg: '5px' },
         }}
       >

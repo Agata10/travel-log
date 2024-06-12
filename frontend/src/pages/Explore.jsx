@@ -59,7 +59,7 @@ const Explore = () => {
   useEffect(() => {
     if (bounds) {
       setPlacesList();
-      // setSearchPlaces(data);
+      //  setSearchPlaces(data);
     }
   }, [position,bounds]);
 
