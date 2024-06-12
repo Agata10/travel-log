@@ -25,7 +25,8 @@ const ItineraryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
 
   useEffect(() => {
     const getPlacesByDay = async () => {
-      const response = await getPlacesByDate(day, trip._id);
+      const isoDay = new Date(day).toISOString();
+      const response = await getPlacesByDate(isoDay, trip._id);
       if (response) {
         setDayPlaces(response);
       }
