@@ -23,14 +23,15 @@ const ItineraryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
 
+  const getPlacesByDay = async () => {
+    const isoDay = new Date(day).toISOString();
+    const response = await getPlacesByDate(isoDay, trip._id);
+    if (response) {
+      setDayPlaces(response);
+    }
+  };
+
   useEffect(() => {
-    const getPlacesByDay = async () => {
-      const isoDay = new Date(day).toISOString();
-      const response = await getPlacesByDate(isoDay, trip._id);
-      if (response) {
-        setDayPlaces(response);
-      }
-    };
     getPlacesByDay();
   }, [iternaryPlaces]);
 
@@ -43,6 +44,7 @@ const ItineraryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
     const body = { date: isoDay };
     await updatePlace(placeId, body);
     document.activeElement.blur();
+    getPlacesByDay();
   };
 
   const handleDeleteDate = async (place) => {
@@ -50,6 +52,7 @@ const ItineraryDay = ({ day, trip, iternaryPlaces, setIternaryPlaces }) => {
     const body = { date: '' };
     await updatePlace(placeId, body);
     setIternaryPlaces((prev) => [...prev, place]);
+    getPlacesByDay();
   };
 
   return (
