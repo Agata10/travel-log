@@ -20,6 +20,7 @@ import { AuthContext } from './utilis/context/AuthContext';
 import { themeMaterialUI } from './assets/themeMaterialUI';
 import { useContext } from 'react';
 import PasswordChange from './components/accountSettings/PasswordChange';
+import { RotatingLines } from 'react-loader-spinner';
 
 let theme = createTheme(themeMaterialUI);
 theme = responsiveFontSizes(theme);
@@ -28,8 +29,17 @@ function App() {
   const { authUser, isLoading } = useContext(AuthContext);
 
   if (isLoading) {
-    // Show a loading spinner or some kind of loading indicator
-    return <div>Loading...</div>;
+    return  <div className="flex justify-center items-center h-5/6">
+    <RotatingLines
+      visible={true}
+      height="80"
+      width="80"
+      color="grey"
+      strokeWidth="5"
+      animationDuration="0.75"
+      ariaLabel="rotating-lines-loading"
+    />
+  </div>
   }
   return (
     <div className="overflow-x-hidden">
