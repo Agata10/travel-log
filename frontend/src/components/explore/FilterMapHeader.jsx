@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { ExploreContext } from '../../utilis/context/ExploreContext';
 import {
   Typography,
@@ -32,21 +32,18 @@ const FilterMapHeader = () => {
     switch (category) {
       case 'Restaurants':
         placesData = await getRestaurants(bounds);
-        // console.log(placesData);
         if (placesData) {
           setSearchPlaces(placesData);
         }
         break;
       case 'Hotels':
         placesData = await getHotels(bounds);
-        // console.log(placesData);
         if (placesData) {
           setSearchPlaces(placesData);
         }
         break;
       case 'Attractions':
         placesData = await getAttractions(bounds);
-        // console.log(placesData);
         if (placesData) {
           setSearchPlaces(placesData);
         }
@@ -70,7 +67,6 @@ const FilterMapHeader = () => {
       //get places from previous places that were saved
       //or if no places found
       if (newValue < rating) {
-        console.log(prevPlaces);
         setRating(newValue);
         setSearchPlaces(prevPlaces.filter((place) => place.rating >= newValue));
         return;
