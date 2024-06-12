@@ -47,6 +47,7 @@ https://travel-log-1.onrender.com/
 1. Geoapify - autocomplete & map tiles
 2. Travel Advisor - searching places based on categories.
 3. Unsplash - for places images
+Other: Cloudinary for images managment and storage.
 
 ## Features
 
