@@ -7,9 +7,10 @@ Application for tracking your trips in one place, add trips, places, your favour
 
 [About](#about)
  [Technologies](#technologies)
+ [Site link](#site-link)
   [Features](#features)
  [Challenges](#challenges)
-     [Future app possibilities](#possibilities)
+[Future app possibilities](#possibilities)
   [What I learned](#what-i-learned)
  [Screenshots](#screenshots)
  [Run Locally](#run-locally)
@@ -25,6 +26,10 @@ Frontend part was created using Vite and React. I used many packages that are li
 Backend was created using Express.js. I used jwt token for the user authentication and personal data security, bcrypt for hashing the user password.
 <br/>
 For UI/UX design I used Figma to create wireframes. What is more, I managed my project using Jira Software that allowed me to track my sprints, add issues and track overall progress of my project.
+
+## Site link
+
+https://travel-log-1.onrender.com/
 
 ## Technologies
 
@@ -92,6 +97,7 @@ Token contains three parts:
 <br>
 
 `Signature` - created using encoded header, encoded payload and secret
+
 3. How to use bcrypt package to hash password using salt rounds.
 
 **FRONTEND**
