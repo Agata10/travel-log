@@ -11,6 +11,7 @@ import { useEffect, useState, useContext } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { ExploreContext } from '../../utilis/context/ExploreContext';
 import icon from '../../assets/images/loc.png';
+import main_icon from '../../assets/images/main_loc.png';
 import L from 'leaflet';
 import { Rating } from '@mui/material';
 
@@ -31,15 +32,34 @@ const getBounds = (map, setBounds) => {
 
 // When new position selected, change zoom into a new postion and set a marker there
 const LocationMarker = ({ position, setBounds }) => {
+
+    const customIcon = L.icon({
+      iconUrl: main_icon,
+      iconSize: [48, 52], // size of the icon
+      iconAnchor: [19, 38], // point of the icon which will correspond to marker's location
+      popupAnchor: [0, -38], // point from which the popup should open relative to the iconAnchor
+    });
+
   const map = useMap();
 
   useEffect(() => {
-    map.flyTo([position.lat, position.lng], map.getZoom());
-    getBounds(map, setBounds);
+    const handleMoveEnd = () => {
+      getBounds(map, setBounds);
+      map.off('moveend', handleMoveEnd); // Unsubscribe after handling
+    };
+
+    if (position) {
+      map.flyTo([position.lat, position.lng], map.getZoom());
+      map.on('moveend', handleMoveEnd); // Subscribe to moveend event
+    }
+
+    return () => {
+      map.off('moveend', handleMoveEnd); // Cleanup subscription on unmount or before re-subscribing
+    };
   }, [position, map]);
 
   return position === null ? null : (
-    <Marker position={position}>
+    <Marker position={position} icon={customIcon}>
       <Tooltip>You are here</Tooltip>
       <Popup>You are here</Popup>
     </Marker>

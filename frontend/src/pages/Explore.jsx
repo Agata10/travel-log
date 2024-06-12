@@ -12,6 +12,7 @@ import DialogAddPlaceToTrip from '../components/explore/DialogAddPlaceToTrip.jsx
 const Explore = () => {
   const exploreContext = useContext(ExploreContext);
   const {
+    position,
     setPosition,
     isLoading,
     setIsLoading,
@@ -57,10 +58,10 @@ const Explore = () => {
   //when page first loaded, load the places list as restaurants from Travel API
   useEffect(() => {
     if (bounds) {
-      setPlacesList();
+      // setPlacesList();
       // setSearchPlaces(data);
     }
-  }, [bounds]);
+  }, [position,bounds]);
 
   return (
     <>
