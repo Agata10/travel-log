@@ -1,6 +1,6 @@
 # travel-log
 
-Application for tracking your trips in one place, add trips, places, your favourtie places, track your budget for a given trip and your expenses, explore restaurants and attractions !
+Application for tracking your trips in one place, add trips, places, your favorite places, track your budget for a given trip and your expenses, explore restaurants and attractions !
 
 ## Table of Contents
 
@@ -19,7 +19,7 @@ Application for tracking your trips in one place, add trips, places, your favour
 
 
 ## About
-The application allows user to track their trips in one place. They can add places to it, budget, expenses and create their own itinerary. What is more, the website provides map for searching new places: hotels, restaurants and attractions for chosen location.
+The application allows user to track their trips in one place. They can add places to it, budget, expenses and create their own itinerary. What is more, the website provides map for searching new places: restaurants and attractions for chosen location.
 <br/>
 Frontend part was created using Vite and React. I used many packages that are listed below for better user experience. I styled application with Materail UI, Tailwind CSS and CSS. For form validation I used react-material-ui-form-validator that allows use validator checks and easily display errors.
 <br/>
@@ -52,7 +52,7 @@ Other: Cloudinary for images managment and storage.
 ## Features
 
 1. Explore page
- - Search for places near you or from the location you enter in search bar. Filter places by hotels, restaurants, attractions or rating.
+ - Search for places near you or from the location you enter in search bar. Filter places by restaurants, attractions or rating.
  - See places on map
  - Add places from search list to your favorites
  - Add places from search list to your trip
